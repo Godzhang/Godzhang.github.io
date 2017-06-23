@@ -90,16 +90,16 @@
 
 
 
-<meta name="description" content="##toString 参数：  无作用：  返回指定的布尔对象的字符串形式返回值：指定的布尔对象的字符串形式描述：  当一个布尔对象作为文本值或进行字符串连接时，JavaScript 会自动调用其toString 方法 var flag = true; var myVar = flag.toString(); // &amp;quot;true&amp;quot; ##valueOf 参数：无作用：返回一个Boo">
+<meta name="description" content="toString参数：  无作用：  返回指定的布尔对象的字符串形式返回值：指定的布尔对象的字符串形式描述：  当一个布尔对象作为文本值或进行字符串连接时，JavaScript 会自动调用其toString 方法 var flag = true; var myVar = flag.toString(); // &amp;quot;true&amp;quot; console.log(typeof a); //st">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Boolean对象内置方法总结">
 <meta property="og:url" content="http://yoursite.com/2017/06/23/Boolean对象内置方法总结/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="##toString 参数：  无作用：  返回指定的布尔对象的字符串形式返回值：指定的布尔对象的字符串形式描述：  当一个布尔对象作为文本值或进行字符串连接时，JavaScript 会自动调用其toString 方法 var flag = true; var myVar = flag.toString(); // &amp;quot;true&amp;quot; ##valueOf 参数：无作用：返回一个Boo">
-<meta property="og:updated_time" content="2017-06-23T15:37:15.686Z">
+<meta property="og:description" content="toString参数：  无作用：  返回指定的布尔对象的字符串形式返回值：指定的布尔对象的字符串形式描述：  当一个布尔对象作为文本值或进行字符串连接时，JavaScript 会自动调用其toString 方法 var flag = true; var myVar = flag.toString(); // &amp;quot;true&amp;quot; console.log(typeof a); //st">
+<meta property="og:updated_time" content="2017-06-23T15:40:11.501Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Boolean对象内置方法总结">
-<meta name="twitter:description" content="##toString 参数：  无作用：  返回指定的布尔对象的字符串形式返回值：指定的布尔对象的字符串形式描述：  当一个布尔对象作为文本值或进行字符串连接时，JavaScript 会自动调用其toString 方法 var flag = true; var myVar = flag.toString(); // &amp;quot;true&amp;quot; ##valueOf 参数：无作用：返回一个Boo">
+<meta name="twitter:description" content="toString参数：  无作用：  返回指定的布尔对象的字符串形式返回值：指定的布尔对象的字符串形式描述：  当一个布尔对象作为文本值或进行字符串连接时，JavaScript 会自动调用其toString 方法 var flag = true; var myVar = flag.toString(); // &amp;quot;true&amp;quot; console.log(typeof a); //st">
 
 
 
@@ -317,16 +317,15 @@
       
 
       
-        <p>##toString</p>
-<p>参数：  无<br>作用：  返回指定的布尔对象的字符串形式<br>返回值：指定的布尔对象的字符串形式<br>描述：  当一个布尔对象作为文本值或进行字符串连接时，JavaScript 会自动调用其toString 方法</p>
+        <h2 id="toString-NaN"><a href="#toString-NaN" class="headerlink" title="toString"></a>toString</h2><p>参数：  无<br>作用：  返回指定的布尔对象的字符串形式<br>返回值：指定的布尔对象的字符串形式<br>描述：  当一个布尔对象作为文本值或进行字符串连接时，JavaScript 会自动调用其toString 方法</p>
 <pre><code>var flag = true;
 var myVar = flag.toString(); // &quot;true&quot;
-</code></pre><p>##valueOf</p>
-<p>参数：无<br>作用：返回一个Boolean对象的原始值<br>返回值：Boolean对象的原始值<br>描述：该方法通常在 JavaScript 内部调用，而不是在代码中显示调用</p>
+console.log(typeof a); //string
+</code></pre><h2 id="valueOf-NaN"><a href="#valueOf-NaN" class="headerlink" title="valueOf"></a>valueOf</h2><p>参数：无<br>作用：返回一个Boolean对象的原始值<br>返回值：Boolean对象的原始值<br>描述：该方法通常在 JavaScript 内部调用，而不是在代码中显示调用</p>
 <pre><code>var bol = true;
 var a = bol.valueOf(); //true
-</code></pre><p>##toSource(不是任何标准的一部分)</p>
-<p>参数：无<br>作用：返回一个表示对象的源码的字符串<br>返回值：返回一个表示对象的源码的字符串</p>
+console.log(typeof a); //boolean
+</code></pre><h2 id="toSource-不是任何标准的一部分"><a href="#toSource-不是任何标准的一部分" class="headerlink" title="toSource(不是任何标准的一部分)"></a>toSource(不是任何标准的一部分)</h2><p>参数：无<br>作用：返回一个表示对象的源码的字符串<br>返回值：返回一个表示对象的源码的字符串</p>
 
       
     </div>
@@ -418,8 +417,17 @@ var a = bol.valueOf(); //true
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -463,6 +471,22 @@ var a = bol.valueOf(); //true
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#toString-NaN"><span class="nav-number">1.</span> <span class="nav-text">toString</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#valueOf-NaN"><span class="nav-number">2.</span> <span class="nav-text">valueOf</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#toSource-不是任何标准的一部分"><span class="nav-number">3.</span> <span class="nav-text">toSource(不是任何标准的一部分)</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
