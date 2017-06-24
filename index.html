@@ -345,8 +345,20 @@ var newArr = Array.from({length: 5},function(val,i){
 Array.isArray({foo: 123}); 
 // false
 </code></pre><h1 id="3-Array-of"><a href="#3-Array-of" class="headerlink" title="3. Array.of()"></a>3. Array.of()</h1><p>作用：创建一个具有可变数量参数的新数组实例,而不考虑参数的数量或类型<br>语法：Array.of(elem0, elem1, elem2, …elemN)<br>参数：任意个参数，将按顺序成为返回数组中的元素<br>返回值：新的 Array 实例<br>是否改变原数组的值：false<br>兼容性：IE,Opera不支持<br>版本：ES6<br>描述：—</p>
-<p>var newArr = Array.of(1) //[1]<br>var newArr = Array.of(1,2,3) //[1,2,3]<br>var newArr = Array.of(“zhangqi”) //[“zhangqi”]<br>var newArr = Array.of(true) //[true]<br>var newArr = Array.of({name: ‘zhangqi’}) //[{name: ‘zhangqi’}]</p>
-<h1 id="4-Array-prototype-concat"><a href="#4-Array-prototype-concat" class="headerlink" title="4. Array.prototype.concat()"></a>4. Array.prototype.concat()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原数组的值：<br>兼容性：<br>版本：<br>描述：</p>
+<pre><code>var newArr = Array.of(1) //[1]
+var newArr = Array.of(1,2,3) //[1,2,3]
+var newArr = Array.of(&quot;zhangqi&quot;) //[&quot;zhangqi&quot;]
+var newArr = Array.of(true) //[true]
+var newArr = Array.of({name: &apos;zhangqi&apos;}) //[{name: &apos;zhangqi&apos;}]
+</code></pre><h1 id="4-Array-prototype-concat"><a href="#4-Array-prototype-concat" class="headerlink" title="4. Array.prototype.concat()"></a>4. Array.prototype.concat()</h1><p>作用：合并两个或多个数组<br>语法：var newArr = arr1.concat(arr2, arr3, …arrN)<br>      var newArr = Array.prototype.call(arr1, arr2, …arrN)<br>参数：需要与原数组合并的数组或非数组值<br>返回值：新的 Array 实例<br>是否改变原数组的值：false<br>兼容性：IE5.5+<br>版本：ES3<br>描述：</p>
+<pre><code>let arr1 = [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;];
+let arr2 = [&quot;d&quot;, &quot;e&quot;, &quot;f&quot;];
+let arr3 = [&quot;g&quot;];
+let arr4 = arr1.concat(arr2,arr3);
+console.log(arr4); // [ &quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;e&quot;, &quot;f&quot;, &quot;g&quot; ]
+console.log(arr1); // [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;]
+console.log(arr2); // [&quot;d&quot;, &quot;e&quot;, &quot;f&quot;]
+</code></pre><h1 id="5-Array-prototype-copyWithin"><a href="#5-Array-prototype-copyWithin" class="headerlink" title="5. Array.prototype.copyWithin()"></a>5. Array.prototype.copyWithin()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原数组的值：<br>兼容性：<br>版本：<br>描述： </p>
 
           
         
