@@ -449,7 +449,56 @@ arr.fill(6,2); //[1,2,6,6,6]
 <pre><code>var newArr = [1,2,3,4,5,6].filter(function(value, index){
    return value % 2 === 0; 
 }); //[2,4,6]   
-</code></pre><h1 id="10-Array-prototype-find"><a href="#10-Array-prototype-find" class="headerlink" title="10. Array.prototype.find()"></a>10. Array.prototype.find()</h1><h1 id="11-Array-prototype-findIndex"><a href="#11-Array-prototype-findIndex" class="headerlink" title="11. Array.prototype.findIndex()"></a>11. Array.prototype.findIndex()</h1><h1 id="12-Array-prototype-forEach"><a href="#12-Array-prototype-forEach" class="headerlink" title="12. Array.prototype.forEach()"></a>12. Array.prototype.forEach()</h1><p>作用：对数组的每个元素执行一次提供的函数<br>语法：array.forEach(callback, thisArg)<br>参数：</p>
+</code></pre><h1 id="10-Array-prototype-find"><a href="#10-Array-prototype-find" class="headerlink" title="10. Array.prototype.find()"></a>10. Array.prototype.find()</h1><p>作用：返回数组中满足提供的测试函数的第一个元素的值。否则返回 undefined。<br>语法：arr.find(callback, thisArg)<br>参数：</p>
+<ul>
+<li>callback(value, index, oldArr): 测试函数<ul>
+<li>value: 每一项的元素值</li>
+<li>index: 元素索引</li>
+<li>oldArr: 原数组</li>
+</ul>
+</li>
+<li>thisArg: 执行callback时的this值</li>
+</ul>
+<p>返回值：数组中满足提供的测试函数的第一个元素的值 || undefined<br>是否改变原数组的值：false<br>兼容性：IE12, opera-<br>版本：ES6<br>描述：找到符合元素之前，callback函数会为数组中的每个索引调用，而不仅仅是那些被赋值的索引，如果找到了一个这样的元素， 则 find 将会立刻返回这个元素。这意味着对于稀疏数组来说，该方法的效率要低于那些只遍历赋值索引的方法。</p>
+<pre><code>var rel = [12, 5, 8, 130, 44].find(function(value, index){
+    return value &gt;= 15; 
+});
+console.log(rel); //130
+
+//寻找数组中的质数
+function isPrime(value, index, arr){
+    var start = 2;
+    if(start &lt;= Math.sqrt(value)){
+        if(value%start++ &lt; 1){
+            return false;
+        }
+    }
+    return value &gt; 1;
+}
+console.log([4,6,8].find(isPrime)); //undefined
+console.log([4,5,8].find(isPrime)); //5
+</code></pre><h1 id="11-Array-prototype-findIndex"><a href="#11-Array-prototype-findIndex" class="headerlink" title="11. Array.prototype.findIndex()"></a>11. Array.prototype.findIndex()</h1><p>作用：返回数组中满足提供的测试函数的第一个元素的索引。否则返回-1<br>语法：arr.findIndex(callback, thisArg)<br>参数：</p>
+<ul>
+<li>callback(value, index, oldArr): 测试函数<ul>
+<li>value: 每一项的元素值</li>
+<li>index: 元素索引</li>
+<li>oldArr: 原数组</li>
+</ul>
+</li>
+<li>thisArg: 执行callback时的this值</li>
+</ul>
+<p>返回值：数组中满足提供的测试函数的第一个元素的索引 || -1<br>是否改变原数组的值：false<br>兼容性：IE-, opera-<br>版本：ES6<br>描述：找到符合元素之前，callback函数会为数组中的每个索引调用，而不仅仅是那些被赋值的索引, 如果找到了一个这样的元素， 则 findIndex 将会立刻返回这个元素的索引。</p>
+<pre><code>function isPrime(element, index, array) {
+    var start = 2;
+    while (start &lt;= Math.sqrt(element)) {
+        if (element % start++ &lt; 1) return false;
+    }
+    return (element &gt; 1);
+}
+
+console.log( [4, 6, 8, 12].findIndex(isPrime) ); // -1
+console.log( [4, 6, 7, 12].findIndex(isPrime) ); // 2
+</code></pre><h1 id="12-Array-prototype-forEach"><a href="#12-Array-prototype-forEach" class="headerlink" title="12. Array.prototype.forEach()"></a>12. Array.prototype.forEach()</h1><p>作用：对数组的每个元素执行一次提供的函数<br>语法：array.forEach(callback, thisArg)<br>参数：</p>
 <ul>
 <li>callback(value, index, oldArr): 测试函数<ul>
 <li>value: 每一项的元素值</li>
