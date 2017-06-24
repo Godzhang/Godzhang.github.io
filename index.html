@@ -515,7 +515,58 @@ console.log( [4, 6, 7, 12].findIndex(isPrime) ); // 2
 a[0]=2
 a[1]=4
 a[2]=6
-</code></pre><h1 id="13-Array-prototype-includes"><a href="#13-Array-prototype-includes" class="headerlink" title="13. Array.prototype.includes()"></a>13. Array.prototype.includes()</h1><h1 id="14-Array-prototype-indexOf"><a href="#14-Array-prototype-indexOf" class="headerlink" title="14. Array.prototype.indexOf()"></a>14. Array.prototype.indexOf()</h1><h1 id="15-Array-prototype-join"><a href="#15-Array-prototype-join" class="headerlink" title="15. Array.prototype.join()"></a>15. Array.prototype.join()</h1><p>作用：将数组（或一个类数组对象）的所有元素连接到一个字符串中<br>语法：arr.join(separator)<br>参数：</p>
+</code></pre><h1 id="13-Array-prototype-includes"><a href="#13-Array-prototype-includes" class="headerlink" title="13. Array.prototype.includes()"></a>13. Array.prototype.includes()</h1><p>作用：用来判断一个数组是否包含一个指定的值<br>语法：arr.includes(searchElement, fromIndex)<br>参数：</p>
+<ul>
+<li>searchElement: 需要查找的元素值</li>
+<li>fromIndex: 起始索引，fromIndex &lt; 0 ? arr.length + fromIndex</li>
+</ul>
+<p>返回值：true || false<br>是否改变原数组的值：false<br>兼容性：IE-<br>版本：ES6<br>描述：如果fromIndex 大于等于数组长度 ，则返回 false 。该数组不会被搜索。<br>      如果 fromIndex 为负值，计算出的索引将作为开始搜索searchElement的位置。如果计算出的索引小于 0，则整个数组都会被搜索。</p>
+<pre><code>[1, 2, 3].includes(2);     // true
+[1, 2, 3].includes(4);     // false
+[1, 2, 3].includes(3, 3);  // false
+[1, 2, 3].includes(3, -1); // true
+[1, 2, NaN].includes(NaN); // true
+
+//fromIndex 大于等于数组长度
+var arr = [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;];
+arr.includes(&apos;c&apos;, 3);   //false
+arr.includes(&apos;c&apos;, 100); // false
+
+//计算出的索引小于 0
+var arr = [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;];
+arr.includes(&apos;a&apos;, -100); // true
+arr.includes(&apos;b&apos;, -100); // true
+arr.includes(&apos;c&apos;, -100); // true
+</code></pre><h1 id="14-Array-prototype-indexOf"><a href="#14-Array-prototype-indexOf" class="headerlink" title="14. Array.prototype.indexOf()"></a>14. Array.prototype.indexOf()</h1><p>作用：返回在数组中可以找到一个给定元素的第一个索引，如果不存在，则返回-1<br>语法：</p>
+<ul>
+<li>arr.indexOf(searchElement)</li>
+<li>arr.indexOf(searchElement, fromIndex)</li>
+</ul>
+<p>参数：</p>
+<ul>
+<li>searchElement: 需要查找的元素值</li>
+<li>fromIndex: 起始索引，fromIndex &lt; 0 ? arr.length + fromIndex</li>
+</ul>
+<p>返回值：首个被找到的元素在数组中的索引位置; 若没有找到则返回 -1<br>是否改变原数组的值：false<br>兼容性：IE9+<br>版本：ES5<br>描述：indexOf 使用严格相等（strict equality，即 ===）进行判断 searchElement与数组中包含的元素之间的关系。</p>
+<pre><code>var array = [2, 5, 9];
+array.indexOf(2);     // 0
+array.indexOf(7);     // -1
+array.indexOf(9, 2);  // 2
+array.indexOf(2, -1); // -1
+array.indexOf(2, -3); // 0
+
+//找出指定元素出现的所有位置
+var indices = [];
+var array = [&apos;a&apos;, &apos;b&apos;, &apos;a&apos;, &apos;c&apos;, &apos;a&apos;, &apos;d&apos;];
+var element = &apos;a&apos;;
+var idx = array.indexOf(element);
+while (idx != -1) {
+  indices.push(idx);
+  idx = array.indexOf(element, idx + 1);
+}
+console.log(indices);
+// [0, 2, 4]
+</code></pre><h1 id="15-Array-prototype-join"><a href="#15-Array-prototype-join" class="headerlink" title="15. Array.prototype.join()"></a>15. Array.prototype.join()</h1><p>作用：将数组（或一个类数组对象）的所有元素连接到一个字符串中<br>语法：arr.join(separator)<br>参数：</p>
 <ul>
 <li>separator: 指定一个字符串来分隔数组的每个元素</li>
 </ul>
@@ -535,7 +586,32 @@ console.log(b.next()); //Object {value: undefined, done: true}
 var arr = [&quot;a&quot;, ,&quot;c&quot;];
 Object.keys(arr); //[&quot;0&quot;, &quot;2&quot;]
 arr.keys(); //[0, 1, 2]
-</code></pre><h1 id="17-Array-prototype-lastIndex"><a href="#17-Array-prototype-lastIndex" class="headerlink" title="17. Array.prototype.lastIndex()"></a>17. Array.prototype.lastIndex()</h1><h1 id="18-Array-prototype-map"><a href="#18-Array-prototype-map" class="headerlink" title="18. Array.prototype.map()"></a>18. Array.prototype.map()</h1><p>作用：创建一个新数组，结果是该数组中每一个元素调用提供函数后返回的结果<br>语法：var newArr = arr.map(callback, thisArg);<br>参数：</p>
+</code></pre><h1 id="17-Array-prototype-lastIndex"><a href="#17-Array-prototype-lastIndex" class="headerlink" title="17. Array.prototype.lastIndex()"></a>17. Array.prototype.lastIndex()</h1><p>作用：返回指定元素在数组中的最后一个的索引，如果不存在则返回 -1。从数组的后面向前查找，从 fromIndex 处开始。<br>语法：arr.lastIndexOf(searchElement, fromIndex = arr.length-1)<br>参数：</p>
+<ul>
+<li>searchElement: 需要查找的元素值</li>
+<li>fromIndex: 起始索引，默认为数组的长度减 1, fromIndex &lt; 0 ? arr.length + fromIndex</li>
+</ul>
+<p>返回值：首个被找到的元素在数组中的索引位置 || -1<br>是否改变原数组的值：<br>兼容性：IE9+<br>版本：ES5<br>描述：lastIndexOf 使用严格相等（strict equality，即 ===）比较 searchElement 和数组中的元素。</p>
+<pre><code>var array = [2, 5, 9, 2];
+var index = array.lastIndexOf(2); // index is 3
+index = array.lastIndexOf(7);     // index is -1
+index = array.lastIndexOf(2, 3);  // index is 3
+index = array.lastIndexOf(2, 2);  // index is 0
+index = array.lastIndexOf(2, -2); // index is 0
+index = array.lastIndexOf(2, -1); // index is 3
+
+//查找所有元素
+var indices = [];
+var array = [&apos;a&apos;,&apos;b&apos;,&apos;c&apos;,&apos;d&apos;,&apos;a&apos;,&apos;d&apos;];
+var element = &apos;a&apos;;
+var idx = arr.lastIndexOf(element);
+
+while(idx !== -1){
+    indices.push(idx);
+    idx = (idx &gt; 0 ? arr.lastIndexOf(element, idx - 1) : -1);
+}
+console.log(indices); //[4,2,0];
+</code></pre><h1 id="18-Array-prototype-map"><a href="#18-Array-prototype-map" class="headerlink" title="18. Array.prototype.map()"></a>18. Array.prototype.map()</h1><p>作用：创建一个新数组，结果是该数组中每一个元素调用提供函数后返回的结果<br>语法：var newArr = arr.map(callback, thisArg);<br>参数：</p>
 <ul>
 <li>callback(value, index, oldArr): 测试函数<ul>
 <li>value: 每一项的元素值</li>
@@ -658,7 +734,8 @@ console.log(b); // 1
 }
 var bol = [2,3,5].every(isOdd); //true
 var bol = [3,5,11].every(isOdd); //false
-</code></pre><h1 id="27-Array-prototype-sort"><a href="#27-Array-prototype-sort" class="headerlink" title="27. Array.prototype.sort()"></a>27. Array.prototype.sort()</h1><h1 id="28-Array-prototype-splice"><a href="#28-Array-prototype-splice" class="headerlink" title="28. Array.prototype.splice()"></a>28. Array.prototype.splice()</h1><h1 id="29-Array-prototype-toLocalString"><a href="#29-Array-prototype-toLocalString" class="headerlink" title="29. Array.prototype.toLocalString()"></a>29. Array.prototype.toLocalString()</h1><h1 id="30-Array-prototype-toSource"><a href="#30-Array-prototype-toSource" class="headerlink" title="30. Array.prototype.toSource()"></a>30. Array.prototype.toSource()</h1><h1 id="31-Array-prototype-toString"><a href="#31-Array-prototype-toString" class="headerlink" title="31. Array.prototype.toString()"></a>31. Array.prototype.toString()</h1><h1 id="32-Array-prototype-unshift"><a href="#32-Array-prototype-unshift" class="headerlink" title="32. Array.prototype.unshift()"></a>32. Array.prototype.unshift()</h1><p>作用：将一个或多个元素添加到数组的开头<br>语法：arr.unshift(element1,element2, …elementN)<br>参数：一或多个要添加的元素<br>返回值：数组的长度<br>是否改变原数组的值：true<br>兼容性：ES3<br>版本：ie5.5+<br>描述：对于没有 length 属性的对象，调用该方法可能没有任何意义。</p>
+</code></pre><h1 id="27-Array-prototype-sort"><a href="#27-Array-prototype-sort" class="headerlink" title="27. Array.prototype.sort()"></a>27. Array.prototype.sort()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原数组的值：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="28-Array-prototype-splice"><a href="#28-Array-prototype-splice" class="headerlink" title="28. Array.prototype.splice()"></a>28. Array.prototype.splice()</h1><h1 id="29-Array-prototype-toLocalString"><a href="#29-Array-prototype-toLocalString" class="headerlink" title="29. Array.prototype.toLocalString()"></a>29. Array.prototype.toLocalString()</h1><h1 id="30-Array-prototype-toSource"><a href="#30-Array-prototype-toSource" class="headerlink" title="30. Array.prototype.toSource()"></a>30. Array.prototype.toSource()</h1><h1 id="31-Array-prototype-toString"><a href="#31-Array-prototype-toString" class="headerlink" title="31. Array.prototype.toString()"></a>31. Array.prototype.toString()</h1><h1 id="32-Array-prototype-unshift"><a href="#32-Array-prototype-unshift" class="headerlink" title="32. Array.prototype.unshift()"></a>32. Array.prototype.unshift()</h1><p>作用：将一个或多个元素添加到数组的开头<br>语法：arr.unshift(element1,element2, …elementN)<br>参数：一或多个要添加的元素<br>返回值：数组的长度<br>是否改变原数组的值：true<br>兼容性：ES3<br>版本：ie5.5+<br>描述：对于没有 length 属性的对象，调用该方法可能没有任何意义。</p>
 <p>var arr = [1, 2];<br>arr.unshift(0); //arr is [0, 1, 2]<br>var len = arr.unshift(-2, -1); //arr is [-2, -1, 0, 1, 2]<br>console.log(len);// 5</p>
 <h1 id="33-Array-prototype-values"><a href="#33-Array-prototype-values" class="headerlink" title="33. Array.prototype.values()"></a>33. Array.prototype.values()</h1>
           
