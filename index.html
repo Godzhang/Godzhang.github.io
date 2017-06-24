@@ -372,12 +372,36 @@ console.log(arr2); // [&quot;d&quot;, &quot;e&quot;, &quot;f&quot;]
 </ul>
 <p>参数：</p>
 <ul>
-<li>target:</li>
-<li>start: </li>
-<li>end: </li>
+<li>target: 复制序列到该位置，target &lt; 0 ? target = arr.length + target</li>
+<li>start: 开始复制的元素，start &lt; 0 ? start = arr.length + start</li>
+<li>end: 复制元素的结束位置，end &lt; 0 ? end = arr.length + end</li>
 </ul>
-<p>返回值：改变了的数组<br>是否改变原数组的值：<br>兼容性：IE-<br>版本：<br>描述：参数target,start和end 必须为整数</p>
-<h1 id="6-Array-prototype-entries"><a href="#6-Array-prototype-entries" class="headerlink" title="6. Array.prototype.entries()"></a>6. Array.prototype.entries()</h1><h1 id="7-Array-prototype-every"><a href="#7-Array-prototype-every" class="headerlink" title="7. Array.prototype.every()"></a>7. Array.prototype.every()</h1><p>作用：测试数组的所有元素是否都通过了指定函数的测试<br>语法：arr.every(callback, thisArg)<br>参数：</p>
+<p>返回值：改变了的数组<br>是否改变原数组的值：true<br>兼容性：IE-<br>版本：ES6<br>描述：类数组不能直接调用copyWithin()方法，要用call/apply调用</p>
+<pre><code>var arr = [1,2,3,4,5,6];
+arr.copyWithin(2,3); //[1,2,4,5,6,6]
+arr.copyWithin(-2); //[1,2,3,4,1,2]
+arr.copyWithin(0,3,4); //[4,2,3,4,5,6]
+arr.copyWithin(-2,-3,-1); //[1, 2, 3, 4, 4, 5]
+[].copyWithin.call({length: 5, 3: 1}, 0, 3); //Object {0: 1, 3: 1, length: 5}
+</code></pre><h1 id="6-Array-prototype-entries"><a href="#6-Array-prototype-entries" class="headerlink" title="6. Array.prototype.entries()"></a>6. Array.prototype.entries()</h1><p>作用：返回一个新的Array Iterator对象，该对象包含数组中每个索引的键/值对<br>语法：arr.entries()<br>参数：无<br>返回值：一个新的 Array 迭代器对象<br>是否改变原数组的值：<br>兼容性：IE-<br>版本：ES6<br>描述：—</p>
+<pre><code>var arr = [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;];
+var iterator = arr.entries();// ArrayIterator {}
+
+console.log(iterator.next().value); 
+// [0, &quot;a&quot;]
+console.log(iterator.next().value); 
+// [1, &quot;b&quot;]
+console.log(iterator.next().value); 
+// [2, &quot;c&quot;]
+
+//使用for...of循环
+for (let e of iterator) {
+    console.log(e);
+}
+// [0, &quot;a&quot;] 
+// [1, &quot;b&quot;] 
+// [2, &quot;c&quot;]
+</code></pre><h1 id="7-Array-prototype-every"><a href="#7-Array-prototype-every" class="headerlink" title="7. Array.prototype.every()"></a>7. Array.prototype.every()</h1><p>作用：测试数组的所有元素是否都通过了指定函数的测试<br>语法：arr.every(callback, thisArg)<br>参数：</p>
 <ul>
 <li>callback(value, index, oldArr): 测试函数<ul>
 <li>value: 每一项的元素值</li>
@@ -393,7 +417,25 @@ console.log(arr2); // [&quot;d&quot;, &quot;e&quot;, &quot;f&quot;]
 }
 var bol = [2,3,4].every(isOdd); //false
 var bol = [2,4,6].every(isOdd); //true
-</code></pre><h1 id="8-Array-prototype-fill"><a href="#8-Array-prototype-fill" class="headerlink" title="8. Array.prototype.fill()"></a>8. Array.prototype.fill()</h1><h1 id="9-Array-prototype-filter"><a href="#9-Array-prototype-filter" class="headerlink" title="9. Array.prototype.filter()"></a>9. Array.prototype.filter()</h1><p>作用：创建一个新数组, 其包含通过所提供函数实现的测试的所有元素<br>语法：arr.filter(callback, thisArg)<br>参数：</p>
+</code></pre><h1 id="8-Array-prototype-fill"><a href="#8-Array-prototype-fill" class="headerlink" title="8. Array.prototype.fill()"></a>8. Array.prototype.fill()</h1><p>作用：用一个固定值填充一个数组中从起始索引到终止索引内的全部元素<br>语法：</p>
+<ul>
+<li>arr.fill(value)</li>
+<li>arr.fill(value, start)</li>
+<li>arr.fill(value, start, end)</li>
+</ul>
+<p>参数：</p>
+<ul>
+<li>value: 用来填充数组元素的值</li>
+<li>start: 起始索引，默认为0 =&gt; start &lt; 0 ? start = arr.length + start : start</li>
+<li>end: 终止索引，默认this.length =&gt; end &lt; 0 ? start = arr.length + end : end</li>
+</ul>
+<p>返回值：修改后的数组<br>是否改变原数组的值：true<br>兼容性：IE-, opera-, safri-<br>版本：ES6<br>描述：类数组不能直接调用fill()方法，要用call/apply调用</p>
+<pre><code>var arr = [1,2,3,4,5];
+arr.fill(6) === arr.fill(6,0) === arr.fill(6,0,arr.length); //[6,6,6,6,6];
+arr.fill(6,0,3); //[6,6,6,4,5]
+arr.fill(6,2); //[1,2,6,6,6]
+[].fill.call({length: 3}, 4); //{0: 4,1: 4,2: 4, length: 3}
+</code></pre><h1 id="9-Array-prototype-filter"><a href="#9-Array-prototype-filter" class="headerlink" title="9. Array.prototype.filter()"></a>9. Array.prototype.filter()</h1><p>作用：创建一个新数组, 其包含通过所提供函数实现的测试的所有元素<br>语法：arr.filter(callback, thisArg)<br>参数：</p>
 <ul>
 <li>callback(value, index, oldArr): 测试函数<ul>
 <li>value: 每一项的元素值</li>
