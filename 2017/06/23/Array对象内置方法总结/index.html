@@ -96,7 +96,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/06/23/Array对象内置方法总结/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="1. Array.from()作用：从一个类似数组或可迭代的对象中创建一个新的数组实例语法：Array.from(arraylike, mapFn, thisArg);参数：   arraylike: 类数组对象或可遍历对象(有length属性的对象) mapFn: 可选参数，用来处理数组的函数，返回新数组 thisArg: 可选参数，执行mapFn时的this值  返回值：新的Array实例是否">
-<meta property="og:updated_time" content="2017-06-24T02:59:15.758Z">
+<meta property="og:updated_time" content="2017-06-24T03:32:34.043Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Array对象内置方法总结">
 <meta name="twitter:description" content="1. Array.from()作用：从一个类似数组或可迭代的对象中创建一个新的数组实例语法：Array.from(arraylike, mapFn, thisArg);参数：   arraylike: 类数组对象或可遍历对象(有length属性的对象) mapFn: 可选参数，用来处理数组的函数，返回新数组 thisArg: 可选参数，执行mapFn时的this值  返回值：新的Array实例是否">
@@ -430,7 +430,37 @@ a[2]=6
 <pre><code>var b = [2,4,6].join(); //2,4,6
 var b = [2,4,6].join(&quot;&quot;); //246
 var b = [2,4,6].join(&quot;#&quot;); //2#4#6
-</code></pre><h1 id="16-Array-prototype-keys"><a href="#16-Array-prototype-keys" class="headerlink" title="16. Array.prototype.keys()"></a>16. Array.prototype.keys()</h1><h1 id="17-Array-prototype-lastIndex"><a href="#17-Array-prototype-lastIndex" class="headerlink" title="17. Array.prototype.lastIndex()"></a>17. Array.prototype.lastIndex()</h1><h1 id="18-Array-prototype-map"><a href="#18-Array-prototype-map" class="headerlink" title="18. Array.prototype.map()"></a>18. Array.prototype.map()</h1><h1 id="19-Array-prototype-pop"><a href="#19-Array-prototype-pop" class="headerlink" title="19. Array.prototype.pop()"></a>19. Array.prototype.pop()</h1><h1 id="20-Array-prototype-push"><a href="#20-Array-prototype-push" class="headerlink" title="20. Array.prototype.push()"></a>20. Array.prototype.push()</h1><h1 id="21-Array-prototype-reduce"><a href="#21-Array-prototype-reduce" class="headerlink" title="21. Array.prototype.reduce()"></a>21. Array.prototype.reduce()</h1><h1 id="22-Array-prototype-reduceRight"><a href="#22-Array-prototype-reduceRight" class="headerlink" title="22. Array.prototype.reduceRight()"></a>22. Array.prototype.reduceRight()</h1><h1 id="23-Array-prototype-reverse"><a href="#23-Array-prototype-reverse" class="headerlink" title="23. Array.prototype.reverse()"></a>23. Array.prototype.reverse()</h1><h1 id="24-Array-prototype-shift"><a href="#24-Array-prototype-shift" class="headerlink" title="24. Array.prototype.shift()"></a>24. Array.prototype.shift()</h1><h1 id="25-Array-prototype-slice"><a href="#25-Array-prototype-slice" class="headerlink" title="25. Array.prototype.slice()"></a>25. Array.prototype.slice()</h1><h1 id="26-Array-prototype-some"><a href="#26-Array-prototype-some" class="headerlink" title="26. Array.prototype.some()"></a>26. Array.prototype.some()</h1><p>作用：测试数组中的某些元素是否通过由提供的函数实现的测试<br>语法：arr.some(callback, thisArg)<br>参数：</p>
+</code></pre><h1 id="16-Array-prototype-keys"><a href="#16-Array-prototype-keys" class="headerlink" title="16. Array.prototype.keys()"></a>16. Array.prototype.keys()</h1><p>作用：返回一个新的Array迭代器，它包含数组中每个索引的键<br>语法：arr.keys()<br>参数：无<br>返回值：一个新的 Array 迭代器对象<br>是否改变原数组的值：false<br>兼容性：IE-<br>版本：ES6<br>描述：—</p>
+<pre><code>var a = [2,4,6];
+var b = a.keys(); //ArrayIterator {}
+console.log(b.next()); //Object {value: 0, done: false}
+console.log(b.next()); //Object {value: 1, done: false}
+console.log(b.next()); //Object {value: 2, done: false}
+console.log(b.next()); //Object {value: undefined, done: true}
+
+//索引迭代器会包含那些没有对应元素的索引
+var arr = [&quot;a&quot;, ,&quot;c&quot;];
+Object.keys(arr); //[&quot;0&quot;, &quot;2&quot;]
+arr.keys(); //[0, 1, 2]
+</code></pre><h1 id="17-Array-prototype-lastIndex"><a href="#17-Array-prototype-lastIndex" class="headerlink" title="17. Array.prototype.lastIndex()"></a>17. Array.prototype.lastIndex()</h1><h1 id="18-Array-prototype-map"><a href="#18-Array-prototype-map" class="headerlink" title="18. Array.prototype.map()"></a>18. Array.prototype.map()</h1><p>作用：创建一个新数组，结果是该数组中每一个元素调用提供函数后返回的结果<br>语法：var newArr = arr.map(callback, thisArg);<br>参数：</p>
+<ul>
+<li>callback(value, index, oldArr): 测试函数<ul>
+<li>value: 每一项的元素值</li>
+<li>index: 元素索引</li>
+<li>oldArr: 原数组</li>
+</ul>
+</li>
+<li>thisArg: 执行callback时的this值</li>
+</ul>
+<p>返回值：一个新数组，每个元素都是回调函数的结果<br>是否改变原数组的值：false || 可以在 callback 执行时改变原数组<br>兼容性：IE9+<br>版本：ES5<br>描述：—</p>
+<pre><code>var numbers = [1, 4, 9];
+var roots = numbers.map(Math.sqrt); //[1,2,3]
+
+var arr = [1,2,3];
+var newArr = arr.map(function(value, index){
+    return value * 2;
+});//[2,4,6];
+</code></pre><h1 id="19-Array-prototype-pop"><a href="#19-Array-prototype-pop" class="headerlink" title="19. Array.prototype.pop()"></a>19. Array.prototype.pop()</h1><h1 id="20-Array-prototype-push"><a href="#20-Array-prototype-push" class="headerlink" title="20. Array.prototype.push()"></a>20. Array.prototype.push()</h1><h1 id="21-Array-prototype-reduce"><a href="#21-Array-prototype-reduce" class="headerlink" title="21. Array.prototype.reduce()"></a>21. Array.prototype.reduce()</h1><h1 id="22-Array-prototype-reduceRight"><a href="#22-Array-prototype-reduceRight" class="headerlink" title="22. Array.prototype.reduceRight()"></a>22. Array.prototype.reduceRight()</h1><h1 id="23-Array-prototype-reverse"><a href="#23-Array-prototype-reverse" class="headerlink" title="23. Array.prototype.reverse()"></a>23. Array.prototype.reverse()</h1><h1 id="24-Array-prototype-shift"><a href="#24-Array-prototype-shift" class="headerlink" title="24. Array.prototype.shift()"></a>24. Array.prototype.shift()</h1><h1 id="25-Array-prototype-slice"><a href="#25-Array-prototype-slice" class="headerlink" title="25. Array.prototype.slice()"></a>25. Array.prototype.slice()</h1><h1 id="26-Array-prototype-some"><a href="#26-Array-prototype-some" class="headerlink" title="26. Array.prototype.some()"></a>26. Array.prototype.some()</h1><p>作用：测试数组中的某些元素是否通过由提供的函数实现的测试<br>语法：arr.some(callback, thisArg)<br>参数：</p>
 <ul>
 <li>callback(value, index, oldArr): 测试函数<ul>
 <li>value: 每一项的元素值</li>
