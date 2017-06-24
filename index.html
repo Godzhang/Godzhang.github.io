@@ -337,11 +337,14 @@ var newArr = Array.from({length: 5},function(val,i){
 }); //[0,1,2,3,4];
 </code></pre><h3 id="2-Array-isArray"><a href="#2-Array-isArray" class="headerlink" title="2. Array.isArray()"></a>2. Array.isArray()</h3><p>作用：用于确定传递的值是否是一个 Array<br>语法：Array.isArray(obj)<br>参数：</p>
 <ul>
-<li><p>obj: 需要检测的值<br>返回值：array ? true : false<br>是否改变原数组的值：false<br>兼容性：IE9+<br>描述：—</p>
-<p>  Array.isArray([1, 2, 3]);<br>  // true<br>  Array.isArray({foo: 123});<br>  // false</p>
-</li>
+<li>obj: 需要检测的值</li>
 </ul>
-
+<p>返回值：array ? true : false<br>是否改变原数组的值：false<br>兼容性：IE9+<br>描述：—</p>
+<pre><code>Array.isArray([1, 2, 3]);  
+// true
+Array.isArray({foo: 123}); 
+// false
+</code></pre>
           
         
       
