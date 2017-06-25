@@ -96,7 +96,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/06/23/Array对象内置方法总结/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="1. Array.from()作用：从一个类似数组或可迭代的对象中创建一个新的数组实例语法：Array.from(arraylike, mapFn, thisArg);参数：   arraylike: 类数组对象或可遍历对象(有length属性的对象) mapFn: 可选参数，用来处理数组的函数，返回新数组 thisArg: 可选参数，执行mapFn时的this值  返回值：新的Array实例是否">
-<meta property="og:updated_time" content="2017-06-25T01:47:02.850Z">
+<meta property="og:updated_time" content="2017-06-25T01:47:37.756Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Array对象内置方法总结">
 <meta name="twitter:description" content="1. Array.from()作用：从一个类似数组或可迭代的对象中创建一个新的数组实例语法：Array.from(arraylike, mapFn, thisArg);参数：   arraylike: 类数组对象或可遍历对象(有length属性的对象) mapFn: 可选参数，用来处理数组的函数，返回新数组 thisArg: 可选参数，执行mapFn时的this值  返回值：新的Array实例是否">
@@ -794,8 +794,11 @@ alpha.toSource();   //返回[&quot;a&quot;, &quot;b&quot;, &quot;c&quot;]
 </li>
 </ul>
 <h1 id="32-Array-prototype-unshift"><a href="#32-Array-prototype-unshift" class="headerlink" title="32. Array.prototype.unshift()"></a>32. Array.prototype.unshift()</h1><p>作用：将一个或多个元素添加到数组的开头<br>语法：arr.unshift(element1,element2, …elementN)<br>参数：一或多个要添加的元素<br>返回值：数组的长度<br>是否改变原数组的值：true<br>兼容性：ES3<br>版本：ie5.5+<br>描述：对于没有 length 属性的对象，调用该方法可能没有任何意义。</p>
-<p>var arr = [1, 2];<br>arr.unshift(0); //arr is [0, 1, 2]<br>var len = arr.unshift(-2, -1); //arr is [-2, -1, 0, 1, 2]<br>console.log(len);// 5</p>
-<h1 id="33-Array-prototype-values"><a href="#33-Array-prototype-values" class="headerlink" title="33. Array.prototype.values()"></a>33. Array.prototype.values()</h1><p>作用：返回一个新的 Array Iterator 对象，该对象包含数组每个索引的值<br>语法：arr.values()<br>参数：无<br>返回值：新的 Array Iterator 对象<br>是否改变原数组的值：false<br>兼容性：IE-, opera-<br>版本：ES6<br>描述：</p>
+<pre><code>var arr = [1, 2];
+arr.unshift(0); //arr is [0, 1, 2]
+var len = arr.unshift(-2, -1); //arr is [-2, -1, 0, 1, 2]
+console.log(len);// 5
+</code></pre><h1 id="33-Array-prototype-values"><a href="#33-Array-prototype-values" class="headerlink" title="33. Array.prototype.values()"></a>33. Array.prototype.values()</h1><p>作用：返回一个新的 Array Iterator 对象，该对象包含数组每个索引的值<br>语法：arr.values()<br>参数：无<br>返回值：新的 Array Iterator 对象<br>是否改变原数组的值：false<br>兼容性：IE-, opera-<br>版本：ES6<br>描述：</p>
 <pre><code>//使用 for...of 循环进行迭代
 let arr = [&apos;w&apos;, &apos;y&apos;, &apos;k&apos;, &apos;o&apos;, &apos;p&apos;];
 let eArr = arr.values();
