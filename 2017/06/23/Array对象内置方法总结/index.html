@@ -96,7 +96,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/06/23/Array对象内置方法总结/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="1. Array.from()作用：从一个类似数组或可迭代的对象中创建一个新的数组实例语法：Array.from(arraylike, mapFn, thisArg);参数：   arraylike: 类数组对象或可遍历对象(有length属性的对象) mapFn: 可选参数，用来处理数组的函数，返回新数组 thisArg: 可选参数，执行mapFn时的this值  返回值：新的Array实例是否">
-<meta property="og:updated_time" content="2017-06-24T15:04:12.428Z">
+<meta property="og:updated_time" content="2017-06-25T01:44:28.150Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Array对象内置方法总结">
 <meta name="twitter:description" content="1. Array.from()作用：从一个类似数组或可迭代的对象中创建一个新的数组实例语法：Array.from(arraylike, mapFn, thisArg);参数：   arraylike: 类数组对象或可遍历对象(有length属性的对象) mapFn: 可选参数，用来处理数组的函数，返回新数组 thisArg: 可选参数，执行mapFn时的this值  返回值：新的Array实例是否">
@@ -732,10 +732,90 @@ console.log(b); // 1
 }
 var bol = [2,3,5].every(isOdd); //true
 var bol = [3,5,11].every(isOdd); //false
-</code></pre><h1 id="27-Array-prototype-sort"><a href="#27-Array-prototype-sort" class="headerlink" title="27. Array.prototype.sort()"></a>27. Array.prototype.sort()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原数组的值：<br>兼容性：<br>版本：<br>描述：</p>
-<h1 id="28-Array-prototype-splice"><a href="#28-Array-prototype-splice" class="headerlink" title="28. Array.prototype.splice()"></a>28. Array.prototype.splice()</h1><h1 id="29-Array-prototype-toLocalString"><a href="#29-Array-prototype-toLocalString" class="headerlink" title="29. Array.prototype.toLocalString()"></a>29. Array.prototype.toLocalString()</h1><h1 id="30-Array-prototype-toSource"><a href="#30-Array-prototype-toSource" class="headerlink" title="30. Array.prototype.toSource()"></a>30. Array.prototype.toSource()</h1><h1 id="31-Array-prototype-toString"><a href="#31-Array-prototype-toString" class="headerlink" title="31. Array.prototype.toString()"></a>31. Array.prototype.toString()</h1><h1 id="32-Array-prototype-unshift"><a href="#32-Array-prototype-unshift" class="headerlink" title="32. Array.prototype.unshift()"></a>32. Array.prototype.unshift()</h1><p>作用：将一个或多个元素添加到数组的开头<br>语法：arr.unshift(element1,element2, …elementN)<br>参数：一或多个要添加的元素<br>返回值：数组的长度<br>是否改变原数组的值：true<br>兼容性：ES3<br>版本：ie5.5+<br>描述：对于没有 length 属性的对象，调用该方法可能没有任何意义。</p>
+</code></pre><h1 id="27-Array-prototype-sort"><a href="#27-Array-prototype-sort" class="headerlink" title="27. Array.prototype.sort()"></a>27. Array.prototype.sort()</h1><p>作用：在适当的位置对数组的元素进行排序，并返回数组<br>语法：arr.sort() || arr.sort(compareFunction)<br>参数：compareFunction: 可选, 用来指定按某种顺序进行排列的函数<br>返回值：排序后的数组<br>是否改变原数组的值：true<br>兼容性：IE5.5+<br>版本：ES1<br>描述：sort 排序不一定是稳定的。默认排序顺序是根据字符串Unicode码点。<br>      如果 compareFunction(a, b) 小于 0 ，那么 a 会被排列到 b 之前；<br>      如果 compareFunction(a, b) 等于 0 ， a 和 b 的相对位置不变。备注： ECMAScript 标准并不保证这一行为，而且也不是所有浏览器都会遵守<br>      如果 compareFunction(a, b) 大于 0 ， b 会被排列到 a 之前。<br>      compareFunction(a, b) 必须总是对相同的输入返回相同的比较结果，否则排序的结果将是不确定的。</p>
+<pre><code>function compareNumbers(a, b){//倒序排列
+    return b - a;
+}
+var arr = [4,1,3,6,2];
+arr.sort(compareNumbers); //[6,4,3,2,1]
+
+//对非 ASCII 字符排序
+//一些非英语语言的字符串需要使用String.localeCompare。这个函数可以将函数排序到正确的顺序。
+var items = [&apos;réservé&apos;, &apos;premier&apos;, &apos;cliché&apos;, &apos;communiqué&apos;, &apos;café&apos;, &apos;adieu&apos;];
+items.sort(function (a, b) {
+  return a.localeCompare(b);
+});
+// items is [&apos;adieu&apos;, &apos;café&apos;, &apos;cliché&apos;, &apos;communiqué&apos;, &apos;premier&apos;, &apos;réservé&apos;]
+
+//使用映射改善排序
+var list = [&apos;Delta&apos;, &apos;alpha&apos;, &apos;CHARLIE&apos;, &apos;bravo&apos;];
+// 对需要排序的数字和位置的临时存储
+var mapped = list.map(function(el, i){
+    return { index: i, value: el.toLowerCase() };
+});
+// 按照多个值排序数组
+mapped.sort(function(a, b){
+    return +(a.value &gt; b.value);
+});
+// 根据索引得到排序的结果
+var result = mapped.map(function(el){
+    return list[el.index];
+});
+console.log(result); //[&quot;alpha&quot;, &quot;bravo&quot;, &quot;CHARLIE&quot;, &quot;Delta&quot;]
+</code></pre><h1 id="28-Array-prototype-splice"><a href="#28-Array-prototype-splice" class="headerlink" title="28. Array.prototype.splice()"></a>28. Array.prototype.splice()</h1><p>作用：通过删除现有元素和/或添加新元素来更改一个数组的内容<br>语法：</p>
+<ul>
+<li>arr.splice(start) //删除start(包括start)后所有元素</li>
+<li>arr.splice(start, deleteCount)</li>
+<li>arr.splice(start, deleteCount, item1, item2, …)</li>
+</ul>
+<p>参数：</p>
+<ul>
+<li>start: 指定修改的开始位置，start &gt; arr.length ? start = arr.length, start &lt; 0 ? start = start + arr.length</li>
+<li>deleteCount: 要移除元素的个数, 0: 不移除。如果 deleteCount 大于start 之后的元素的总数，则从 start 后面的元素都将被删除（含第 start 位）。</li>
+<li>item1,item2,…: 要添加进数组的元素,从start 位置开始。如果不指定，则 splice() 将只删除数组元素。</li>
+</ul>
+<p>返回值：由被删除的元素组成的一个数组。如果只删除了一个元素，则返回只包含一个元素的数组。如果没有删除元素，则返回空数组。<br>是否改变原数组的值：true<br>兼容性：ie5.5+<br>版本：ES3<br>描述：如果添加进数组的元素个数不等于被删除的元素个数，数组的长度会发生相应的改变。</p>
+<pre><code>var arr = [1,2,3,4,5];
+arr.splice(1); //[1]  返回值: [2,3,4,5]
+arr.splice(1,2,7,8,9); //[1, 7, 8, 9, 4, 5]  返回值: [2,3]
+</code></pre><h1 id="29-Array-prototype-toLocaleString"><a href="#29-Array-prototype-toLocaleString" class="headerlink" title="29. Array.prototype.toLocaleString()"></a>29. Array.prototype.toLocaleString()</h1><p>作用：返回一个字符串表示数组中的元素<br>语法：arr.toLocalString()<br>参数：无<br>返回值：返回一个字符串表示数组中的元素<br>是否改变原数组的值：false<br>兼容性：all<br>版本：ES3<br>描述：数组中的元素将会使用各自的 toLocaleString 方法：</p>
+<ul>
+<li>Object: Object.prototype.toLocaleString()</li>
+<li>Number: Number.prototype.toLocaleString()</li>
+<li><p>Date: Date.prototype.toLocaleString()</p>
+<p>  var arr = [1,2,3,4,5];<br>  var a = arr.toLocaleString();<br>  console.log(arr); //[1,2,3,4,5]<br>  console.log(a); //1,2,3,4,5</p>
+</li>
+</ul>
+<h1 id="30-Array-prototype-toSource-非标准特性"><a href="#30-Array-prototype-toSource-非标准特性" class="headerlink" title="30. Array.prototype.toSource()(非标准特性)"></a>30. Array.prototype.toSource()(非标准特性)</h1><p>作用：返回一个字符串,代表该数组的源代码<br>语法：arr.toSource()<br>参数：无<br>返回值：字符串<br>是否改变原数组的值：— ?#?<br>兼容性：—?#?<br>版本：—?#?<br>描述：在调试时,你可以使用toSource方法来查看一个数组的内容.</p>
+<pre><code>var alpha = new Array(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;);
+alpha.toSource();   //返回[&quot;a&quot;, &quot;b&quot;, &quot;c&quot;]
+</code></pre><h1 id="31-Array-prototype-toString"><a href="#31-Array-prototype-toString" class="headerlink" title="31. Array.prototype.toString()"></a>31. Array.prototype.toString()</h1><p>作用：返回一个字符串，表示指定的数组及其元素。<br>语法：arr.toString()<br>参数：无<br>返回值：字符串<br>是否改变原数组的值：false<br>兼容性：all<br>版本：ES1<br>描述：</p>
+<ul>
+<li>Array 对象覆盖了 Object 的 toString 方法。对于数组对象，toString 方法返回一个字符串，该字符串由数组中的每个元素的 toString() 返回值经调用 join() 方法连接（由逗号隔开）组成。</li>
+<li><p>toString() 方法是通用的，可被用于任何对象。如果对象有一个 join() 方法，将会被调用，其返回值将被返回。没有则调用 Object.prototype.toString() 方法。</p>
+<p>  var monthNames = [‘Jan’, ‘Feb’, ‘Mar’, ‘Apr’];<br>  var myVar = monthNames.toString(); // assigns “Jan,Feb,Mar,Apr” to myVar.</p>
+</li>
+</ul>
+<h1 id="32-Array-prototype-unshift"><a href="#32-Array-prototype-unshift" class="headerlink" title="32. Array.prototype.unshift()"></a>32. Array.prototype.unshift()</h1><p>作用：将一个或多个元素添加到数组的开头<br>语法：arr.unshift(element1,element2, …elementN)<br>参数：一或多个要添加的元素<br>返回值：数组的长度<br>是否改变原数组的值：true<br>兼容性：ES3<br>版本：ie5.5+<br>描述：对于没有 length 属性的对象，调用该方法可能没有任何意义。</p>
 <p>var arr = [1, 2];<br>arr.unshift(0); //arr is [0, 1, 2]<br>var len = arr.unshift(-2, -1); //arr is [-2, -1, 0, 1, 2]<br>console.log(len);// 5</p>
-<h1 id="33-Array-prototype-values"><a href="#33-Array-prototype-values" class="headerlink" title="33. Array.prototype.values()"></a>33. Array.prototype.values()</h1>
+<h1 id="33-Array-prototype-values"><a href="#33-Array-prototype-values" class="headerlink" title="33. Array.prototype.values()"></a>33. Array.prototype.values()</h1><p>作用：返回一个新的 Array Iterator 对象，该对象包含数组每个索引的值<br>语法：arr.values()<br>参数：无<br>返回值：新的 Array Iterator 对象<br>是否改变原数组的值：false<br>兼容性：IE-, opera-<br>版本：ES6<br>描述：</p>
+<pre><code>//使用 for...of 循环进行迭代
+let arr = [&apos;w&apos;, &apos;y&apos;, &apos;k&apos;, &apos;o&apos;, &apos;p&apos;];
+let eArr = arr.values();
+// 您的浏览器必须支持 for..of 循环
+// 以及 let —— 将变量作用域限定在 for 循环中
+for (let letter of eArr) {
+  console.log(letter);
+}
+
+let arr = [&apos;w&apos;, &apos;y&apos;, &apos;k&apos;, &apos;o&apos;, &apos;p&apos;];
+let eArr = arr.values();
+console.log(eArr.next().value); // w
+console.log(eArr.next().value); // y
+console.log(eArr.next().value); // k
+console.log(eArr.next().value); // o
+console.log(eArr.next().value); // p
+</code></pre>
       
     </div>
 
@@ -890,7 +970,7 @@ var bol = [3,5,11].every(isOdd); //false
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-Array-from"><span class="nav-number">1.</span> <span class="nav-text">1. Array.from()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-Array-isArray"><span class="nav-number">2.</span> <span class="nav-text">2. Array.isArray()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-Array-of"><span class="nav-number">3.</span> <span class="nav-text">3. Array.of()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-Array-prototype-concat"><span class="nav-number">4.</span> <span class="nav-text">4. Array.prototype.concat()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-Array-prototype-copyWithin"><span class="nav-number">5.</span> <span class="nav-text">5. Array.prototype.copyWithin()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-Array-prototype-entries"><span class="nav-number">6.</span> <span class="nav-text">6. Array.prototype.entries()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#7-Array-prototype-every"><span class="nav-number">7.</span> <span class="nav-text">7. Array.prototype.every()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#8-Array-prototype-fill"><span class="nav-number">8.</span> <span class="nav-text">8. Array.prototype.fill()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#9-Array-prototype-filter"><span class="nav-number">9.</span> <span class="nav-text">9. Array.prototype.filter()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#10-Array-prototype-find"><span class="nav-number">10.</span> <span class="nav-text">10. Array.prototype.find()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#11-Array-prototype-findIndex"><span class="nav-number">11.</span> <span class="nav-text">11. Array.prototype.findIndex()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#12-Array-prototype-forEach"><span class="nav-number">12.</span> <span class="nav-text">12. Array.prototype.forEach()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#13-Array-prototype-includes"><span class="nav-number">13.</span> <span class="nav-text">13. Array.prototype.includes()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#14-Array-prototype-indexOf"><span class="nav-number">14.</span> <span class="nav-text">14. Array.prototype.indexOf()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#15-Array-prototype-join"><span class="nav-number">15.</span> <span class="nav-text">15. Array.prototype.join()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#16-Array-prototype-keys"><span class="nav-number">16.</span> <span class="nav-text">16. Array.prototype.keys()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#17-Array-prototype-lastIndex"><span class="nav-number">17.</span> <span class="nav-text">17. Array.prototype.lastIndex()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#18-Array-prototype-map"><span class="nav-number">18.</span> <span class="nav-text">18. Array.prototype.map()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#19-Array-prototype-pop"><span class="nav-number">19.</span> <span class="nav-text">19. Array.prototype.pop()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#20-Array-prototype-push"><span class="nav-number">20.</span> <span class="nav-text">20. Array.prototype.push()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#21-Array-prototype-reduce"><span class="nav-number">21.</span> <span class="nav-text">21. Array.prototype.reduce()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#22-Array-prototype-reduceRight"><span class="nav-number">22.</span> <span class="nav-text">22. Array.prototype.reduceRight()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#23-Array-prototype-reverse"><span class="nav-number">23.</span> <span class="nav-text">23. Array.prototype.reverse()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#24-Array-prototype-shift"><span class="nav-number">24.</span> <span class="nav-text">24. Array.prototype.shift()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#25-Array-prototype-slice"><span class="nav-number">25.</span> <span class="nav-text">25. Array.prototype.slice()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#26-Array-prototype-some"><span class="nav-number">26.</span> <span class="nav-text">26. Array.prototype.some()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#27-Array-prototype-sort"><span class="nav-number">27.</span> <span class="nav-text">27. Array.prototype.sort()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#28-Array-prototype-splice"><span class="nav-number">28.</span> <span class="nav-text">28. Array.prototype.splice()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#29-Array-prototype-toLocalString"><span class="nav-number">29.</span> <span class="nav-text">29. Array.prototype.toLocalString()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#30-Array-prototype-toSource"><span class="nav-number">30.</span> <span class="nav-text">30. Array.prototype.toSource()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#31-Array-prototype-toString"><span class="nav-number">31.</span> <span class="nav-text">31. Array.prototype.toString()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#32-Array-prototype-unshift"><span class="nav-number">32.</span> <span class="nav-text">32. Array.prototype.unshift()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#33-Array-prototype-values"><span class="nav-number">33.</span> <span class="nav-text">33. Array.prototype.values()</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-Array-from"><span class="nav-number">1.</span> <span class="nav-text">1. Array.from()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-Array-isArray"><span class="nav-number">2.</span> <span class="nav-text">2. Array.isArray()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-Array-of"><span class="nav-number">3.</span> <span class="nav-text">3. Array.of()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-Array-prototype-concat"><span class="nav-number">4.</span> <span class="nav-text">4. Array.prototype.concat()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-Array-prototype-copyWithin"><span class="nav-number">5.</span> <span class="nav-text">5. Array.prototype.copyWithin()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-Array-prototype-entries"><span class="nav-number">6.</span> <span class="nav-text">6. Array.prototype.entries()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#7-Array-prototype-every"><span class="nav-number">7.</span> <span class="nav-text">7. Array.prototype.every()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#8-Array-prototype-fill"><span class="nav-number">8.</span> <span class="nav-text">8. Array.prototype.fill()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#9-Array-prototype-filter"><span class="nav-number">9.</span> <span class="nav-text">9. Array.prototype.filter()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#10-Array-prototype-find"><span class="nav-number">10.</span> <span class="nav-text">10. Array.prototype.find()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#11-Array-prototype-findIndex"><span class="nav-number">11.</span> <span class="nav-text">11. Array.prototype.findIndex()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#12-Array-prototype-forEach"><span class="nav-number">12.</span> <span class="nav-text">12. Array.prototype.forEach()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#13-Array-prototype-includes"><span class="nav-number">13.</span> <span class="nav-text">13. Array.prototype.includes()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#14-Array-prototype-indexOf"><span class="nav-number">14.</span> <span class="nav-text">14. Array.prototype.indexOf()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#15-Array-prototype-join"><span class="nav-number">15.</span> <span class="nav-text">15. Array.prototype.join()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#16-Array-prototype-keys"><span class="nav-number">16.</span> <span class="nav-text">16. Array.prototype.keys()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#17-Array-prototype-lastIndex"><span class="nav-number">17.</span> <span class="nav-text">17. Array.prototype.lastIndex()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#18-Array-prototype-map"><span class="nav-number">18.</span> <span class="nav-text">18. Array.prototype.map()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#19-Array-prototype-pop"><span class="nav-number">19.</span> <span class="nav-text">19. Array.prototype.pop()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#20-Array-prototype-push"><span class="nav-number">20.</span> <span class="nav-text">20. Array.prototype.push()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#21-Array-prototype-reduce"><span class="nav-number">21.</span> <span class="nav-text">21. Array.prototype.reduce()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#22-Array-prototype-reduceRight"><span class="nav-number">22.</span> <span class="nav-text">22. Array.prototype.reduceRight()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#23-Array-prototype-reverse"><span class="nav-number">23.</span> <span class="nav-text">23. Array.prototype.reverse()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#24-Array-prototype-shift"><span class="nav-number">24.</span> <span class="nav-text">24. Array.prototype.shift()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#25-Array-prototype-slice"><span class="nav-number">25.</span> <span class="nav-text">25. Array.prototype.slice()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#26-Array-prototype-some"><span class="nav-number">26.</span> <span class="nav-text">26. Array.prototype.some()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#27-Array-prototype-sort"><span class="nav-number">27.</span> <span class="nav-text">27. Array.prototype.sort()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#28-Array-prototype-splice"><span class="nav-number">28.</span> <span class="nav-text">28. Array.prototype.splice()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#29-Array-prototype-toLocaleString"><span class="nav-number">29.</span> <span class="nav-text">29. Array.prototype.toLocaleString()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#30-Array-prototype-toSource-非标准特性"><span class="nav-number">30.</span> <span class="nav-text">30. Array.prototype.toSource()(非标准特性)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#31-Array-prototype-toString"><span class="nav-number">31.</span> <span class="nav-text">31. Array.prototype.toString()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#32-Array-prototype-unshift"><span class="nav-number">32.</span> <span class="nav-text">32. Array.prototype.unshift()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#33-Array-prototype-values"><span class="nav-number">33.</span> <span class="nav-text">33. Array.prototype.values()</span></a></li></ol></div>
             
 
           </div>
