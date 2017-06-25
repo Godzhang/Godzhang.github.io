@@ -780,15 +780,12 @@ console.log(result); //[&quot;alpha&quot;, &quot;bravo&quot;, &quot;CHARLIE&quot
 <pre><code>var arr = [1,2,3,4,5];
 arr.splice(1); //[1]  返回值: [2,3,4,5]
 arr.splice(1,2,7,8,9); //[1, 7, 8, 9, 4, 5]  返回值: [2,3]
-</code></pre><h1 id="29-Array-prototype-toLocaleString"><a href="#29-Array-prototype-toLocaleString" class="headerlink" title="29. Array.prototype.toLocaleString()"></a>29. Array.prototype.toLocaleString()</h1><p>作用：返回一个字符串表示数组中的元素<br>语法：arr.toLocalString()<br>参数：无<br>返回值：返回一个字符串表示数组中的元素<br>是否改变原数组的值：false<br>兼容性：all<br>版本：ES3<br>描述：数组中的元素将会使用各自的 toLocaleString 方法：</p>
-<ul>
-<li>Object: Object.prototype.toLocaleString()</li>
-<li>Number: Number.prototype.toLocaleString()</li>
-<li><p>Date: Date.prototype.toLocaleString()</p>
-<p>  var arr = [1,2,3,4,5];<br>  var a = arr.toLocaleString();<br>  console.log(arr); //[1,2,3,4,5]<br>  console.log(a); //1,2,3,4,5</p>
-</li>
-</ul>
-<h1 id="30-Array-prototype-toSource-非标准特性"><a href="#30-Array-prototype-toSource-非标准特性" class="headerlink" title="30. Array.prototype.toSource()(非标准特性)"></a>30. Array.prototype.toSource()(非标准特性)</h1><p>作用：返回一个字符串,代表该数组的源代码<br>语法：arr.toSource()<br>参数：无<br>返回值：字符串<br>是否改变原数组的值：— ?#?<br>兼容性：—?#?<br>版本：—?#?<br>描述：在调试时,你可以使用toSource方法来查看一个数组的内容.</p>
+</code></pre><h1 id="29-Array-prototype-toLocaleString"><a href="#29-Array-prototype-toLocaleString" class="headerlink" title="29. Array.prototype.toLocaleString()"></a>29. Array.prototype.toLocaleString()</h1><p>作用：返回一个字符串表示数组中的元素<br>语法：arr.toLocalString()<br>参数：无<br>返回值：返回一个字符串表示数组中的元素<br>是否改变原数组的值：false<br>兼容性：all<br>版本：ES3<br>描述：数组中的元素将会使用各自的 toLocaleString 方法：<br>Object: Object.prototype.toLocaleString()<br>Number: Number.prototype.toLocaleString()<br>Date: Date.prototype.toLocaleString()</p>
+<pre><code>var arr = [1,2,3,4,5];
+var a = arr.toLocaleString();
+console.log(arr); //[1,2,3,4,5]
+console.log(a); //1,2,3,4,5
+</code></pre><h1 id="30-Array-prototype-toSource-非标准特性"><a href="#30-Array-prototype-toSource-非标准特性" class="headerlink" title="30. Array.prototype.toSource()(非标准特性)"></a>30. Array.prototype.toSource()(非标准特性)</h1><p>作用：返回一个字符串,代表该数组的源代码<br>语法：arr.toSource()<br>参数：无<br>返回值：字符串<br>是否改变原数组的值：— ?#?<br>兼容性：—?#?<br>版本：—?#?<br>描述：在调试时,你可以使用toSource方法来查看一个数组的内容.</p>
 <pre><code>var alpha = new Array(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;);
 alpha.toSource();   //返回[&quot;a&quot;, &quot;b&quot;, &quot;c&quot;]
 </code></pre><h1 id="31-Array-prototype-toString"><a href="#31-Array-prototype-toString" class="headerlink" title="31. Array.prototype.toString()"></a>31. Array.prototype.toString()</h1><p>作用：返回一个字符串，表示指定的数组及其元素。<br>语法：arr.toString()<br>参数：无<br>返回值：字符串<br>是否改变原数组的值：false<br>兼容性：all<br>版本：ES1<br>描述：</p>
