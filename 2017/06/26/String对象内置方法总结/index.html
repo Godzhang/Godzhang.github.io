@@ -1,0 +1,718 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="1. String.fromCharCode()作用：语法：参数：返回值：是否改变原字符串：兼容性：版本：描述： 2. String.fromCodePoint()作用：语法：参数：返回值：是否改变原字符串：兼容性：版本：描述： 3. String.prototype.anchor()作用：语法：参数：返回值：是否改变原字符串：兼容性：版本：描述： 4. String.prototype.big(">
+<meta property="og:type" content="article">
+<meta property="og:title" content="String对象内置方法总结">
+<meta property="og:url" content="http://yoursite.com/2017/06/26/String对象内置方法总结/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="1. String.fromCharCode()作用：语法：参数：返回值：是否改变原字符串：兼容性：版本：描述： 2. String.fromCodePoint()作用：语法：参数：返回值：是否改变原字符串：兼容性：版本：描述： 3. String.prototype.anchor()作用：语法：参数：返回值：是否改变原字符串：兼容性：版本：描述： 4. String.prototype.big(">
+<meta property="og:updated_time" content="2017-06-26T14:49:02.999Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="String对象内置方法总结">
+<meta name="twitter:description" content="1. String.fromCharCode()作用：语法：参数：返回值：是否改变原字符串：兼容性：版本：描述： 2. String.fromCodePoint()作用：语法：参数：返回值：是否改变原字符串：兼容性：版本：描述： 3. String.prototype.anchor()作用：语法：参数：返回值：是否改变原字符串：兼容性：版本：描述： 4. String.prototype.big(">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/06/26/String对象内置方法总结/"/>
+
+
+
+
+
+  <title>String对象内置方法总结 | Hexo</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/06/26/String对象内置方法总结/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Godzhang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">String对象内置方法总结</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-26T21:40:53+08:00">
+                2017-06-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="1-String-fromCharCode"><a href="#1-String-fromCharCode" class="headerlink" title="1. String.fromCharCode()"></a>1. String.fromCharCode()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="2-String-fromCodePoint"><a href="#2-String-fromCodePoint" class="headerlink" title="2. String.fromCodePoint()"></a>2. String.fromCodePoint()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="3-String-prototype-anchor"><a href="#3-String-prototype-anchor" class="headerlink" title="3. String.prototype.anchor()"></a>3. String.prototype.anchor()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="4-String-prototype-big"><a href="#4-String-prototype-big" class="headerlink" title="4. String.prototype.big()"></a>4. String.prototype.big()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="5-String-prototype-blink"><a href="#5-String-prototype-blink" class="headerlink" title="5. String.prototype.blink()"></a>5. String.prototype.blink()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="6-String-prototype-bold"><a href="#6-String-prototype-bold" class="headerlink" title="6. String.prototype.bold()"></a>6. String.prototype.bold()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="7-String-prototype-charAt"><a href="#7-String-prototype-charAt" class="headerlink" title="7. String.prototype.charAt()"></a>7. String.prototype.charAt()</h1><p>作用：从一个字符串中返回指定的字符<br>语法：str.charAt(index)<br>参数：index: 默认为0，（index &gt;= 0 &amp;&amp; index &lt; str.length)的整数<br>      index &lt; 0 =&gt; 返回空(“”)<br>返回值：指定位置的字符<br>是否改变原字符串：false<br>兼容性：all<br>版本：ES1<br>描述：</p>
+<pre><code>var str = &apos;zhangqi&apos;;
+var newStr = str.charAt( ); //z
+var newStr = str.charAt(3); //n
+</code></pre><h1 id="8-String-prototype-charCodeAt"><a href="#8-String-prototype-charCodeAt" class="headerlink" title="8. String.prototype.charCodeAt()"></a>8. String.prototype.charCodeAt()</h1><p>作用：从一个字符串中返回指定字符的Unicode编码<br>语法：str.charCodeAt(index)<br>参数：index : 和charAt()相同<br>返回值：表示给定索引处字符的 UTF-16 代码单元值的数字；如果索引超出范围，则返回 NaN。<br>是否改变原字符串：false<br>兼容性：all<br>版本：ES1<br>描述：charCodeAt 总是返回一个小于 65,536 的值</p>
+<pre><code>var str = &apos;zhangqi&apos;;
+var a = str.charCodeAt(2); //97
+var a = str.charCodeAt(20); //NaN
+</code></pre><h1 id="9-String-prototype-codePointAt"><a href="#9-String-prototype-codePointAt" class="headerlink" title="9. String.prototype.codePointAt()"></a>9. String.prototype.codePointAt()</h1><p>作用：返回一个 Unicode 编码点值的非负整数<br>语法：str.codePointAt(pos)<br>参数：pos: 这个字符串中需要转码的元素的位置<br>返回值：在字符串中的给定索引的编码单元体现的数字，如果在索引处没找到元素则返回 undefined<br>是否改变原字符串：false<br>兼容性：<br>版本：<br>描述：如果在索引处开始没有UTF-16 代理对，将直接返回在那个索引处的编码单元。</p>
+<pre><code>&apos;ABC&apos;.codePointAt(1);          // 66
+&apos;\uD800\uDC00&apos;.codePointAt(0); // 65536
+&apos;XYZ&apos;.codePointAt(42); // undefined
+</code></pre><h1 id="9-String-prototype-concat"><a href="#9-String-prototype-concat" class="headerlink" title="9. String.prototype.concat()"></a>9. String.prototype.concat()</h1><p>作用：将一个或多个字符串与原字符串连接合并，形成一个新的字符串并返回<br>语法：str.concat(string2, string3, …stringN)<br>参数：string2, string3, …stringN: 和原字符串连接的多个字符串<br>返回值：新的字符串<br>是否改变原字符串：false<br>兼容性：all<br>版本：ES3<br>描述：</p>
+<pre><code>var str = &apos;zhangqi&apos;;
+var a = str.concat(&apos;li&apos;,&apos;ul&apos;);
+console.log(str); //&apos;zhangqi&apos;
+console.log(a); //&apos;zhangqiliul&apos;
+var b = String.prototype.concat.call(str,&apos;man&apos;);
+console.log(b); //&apos;zhangqiman&apos;
+</code></pre><h1 id="10-String-prototype-endsWith"><a href="#10-String-prototype-endsWith" class="headerlink" title="10. String.prototype.endsWith()"></a>10. String.prototype.endsWith()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="11-String-prototype-fixed"><a href="#11-String-prototype-fixed" class="headerlink" title="11. String.prototype.fixed()"></a>11. String.prototype.fixed()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="12-String-prototype-fontcolor"><a href="#12-String-prototype-fontcolor" class="headerlink" title="12. String.prototype.fontcolor()"></a>12. String.prototype.fontcolor()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="13-String-prototype-fontsize"><a href="#13-String-prototype-fontsize" class="headerlink" title="13. String.prototype.fontsize()"></a>13. String.prototype.fontsize()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="14-String-prototype-includes"><a href="#14-String-prototype-includes" class="headerlink" title="14. String.prototype.includes()"></a>14. String.prototype.includes()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="15-String-prototype-indexOf"><a href="#15-String-prototype-indexOf" class="headerlink" title="15. String.prototype.indexOf()"></a>15. String.prototype.indexOf()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="16-String-prototype-italics"><a href="#16-String-prototype-italics" class="headerlink" title="16. String.prototype.italics()"></a>16. String.prototype.italics()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="17-String-prototype-lastIndexOf"><a href="#17-String-prototype-lastIndexOf" class="headerlink" title="17. String.prototype.lastIndexOf()"></a>17. String.prototype.lastIndexOf()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="18-String-prototype-link"><a href="#18-String-prototype-link" class="headerlink" title="18. String.prototype.link()"></a>18. String.prototype.link()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="19-String-prototype-localeCompare"><a href="#19-String-prototype-localeCompare" class="headerlink" title="19. String.prototype.localeCompare()"></a>19. String.prototype.localeCompare()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="20-String-prototype-match"><a href="#20-String-prototype-match" class="headerlink" title="20. String.prototype.match()"></a>20. String.prototype.match()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="21-String-prototype-normalize"><a href="#21-String-prototype-normalize" class="headerlink" title="21. String.prototype.normalize()"></a>21. String.prototype.normalize()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="22-String-prototype-padEnd"><a href="#22-String-prototype-padEnd" class="headerlink" title="22. String.prototype.padEnd()"></a>22. String.prototype.padEnd()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="23-String-prototype-padStart"><a href="#23-String-prototype-padStart" class="headerlink" title="23. String.prototype.padStart()"></a>23. String.prototype.padStart()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="24-String-prototype-repeat"><a href="#24-String-prototype-repeat" class="headerlink" title="24. String.prototype.repeat()"></a>24. String.prototype.repeat()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="25-String-prototype-replace"><a href="#25-String-prototype-replace" class="headerlink" title="25. String.prototype.replace()"></a>25. String.prototype.replace()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="26-String-prototype-search"><a href="#26-String-prototype-search" class="headerlink" title="26. String.prototype.search()"></a>26. String.prototype.search()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="27-String-prototype-slice"><a href="#27-String-prototype-slice" class="headerlink" title="27. String.prototype.slice()"></a>27. String.prototype.slice()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="28-String-prototype-small"><a href="#28-String-prototype-small" class="headerlink" title="28. String.prototype.small()"></a>28. String.prototype.small()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="29-String-prototype-split"><a href="#29-String-prototype-split" class="headerlink" title="29. String.prototype.split()"></a>29. String.prototype.split()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="30-String-prototype-startsWith"><a href="#30-String-prototype-startsWith" class="headerlink" title="30. String.prototype.startsWith()"></a>30. String.prototype.startsWith()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="31-String-prototype-strike"><a href="#31-String-prototype-strike" class="headerlink" title="31. String.prototype.strike()"></a>31. String.prototype.strike()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="32-String-prototype-sub"><a href="#32-String-prototype-sub" class="headerlink" title="32. String.prototype.sub()"></a>32. String.prototype.sub()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="33-String-prototype-substr"><a href="#33-String-prototype-substr" class="headerlink" title="33. String.prototype.substr()"></a>33. String.prototype.substr()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="34-String-prototype-substring"><a href="#34-String-prototype-substring" class="headerlink" title="34. String.prototype.substring()"></a>34. String.prototype.substring()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="35-String-prototype-sup"><a href="#35-String-prototype-sup" class="headerlink" title="35. String.prototype.sup()"></a>35. String.prototype.sup()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="36-String-prototype-toLocaleLowerCase"><a href="#36-String-prototype-toLocaleLowerCase" class="headerlink" title="36. String.prototype.toLocaleLowerCase()"></a>36. String.prototype.toLocaleLowerCase()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="37-String-prototype-toLocaleUpperCase"><a href="#37-String-prototype-toLocaleUpperCase" class="headerlink" title="37. String.prototype.toLocaleUpperCase()"></a>37. String.prototype.toLocaleUpperCase()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="38-String-prototype-toLowerCase"><a href="#38-String-prototype-toLowerCase" class="headerlink" title="38. String.prototype.toLowerCase()"></a>38. String.prototype.toLowerCase()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="39-String-prototype-toSource"><a href="#39-String-prototype-toSource" class="headerlink" title="39. String.prototype.toSource()"></a>39. String.prototype.toSource()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="40-String-prototype-toString"><a href="#40-String-prototype-toString" class="headerlink" title="40. String.prototype.toString()"></a>40. String.prototype.toString()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="41-String-prototype-toUpperCase"><a href="#41-String-prototype-toUpperCase" class="headerlink" title="41. String.prototype.toUpperCase()"></a>41. String.prototype.toUpperCase()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="42-String-prototype-trim"><a href="#42-String-prototype-trim" class="headerlink" title="42. String.prototype.trim()"></a>42. String.prototype.trim()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="43-String-prototype-trimLeft"><a href="#43-String-prototype-trimLeft" class="headerlink" title="43. String.prototype.trimLeft()"></a>43. String.prototype.trimLeft()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="44-String-prototype-trimRight"><a href="#44-String-prototype-trimRight" class="headerlink" title="44. String.prototype.trimRight()"></a>44. String.prototype.trimRight()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="45-String-prototype-valueOf"><a href="#45-String-prototype-valueOf" class="headerlink" title="45. String.prototype.valueOf()"></a>45. String.prototype.valueOf()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="46-String-raw"><a href="#46-String-raw" class="headerlink" title="46. String.raw()"></a>46. String.raw()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/06/26/Object对象内置方法总结/" rel="next" title="Object对象内置方法总结">
+                <i class="fa fa-chevron-left"></i> Object对象内置方法总结
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Godzhang" />
+          <p class="site-author-name" itemprop="name">Godzhang</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-String-fromCharCode"><span class="nav-number">1.</span> <span class="nav-text">1. String.fromCharCode()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-String-fromCodePoint"><span class="nav-number">2.</span> <span class="nav-text">2. String.fromCodePoint()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-String-prototype-anchor"><span class="nav-number">3.</span> <span class="nav-text">3. String.prototype.anchor()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-String-prototype-big"><span class="nav-number">4.</span> <span class="nav-text">4. String.prototype.big()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-String-prototype-blink"><span class="nav-number">5.</span> <span class="nav-text">5. String.prototype.blink()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-String-prototype-bold"><span class="nav-number">6.</span> <span class="nav-text">6. String.prototype.bold()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#7-String-prototype-charAt"><span class="nav-number">7.</span> <span class="nav-text">7. String.prototype.charAt()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#8-String-prototype-charCodeAt"><span class="nav-number">8.</span> <span class="nav-text">8. String.prototype.charCodeAt()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#9-String-prototype-codePointAt"><span class="nav-number">9.</span> <span class="nav-text">9. String.prototype.codePointAt()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#9-String-prototype-concat"><span class="nav-number">10.</span> <span class="nav-text">9. String.prototype.concat()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#10-String-prototype-endsWith"><span class="nav-number">11.</span> <span class="nav-text">10. String.prototype.endsWith()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#11-String-prototype-fixed"><span class="nav-number">12.</span> <span class="nav-text">11. String.prototype.fixed()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#12-String-prototype-fontcolor"><span class="nav-number">13.</span> <span class="nav-text">12. String.prototype.fontcolor()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#13-String-prototype-fontsize"><span class="nav-number">14.</span> <span class="nav-text">13. String.prototype.fontsize()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#14-String-prototype-includes"><span class="nav-number">15.</span> <span class="nav-text">14. String.prototype.includes()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#15-String-prototype-indexOf"><span class="nav-number">16.</span> <span class="nav-text">15. String.prototype.indexOf()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#16-String-prototype-italics"><span class="nav-number">17.</span> <span class="nav-text">16. String.prototype.italics()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#17-String-prototype-lastIndexOf"><span class="nav-number">18.</span> <span class="nav-text">17. String.prototype.lastIndexOf()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#18-String-prototype-link"><span class="nav-number">19.</span> <span class="nav-text">18. String.prototype.link()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#19-String-prototype-localeCompare"><span class="nav-number">20.</span> <span class="nav-text">19. String.prototype.localeCompare()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#20-String-prototype-match"><span class="nav-number">21.</span> <span class="nav-text">20. String.prototype.match()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#21-String-prototype-normalize"><span class="nav-number">22.</span> <span class="nav-text">21. String.prototype.normalize()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#22-String-prototype-padEnd"><span class="nav-number">23.</span> <span class="nav-text">22. String.prototype.padEnd()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#23-String-prototype-padStart"><span class="nav-number">24.</span> <span class="nav-text">23. String.prototype.padStart()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#24-String-prototype-repeat"><span class="nav-number">25.</span> <span class="nav-text">24. String.prototype.repeat()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#25-String-prototype-replace"><span class="nav-number">26.</span> <span class="nav-text">25. String.prototype.replace()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#26-String-prototype-search"><span class="nav-number">27.</span> <span class="nav-text">26. String.prototype.search()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#27-String-prototype-slice"><span class="nav-number">28.</span> <span class="nav-text">27. String.prototype.slice()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#28-String-prototype-small"><span class="nav-number">29.</span> <span class="nav-text">28. String.prototype.small()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#29-String-prototype-split"><span class="nav-number">30.</span> <span class="nav-text">29. String.prototype.split()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#30-String-prototype-startsWith"><span class="nav-number">31.</span> <span class="nav-text">30. String.prototype.startsWith()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#31-String-prototype-strike"><span class="nav-number">32.</span> <span class="nav-text">31. String.prototype.strike()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#32-String-prototype-sub"><span class="nav-number">33.</span> <span class="nav-text">32. String.prototype.sub()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#33-String-prototype-substr"><span class="nav-number">34.</span> <span class="nav-text">33. String.prototype.substr()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#34-String-prototype-substring"><span class="nav-number">35.</span> <span class="nav-text">34. String.prototype.substring()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#35-String-prototype-sup"><span class="nav-number">36.</span> <span class="nav-text">35. String.prototype.sup()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#36-String-prototype-toLocaleLowerCase"><span class="nav-number">37.</span> <span class="nav-text">36. String.prototype.toLocaleLowerCase()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#37-String-prototype-toLocaleUpperCase"><span class="nav-number">38.</span> <span class="nav-text">37. String.prototype.toLocaleUpperCase()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#38-String-prototype-toLowerCase"><span class="nav-number">39.</span> <span class="nav-text">38. String.prototype.toLowerCase()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#39-String-prototype-toSource"><span class="nav-number">40.</span> <span class="nav-text">39. String.prototype.toSource()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#40-String-prototype-toString"><span class="nav-number">41.</span> <span class="nav-text">40. String.prototype.toString()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#41-String-prototype-toUpperCase"><span class="nav-number">42.</span> <span class="nav-text">41. String.prototype.toUpperCase()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#42-String-prototype-trim"><span class="nav-number">43.</span> <span class="nav-text">42. String.prototype.trim()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#43-String-prototype-trimLeft"><span class="nav-number">44.</span> <span class="nav-text">43. String.prototype.trimLeft()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#44-String-prototype-trimRight"><span class="nav-number">45.</span> <span class="nav-text">44. String.prototype.trimRight()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#45-String-prototype-valueOf"><span class="nav-number">46.</span> <span class="nav-text">45. String.prototype.valueOf()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#46-String-raw"><span class="nav-number">47.</span> <span class="nav-text">46. String.raw()</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Godzhang</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

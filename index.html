@@ -251,6 +251,588 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/06/26/String对象内置方法总结/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Godzhang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/06/26/String对象内置方法总结/" itemprop="url">String对象内置方法总结</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-26T21:40:53+08:00">
+                2017-06-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="1-String-fromCharCode"><a href="#1-String-fromCharCode" class="headerlink" title="1. String.fromCharCode()"></a>1. String.fromCharCode()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="2-String-fromCodePoint"><a href="#2-String-fromCodePoint" class="headerlink" title="2. String.fromCodePoint()"></a>2. String.fromCodePoint()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="3-String-prototype-anchor"><a href="#3-String-prototype-anchor" class="headerlink" title="3. String.prototype.anchor()"></a>3. String.prototype.anchor()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="4-String-prototype-big"><a href="#4-String-prototype-big" class="headerlink" title="4. String.prototype.big()"></a>4. String.prototype.big()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="5-String-prototype-blink"><a href="#5-String-prototype-blink" class="headerlink" title="5. String.prototype.blink()"></a>5. String.prototype.blink()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="6-String-prototype-bold"><a href="#6-String-prototype-bold" class="headerlink" title="6. String.prototype.bold()"></a>6. String.prototype.bold()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="7-String-prototype-charAt"><a href="#7-String-prototype-charAt" class="headerlink" title="7. String.prototype.charAt()"></a>7. String.prototype.charAt()</h1><p>作用：从一个字符串中返回指定的字符<br>语法：str.charAt(index)<br>参数：index: 默认为0，（index &gt;= 0 &amp;&amp; index &lt; str.length)的整数<br>      index &lt; 0 =&gt; 返回空(“”)<br>返回值：指定位置的字符<br>是否改变原字符串：false<br>兼容性：all<br>版本：ES1<br>描述：</p>
+<pre><code>var str = &apos;zhangqi&apos;;
+var newStr = str.charAt( ); //z
+var newStr = str.charAt(3); //n
+</code></pre><h1 id="8-String-prototype-charCodeAt"><a href="#8-String-prototype-charCodeAt" class="headerlink" title="8. String.prototype.charCodeAt()"></a>8. String.prototype.charCodeAt()</h1><p>作用：从一个字符串中返回指定字符的Unicode编码<br>语法：str.charCodeAt(index)<br>参数：index : 和charAt()相同<br>返回值：表示给定索引处字符的 UTF-16 代码单元值的数字；如果索引超出范围，则返回 NaN。<br>是否改变原字符串：false<br>兼容性：all<br>版本：ES1<br>描述：charCodeAt 总是返回一个小于 65,536 的值</p>
+<pre><code>var str = &apos;zhangqi&apos;;
+var a = str.charCodeAt(2); //97
+var a = str.charCodeAt(20); //NaN
+</code></pre><h1 id="9-String-prototype-codePointAt"><a href="#9-String-prototype-codePointAt" class="headerlink" title="9. String.prototype.codePointAt()"></a>9. String.prototype.codePointAt()</h1><p>作用：返回一个 Unicode 编码点值的非负整数<br>语法：str.codePointAt(pos)<br>参数：pos: 这个字符串中需要转码的元素的位置<br>返回值：在字符串中的给定索引的编码单元体现的数字，如果在索引处没找到元素则返回 undefined<br>是否改变原字符串：false<br>兼容性：<br>版本：<br>描述：如果在索引处开始没有UTF-16 代理对，将直接返回在那个索引处的编码单元。</p>
+<pre><code>&apos;ABC&apos;.codePointAt(1);          // 66
+&apos;\uD800\uDC00&apos;.codePointAt(0); // 65536
+&apos;XYZ&apos;.codePointAt(42); // undefined
+</code></pre><h1 id="9-String-prototype-concat"><a href="#9-String-prototype-concat" class="headerlink" title="9. String.prototype.concat()"></a>9. String.prototype.concat()</h1><p>作用：将一个或多个字符串与原字符串连接合并，形成一个新的字符串并返回<br>语法：str.concat(string2, string3, …stringN)<br>参数：string2, string3, …stringN: 和原字符串连接的多个字符串<br>返回值：新的字符串<br>是否改变原字符串：false<br>兼容性：all<br>版本：ES3<br>描述：</p>
+<pre><code>var str = &apos;zhangqi&apos;;
+var a = str.concat(&apos;li&apos;,&apos;ul&apos;);
+console.log(str); //&apos;zhangqi&apos;
+console.log(a); //&apos;zhangqiliul&apos;
+var b = String.prototype.concat.call(str,&apos;man&apos;);
+console.log(b); //&apos;zhangqiman&apos;
+</code></pre><h1 id="10-String-prototype-endsWith"><a href="#10-String-prototype-endsWith" class="headerlink" title="10. String.prototype.endsWith()"></a>10. String.prototype.endsWith()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="11-String-prototype-fixed"><a href="#11-String-prototype-fixed" class="headerlink" title="11. String.prototype.fixed()"></a>11. String.prototype.fixed()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="12-String-prototype-fontcolor"><a href="#12-String-prototype-fontcolor" class="headerlink" title="12. String.prototype.fontcolor()"></a>12. String.prototype.fontcolor()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="13-String-prototype-fontsize"><a href="#13-String-prototype-fontsize" class="headerlink" title="13. String.prototype.fontsize()"></a>13. String.prototype.fontsize()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="14-String-prototype-includes"><a href="#14-String-prototype-includes" class="headerlink" title="14. String.prototype.includes()"></a>14. String.prototype.includes()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="15-String-prototype-indexOf"><a href="#15-String-prototype-indexOf" class="headerlink" title="15. String.prototype.indexOf()"></a>15. String.prototype.indexOf()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="16-String-prototype-italics"><a href="#16-String-prototype-italics" class="headerlink" title="16. String.prototype.italics()"></a>16. String.prototype.italics()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="17-String-prototype-lastIndexOf"><a href="#17-String-prototype-lastIndexOf" class="headerlink" title="17. String.prototype.lastIndexOf()"></a>17. String.prototype.lastIndexOf()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="18-String-prototype-link"><a href="#18-String-prototype-link" class="headerlink" title="18. String.prototype.link()"></a>18. String.prototype.link()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="19-String-prototype-localeCompare"><a href="#19-String-prototype-localeCompare" class="headerlink" title="19. String.prototype.localeCompare()"></a>19. String.prototype.localeCompare()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="20-String-prototype-match"><a href="#20-String-prototype-match" class="headerlink" title="20. String.prototype.match()"></a>20. String.prototype.match()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="21-String-prototype-normalize"><a href="#21-String-prototype-normalize" class="headerlink" title="21. String.prototype.normalize()"></a>21. String.prototype.normalize()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="22-String-prototype-padEnd"><a href="#22-String-prototype-padEnd" class="headerlink" title="22. String.prototype.padEnd()"></a>22. String.prototype.padEnd()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="23-String-prototype-padStart"><a href="#23-String-prototype-padStart" class="headerlink" title="23. String.prototype.padStart()"></a>23. String.prototype.padStart()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="24-String-prototype-repeat"><a href="#24-String-prototype-repeat" class="headerlink" title="24. String.prototype.repeat()"></a>24. String.prototype.repeat()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="25-String-prototype-replace"><a href="#25-String-prototype-replace" class="headerlink" title="25. String.prototype.replace()"></a>25. String.prototype.replace()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="26-String-prototype-search"><a href="#26-String-prototype-search" class="headerlink" title="26. String.prototype.search()"></a>26. String.prototype.search()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="27-String-prototype-slice"><a href="#27-String-prototype-slice" class="headerlink" title="27. String.prototype.slice()"></a>27. String.prototype.slice()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="28-String-prototype-small"><a href="#28-String-prototype-small" class="headerlink" title="28. String.prototype.small()"></a>28. String.prototype.small()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="29-String-prototype-split"><a href="#29-String-prototype-split" class="headerlink" title="29. String.prototype.split()"></a>29. String.prototype.split()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="30-String-prototype-startsWith"><a href="#30-String-prototype-startsWith" class="headerlink" title="30. String.prototype.startsWith()"></a>30. String.prototype.startsWith()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="31-String-prototype-strike"><a href="#31-String-prototype-strike" class="headerlink" title="31. String.prototype.strike()"></a>31. String.prototype.strike()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="32-String-prototype-sub"><a href="#32-String-prototype-sub" class="headerlink" title="32. String.prototype.sub()"></a>32. String.prototype.sub()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="33-String-prototype-substr"><a href="#33-String-prototype-substr" class="headerlink" title="33. String.prototype.substr()"></a>33. String.prototype.substr()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="34-String-prototype-substring"><a href="#34-String-prototype-substring" class="headerlink" title="34. String.prototype.substring()"></a>34. String.prototype.substring()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="35-String-prototype-sup"><a href="#35-String-prototype-sup" class="headerlink" title="35. String.prototype.sup()"></a>35. String.prototype.sup()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="36-String-prototype-toLocaleLowerCase"><a href="#36-String-prototype-toLocaleLowerCase" class="headerlink" title="36. String.prototype.toLocaleLowerCase()"></a>36. String.prototype.toLocaleLowerCase()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="37-String-prototype-toLocaleUpperCase"><a href="#37-String-prototype-toLocaleUpperCase" class="headerlink" title="37. String.prototype.toLocaleUpperCase()"></a>37. String.prototype.toLocaleUpperCase()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="38-String-prototype-toLowerCase"><a href="#38-String-prototype-toLowerCase" class="headerlink" title="38. String.prototype.toLowerCase()"></a>38. String.prototype.toLowerCase()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="39-String-prototype-toSource"><a href="#39-String-prototype-toSource" class="headerlink" title="39. String.prototype.toSource()"></a>39. String.prototype.toSource()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="40-String-prototype-toString"><a href="#40-String-prototype-toString" class="headerlink" title="40. String.prototype.toString()"></a>40. String.prototype.toString()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="41-String-prototype-toUpperCase"><a href="#41-String-prototype-toUpperCase" class="headerlink" title="41. String.prototype.toUpperCase()"></a>41. String.prototype.toUpperCase()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="42-String-prototype-trim"><a href="#42-String-prototype-trim" class="headerlink" title="42. String.prototype.trim()"></a>42. String.prototype.trim()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="43-String-prototype-trimLeft"><a href="#43-String-prototype-trimLeft" class="headerlink" title="43. String.prototype.trimLeft()"></a>43. String.prototype.trimLeft()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="44-String-prototype-trimRight"><a href="#44-String-prototype-trimRight" class="headerlink" title="44. String.prototype.trimRight()"></a>44. String.prototype.trimRight()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="45-String-prototype-valueOf"><a href="#45-String-prototype-valueOf" class="headerlink" title="45. String.prototype.valueOf()"></a>45. String.prototype.valueOf()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="46-String-raw"><a href="#46-String-raw" class="headerlink" title="46. String.raw()"></a>46. String.raw()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/06/26/Object对象内置方法总结/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Godzhang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/06/26/Object对象内置方法总结/" itemprop="url">Object对象内置方法总结</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-26T20:36:04+08:00">
+                2017-06-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="1-Object-assign"><a href="#1-Object-assign" class="headerlink" title="1. Object.assign()"></a>1. Object.assign()</h1><p>作用：用于将所有可枚举的属性的值从一个或多个源对象复制到目标对象<br>语法：Object.assign(target, …sources)<br>参数：</p>
+<ul>
+<li>target: 目标对象</li>
+<li>sources（多个）源对象</li>
+</ul>
+<p>返回值：目标对象<br>是否改变原对象：若target是已存在对象，则改变，只改变target<br>兼容性：IE-<br>版本：ES6<br>描述：如果目标对象中的属性具有相同的键，则属性将被源中的属性覆盖。后来的源的属性将类似地覆盖早先的属性。<br>Object.assign 方法只会拷贝源对象自身的并且可枚举的属性到目标对象身上。该方法使用源对象的 [ [ Get ] ] 和目标对象的 [ [ Set ] ]，所以它会调用相关 getter 和 setter。因此，它分配属性而不是复制或定义新的属性。<br>注意， Object.assign 会跳过那些值为 null 或 undefined 的源对象。</p>
+<pre><code>//复制一个object
+var obj = { a: 1 };
+var copy = Object.assign({}, obj);
+console.log(copy); // { a: 1 }
+
+//深度拷贝问题
+//针对深度拷贝，需要使用其他方法，因为 Object.assign() 拷贝的是属性值。假如源对象的属性值是一个指向对象的引用，它也只拷贝那个引用值。
+function test() {
+  let a = { b: {c:4} , d: { e: {f:1}} }
+  let g = Object.assign({},a)
+  let h = JSON.parse(JSON.stringify(a));
+  console.log(g.d) // { e: { f: 1 } }
+  g.d.e = 32
+  console.log(&apos;g.d.e set to 32.&apos;) // g.d.e set to 32.
+  console.log(g) // { b: { c: 4 }, d: { e: 32 } }
+  console.log(a) // { b: { c: 4 }, d: { e: 32 } }
+  console.log(h) // { b: { c: 4 }, d: { e: { f: 1 } } }
+  h.d.e = 54
+  console.log(&apos;h.d.e set to 54.&apos;) // h.d.e set to 54.
+  console.log(g) // { b: { c: 4 }, d: { e: 32 } }
+  console.log(a) // { b: { c: 4 }, d: { e: 32 } }
+  console.log(h) // { b: { c: 4 }, d: { e: 54 } }
+}
+test();
+
+//合并objects
+var o1 = { a: 1 };
+var o2 = { b: 2 };
+var o3 = { c: 3 };
+var obj = Object.assign(o1, o2, o3);
+console.log(obj); // { a: 1, b: 2, c: 3 }
+console.log(o1);  // { a: 1, b: 2, c: 3 }, 注意目标对象自身也会改变。
+
+//拷贝 symbol 类型的属性
+var o1 = { a: 1 };
+var o2 = { [Symbol(&quot;foo&quot;)]: 2 };
+var obj = Object.assign({}, o1, o2);
+console.log(obj); // { a: 1, [Symbol(&quot;foo&quot;)]: 2 }
+
+//继承属性和不可枚举属性是不能拷贝的
+var obj = Object.create({foo: 1}, { // foo 是个继承属性。
+    bar: {
+        value: 2  // bar 是个不可枚举属性。
+    },
+    baz: {
+        value: 3,
+        enumerable: true  // baz 是个自身可枚举属性。
+    }
+});
+var copy = Object.assign({}, obj);
+console.log(copy); // { baz: 3 }
+
+//原始类型会被包装为 object
+var v1 = &quot;abc&quot;;
+var v2 = true;
+var v3 = 10;
+var v4 = Symbol(&quot;foo&quot;)
+var obj = Object.assign({}, v1, null, v2, undefined, v3, v4); 
+// 原始类型会被包装，null 和 undefined 会被忽略。
+// 注意，只有字符串的包装对象才可能有自身可枚举属性。
+console.log(obj); // { &quot;0&quot;: &quot;a&quot;, &quot;1&quot;: &quot;b&quot;, &quot;2&quot;: &quot;c&quot; }
+
+//异常会打断接下来的拷贝任务
+var target = Object.defineProperty({}, &quot;foo&quot;, {
+    value: 1,
+    writable: false
+}); // target 的 foo 属性是个只读属性。
+
+Object.assign(target, {bar: 2}, {foo2: 3, foo: 3, foo3: 3}, {baz: 4});
+// TypeError: &quot;foo&quot; is read-only
+// 注意这个异常是在拷贝第二个源对象的第二个属性时发生的。
+
+console.log(target.bar);  // 2，说明第一个源对象拷贝成功了。
+console.log(target.foo2); // 3，说明第二个源对象的第一个属性也拷贝成功了。
+console.log(target.foo);  // 1，只读属性不能被覆盖，所以第二个源对象的第二个属性拷贝失败了。
+console.log(target.foo3); // undefined，异常之后 assign 方法就退出了，第三个属性是不会被拷贝到的。
+console.log(target.baz);  // undefined，第三个源对象更是不会被拷贝到的。
+</code></pre><h1 id="2-Object-create"><a href="#2-Object-create" class="headerlink" title="2. Object.create()"></a>2. Object.create()</h1><p>作用：使用指定的原型对象和其属性创建了一个新的对象<br>语法：Object.create(proto, propertiesObject)<br>参数：</p>
+<ul>
+<li>proto: 一个对象，应该是新创建的对象的原型</li>
+<li>propertiesObject: 可选。该参数对象是一组属性与值，该对象的属性名称将是新创建的对象的属性名称，值是属性描述符（这些属性描述符的结构与Object.defineProperties()的第二个参数一样）。注意：该参数对象不能是 undefined，另外只有该对象中自身拥有的可枚举的属性才有效，也就是说该对象的原型链上属性是无效的。</li>
+</ul>
+<p>返回值：具有指定原型对象属性的新的对象<br>是否改变原对象：false<br>兼容性：IE9+<br>版本：ES5<br>描述：如果 proto 参数不是 null 或一个对象值，则抛出一个 TypeError 异常。</p>
+<pre><code>function Shape() {
+  this.x = 0;
+  this.y = 0;
+}
+
+Shape.prototype.move = function(x, y) {
+    this.x += x;
+    this.y += y;
+    console.info(&quot;Shape moved.&quot;);
+};
+
+function Rectangle() {
+  Shape.call(this); //call super constructor.
+}
+Rectangle.prototype = Object.create(Shape.prototype);
+
+var rect = new Rectangle();
+
+rect instanceof Rectangle; //true
+rect instanceof Shape; //true
+
+function Fn(){
+    this.name = &apos;zhangqi&apos;;
+}
+
+Fn.prototype = {
+    init: function(){
+        console.log(1);
+    }
+}
+
+var a = Object.create(Fn.prototype,{foo:{writable:true, configurable:true, value: &quot;hello&quot;}});
+
+console.log(a.foo); //hello
+</code></pre><h1 id="3-Object-defineProperties"><a href="#3-Object-defineProperties" class="headerlink" title="3. Object.defineProperties()"></a>3. Object.defineProperties()</h1><p>作用：直接在一个对象上定义新的属性或修改现有属性<br>语法：Object.defineProperties(obj, props)<br>参数：</p>
+<ul>
+<li>obj: 将要被添加或修改属性的对象</li>
+<li>props: 该对象的一个或多个键值对定义了将要为对象添加或修改的属性的具体配置</li>
+</ul>
+<p>返回值：被传递给函数的对象<br>是否改变原对象：true<br>兼容性：IE9+<br>版本：ES5<br>描述：—</p>
+<pre><code>var obj = {};
+Object.defineProperties(obj, {
+  &quot;property1&quot;: {
+    value: true,
+    writable: true
+  },
+  &quot;property2&quot;: {
+    value: &quot;Hello&quot;,
+    writable: false
+  }
+  // 等等.
+});
+alert(obj.property2) //弹出&quot;Hello&quot;
+</code></pre><h1 id="4-Object-defineProperty"><a href="#4-Object-defineProperty" class="headerlink" title="4. Object.defineProperty()"></a>4. Object.defineProperty()</h1><p>作用：直接在一个对象上定义一个新属性，或者修改一个对象的现有属性<br>语法：Object.defineProperty(obj, prop, descriptor)<br>参数：</p>
+<ul>
+<li>obj: 要在其上定义属性的对象</li>
+<li>prop: 要定义或修改的属性名称</li>
+<li>descriptor: 将被定义或修改的属性的描述符</li>
+</ul>
+<p>返回值：被传递给函数的对象<br>是否改变原对象：true<br>兼容性：IE9+<br>版本：ES5<br>描述：<br>数据描述符和存取描述符均具有以下可选键值：</p>
+<h3 id="configurable"><a href="#configurable" class="headerlink" title="configurable"></a>configurable</h3><p>当且仅当该属性的 configurable 为 true 时，该属性描述符才能够被改变，也能够被删除。默认为 false。</p>
+<h3 id="enumerable"><a href="#enumerable" class="headerlink" title="enumerable"></a>enumerable</h3><p>当且仅当该属性的 enumerable 为 true 时，该属性才能够出现在对象的枚举属性中。默认为 false。<br>数据描述符同时具有以下可选键值：</p>
+<h3 id="value"><a href="#value" class="headerlink" title="value"></a>value</h3><p>该属性对应的值。可以是任何有效的 JavaScript 值（数值，对象，函数等）。默认为 undefined。</p>
+<h3 id="writable"><a href="#writable" class="headerlink" title="writable"></a>writable</h3><p>当且仅当该属性的 writable 为 true 时，该属性才能被赋值运算符改变。默认为 false。<br>存取描述符同时具有以下可选键值：</p>
+<h3 id="get"><a href="#get" class="headerlink" title="get"></a>get</h3><p>一个给属性提供 getter 的方法，如果没有 getter 则为 undefined。该方法返回值被用作属性值。默认为 undefined。</p>
+<h3 id="set"><a href="#set" class="headerlink" title="set"></a>set</h3><p>一个给属性提供 setter 的方法，如果没有 setter 则为 undefined。该方法将接受唯一参数，并将该参数的新值分配给该属性。默认为 undefined。</p>
+<pre><code>var o = {}; // 创建一个新对象
+property descriptor
+Object.defineProperty(o, &quot;a&quot;, {
+  value : 37,
+  writable : true,
+  enumerable : true,
+  configurable : true
+});
+// 对象o拥有了属性a，值为37
+var bValue;
+Object.defineProperty(o, &quot;b&quot;, {
+  get : function(){
+    return bValue;
+  },
+  set : function(newValue){
+    bValue = newValue;
+  },
+  enumerable : true,
+  configurable : true
+});
+o.b = 38;
+// 对象o拥有了属性b，值为38
+
+// 数据描述符和存取描述符不能混合使用
+Object.defineProperty(o, &quot;conflict&quot;, {
+  value: 0x9f91102, 
+  get: function() { 
+    return 0xdeadbeef; 
+  } 
+});
+// throws a TypeError: value appears only in data descriptors, get appears only in accessor descriptors
+
+//Writable 属性
+var o = {}; // 创建一个新对象
+Object.defineProperty(o, &quot;a&quot;, { value : 37, writable : false });
+console.log(o.a); // 打印 37
+o.a = 25; // 没有错误抛出（在严格模式下会抛出，即使之前已经有相同的值）
+console.log(o.a); // 打印 37， 赋值不起作用。
+
+//Enumerable 特性
+var o = {};
+Object.defineProperty(o, &quot;a&quot;, { value : 1, enumerable:true });
+Object.defineProperty(o, &quot;b&quot;, { value : 2, enumerable:false });
+Object.defineProperty(o, &quot;c&quot;, { value : 3 }); // enumerable defaults to false
+o.d = 4; // 如果使用直接赋值的方式创建对象的属性，则这个属性的enumerable为true
+for (var i in o) {    
+  console.log(i);  
+}
+// 打印 &apos;a&apos; 和 &apos;d&apos; (in undefined order)
+Object.keys(o); // [&quot;a&quot;, &quot;d&quot;]
+o.propertyIsEnumerable(&apos;a&apos;); // true
+o.propertyIsEnumerable(&apos;b&apos;); // false
+o.propertyIsEnumerable(&apos;c&apos;); // false
+
+//Configurable 特性
+//configurable 特性表示对象的属性是否可以被删除，以及除 writable 特性外的其他特性是否可以被修改。
+var o = {};
+Object.defineProperty(o, &quot;a&quot;, { get : function(){return 1;}, configurable : false } );
+// throws a TypeError一旦把属性定义为不可配置的，就不能再变回可配置了
+Object.defineProperty(o, &quot;a&quot;, {configurable : true}); 
+// throws a TypeError
+Object.defineProperty(o, &quot;a&quot;, {enumerable : true}); 
+// throws a TypeError (set was undefined previously) 
+Object.defineProperty(o, &quot;a&quot;, {set : function(){}}); 
+// throws a TypeError (even though the new get does exactly the same thing) 
+Object.defineProperty(o, &quot;a&quot;, {get : function(){return 1;}});
+// throws a TypeError
+Object.defineProperty(o, &quot;a&quot;, {value : 12});
+console.log(o.a); // 1
+delete o.a; // Nothing happens
+console.log(o.a); // 1
+
+//一般的 Setters 和 Getters
+function Archiver() {
+  var temperature = null;
+  var archive = [];
+
+  Object.defineProperty(this, &apos;temperature&apos;, {
+    get: function() {
+      console.log(&apos;get!&apos;);
+      return temperature;
+    },
+    set: function(value) {
+      temperature = value;
+      archive.push({ val: temperature });
+    }
+  });
+
+  this.getArchive = function() { return archive; };
+}
+
+var arc = new Archiver();
+arc.temperature; // &apos;get!&apos;
+arc.temperature = 11;
+arc.temperature = 13;
+arc.getArchive(); // [{ val: 11 }, { val: 13 }]
+</code></pre><h1 id="5-Object-entries"><a href="#5-Object-entries" class="headerlink" title="5. Object.entries()"></a>5. Object.entries()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原对象：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="6-Object-freeze"><a href="#6-Object-freeze" class="headerlink" title="6. Object.freeze()"></a>6. Object.freeze()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原对象：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="7-Object-getOwnPropertyDescriptor"><a href="#7-Object-getOwnPropertyDescriptor" class="headerlink" title="7. Object.getOwnPropertyDescriptor()"></a>7. Object.getOwnPropertyDescriptor()</h1><p>作用：返回指定对象上一个自有属性对应的属性描述符<br>语法：Object.getOwnPropertyDescriptor(obj, prop)<br>参数：</p>
+<ul>
+<li>obj: 在该对象上查看属性</li>
+<li>prop: 一个属性名称，该属性的属性描述符将被返回</li>
+</ul>
+<p>返回值：如果指定的属性存在于对象上，则返回其属性描述符（property descriptor），否则返回 undefined。<br>是否改变原对象：false<br>兼容性：IE8+<br>版本：ES5<br>描述：<br>一个属性描述符是一个记录，由下面属性当中的某些组成的：<br>value<br>该属性的值(仅针对数据属性描述符有效)<br>writable<br>当且仅当属性的值可以被改变时为true。(仅针对数据属性描述有效)<br>get<br>获取该属性的访问器函数（getter）。如果没有访问器， 该值为undefined。(仅针对包含访问器或设置器的属性描述有效)<br>set<br>获取该属性的设置器函数（setter）。 如果没有设置器， 该值为undefined。(仅针对包含访问器或设置器的属性描述有效)<br>configurable<br>当且仅当指定对象的属性描述可以被改变或者属性可被删除时，为true。<br>enumerable<br>当且仅当指定对象的属性可以被枚举出时，为 true。</p>
+<pre><code>var o, d;
+
+o = { get foo() { return 17; } };
+d = Object.getOwnPropertyDescriptor(o, &quot;foo&quot;);
+// d is { configurable: true, enumerable: true, get: /*访问器函数*/, set: undefined }
+
+o = { bar: 42 };
+d = Object.getOwnPropertyDescriptor(o, &quot;bar&quot;);
+// d is { configurable: true, enumerable: true, value: 42, writable: true }
+
+o = {};
+Object.defineProperty(o, &quot;baz&quot;, { value: 8675309, writable: false, enumerable: false });
+d = Object.getOwnPropertyDescriptor(o, &quot;baz&quot;);
+// d is { value: 8675309, writable: false, enumerable: false, configurable: false }
+</code></pre><h1 id="8-Object-getOwnPropertyDescriptors"><a href="#8-Object-getOwnPropertyDescriptors" class="headerlink" title="8. Object.getOwnPropertyDescriptors()"></a>8. Object.getOwnPropertyDescriptors()</h1><p>作用：用来获取一个对象的所有自身属性的描述符<br>语法：Object.getOwnPropertyDescriptors(obj);<br>参数：obj: 任意对象<br>返回值：所指定对象的所有自身属性的描述符，如果没有任何自身属性，则返回空对象<br>是否改变原对象：false<br>兼容性：只有火狐支持<br>版本：ES8<br>描述：</p>
+<h1 id="9-Object-getOwnPropertyNames"><a href="#9-Object-getOwnPropertyNames" class="headerlink" title="9. Object.getOwnPropertyNames()"></a>9. Object.getOwnPropertyNames()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原对象：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="10-Object-getOwnPropertySymbols"><a href="#10-Object-getOwnPropertySymbols" class="headerlink" title="10. Object.getOwnPropertySymbols()"></a>10. Object.getOwnPropertySymbols()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原对象：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="11-Object-getPrototypeOf"><a href="#11-Object-getPrototypeOf" class="headerlink" title="11. Object.getPrototypeOf()"></a>11. Object.getPrototypeOf()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原对象：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="12-Object-is"><a href="#12-Object-is" class="headerlink" title="12. Object.is()"></a>12. Object.is()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原对象：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="13-Object-isExtensible"><a href="#13-Object-isExtensible" class="headerlink" title="13. Object.isExtensible()"></a>13. Object.isExtensible()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原对象：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="14-Object-isFrozen"><a href="#14-Object-isFrozen" class="headerlink" title="14. Object.isFrozen()"></a>14. Object.isFrozen()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原对象：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="15-Object-isSealed"><a href="#15-Object-isSealed" class="headerlink" title="15. Object.isSealed()"></a>15. Object.isSealed()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原对象：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="16-Object-keys"><a href="#16-Object-keys" class="headerlink" title="16. Object.keys()"></a>16. Object.keys()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原对象：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="17-Object-preventExtensions"><a href="#17-Object-preventExtensions" class="headerlink" title="17. Object.preventExtensions()"></a>17. Object.preventExtensions()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原对象：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="18-Object-prototype-defineGetter"><a href="#18-Object-prototype-defineGetter" class="headerlink" title="18. Object.prototype.defineGetter()"></a>18. Object.prototype.<strong>defineGetter</strong>()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原对象：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="19-Object-prototype-defineSetter"><a href="#19-Object-prototype-defineSetter" class="headerlink" title="19. Object.prototype.defineSetter()"></a>19. Object.prototype.<strong>defineSetter</strong>()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原对象：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="20-Object-prototype-lookupGetter"><a href="#20-Object-prototype-lookupGetter" class="headerlink" title="20. Object.prototype.lookupGetter()"></a>20. Object.prototype.<strong>lookupGetter</strong>()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原对象：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="21-Object-prototype-lookupSetter"><a href="#21-Object-prototype-lookupSetter" class="headerlink" title="21. Object.prototype.lookupSetter()"></a>21. Object.prototype.<strong>lookupSetter</strong>()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原对象：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="22-Object-prototype-hasOwnProperty"><a href="#22-Object-prototype-hasOwnProperty" class="headerlink" title="22. Object.prototype.hasOwnProperty()"></a>22. Object.prototype.hasOwnProperty()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原对象：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="23-Object-prototype-isPrototypeOf"><a href="#23-Object-prototype-isPrototypeOf" class="headerlink" title="23. Object.prototype.isPrototypeOf()"></a>23. Object.prototype.isPrototypeOf()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原对象：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="24-Object-prototype-propertyIsEnumerable"><a href="#24-Object-prototype-propertyIsEnumerable" class="headerlink" title="24. Object.prototype.propertyIsEnumerable()"></a>24. Object.prototype.propertyIsEnumerable()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原对象：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="25-Object-prototype-toLocalString"><a href="#25-Object-prototype-toLocalString" class="headerlink" title="25. Object.prototype.toLocalString()"></a>25. Object.prototype.toLocalString()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原对象：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="26-Object-prototype-toSource"><a href="#26-Object-prototype-toSource" class="headerlink" title="26. Object.prototype.toSource()"></a>26. Object.prototype.toSource()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原对象：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="27-Object-prototype-unwatch"><a href="#27-Object-prototype-unwatch" class="headerlink" title="27. Object.prototype.unwatch()"></a>27. Object.prototype.unwatch()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原对象：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="28-Object-prototype-valueOf"><a href="#28-Object-prototype-valueOf" class="headerlink" title="28. Object.prototype.valueOf()"></a>28. Object.prototype.valueOf()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原对象：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="29-Object-prototype-watch"><a href="#29-Object-prototype-watch" class="headerlink" title="29. Object.prototype.watch()"></a>29. Object.prototype.watch()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原对象：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="30-Object-seal"><a href="#30-Object-seal" class="headerlink" title="30. Object.seal()"></a>30. Object.seal()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原对象：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="31-Object-setPrototypeOf"><a href="#31-Object-setPrototypeOf" class="headerlink" title="31. Object.setPrototypeOf()"></a>31. Object.setPrototypeOf()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原对象：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="32-Object-values"><a href="#32-Object-values" class="headerlink" title="32. Object.values()"></a>32. Object.values()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原对象：<br>兼容性：<br>版本：<br>描述：</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/06/25/前端算法总结/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1362,7 +1944,7 @@ console.log(typeof a); //boolean
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

@@ -1,0 +1,958 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="1. Object.assign()作用：用于将所有可枚举的属性的值从一个或多个源对象复制到目标对象语法：Object.assign(target, …sources)参数：  target: 目标对象 sources（多个）源对象  返回值：目标对象是否改变原对象：若target是已存在对象，则改变，只改变target兼容性：IE-版本：ES6描述：如果目标对象中的属性具有相同的键，则属性将被源">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Object对象内置方法总结">
+<meta property="og:url" content="http://yoursite.com/2017/06/26/Object对象内置方法总结/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="1. Object.assign()作用：用于将所有可枚举的属性的值从一个或多个源对象复制到目标对象语法：Object.assign(target, …sources)参数：  target: 目标对象 sources（多个）源对象  返回值：目标对象是否改变原对象：若target是已存在对象，则改变，只改变target兼容性：IE-版本：ES6描述：如果目标对象中的属性具有相同的键，则属性将被源">
+<meta property="og:updated_time" content="2017-06-26T13:56:47.821Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Object对象内置方法总结">
+<meta name="twitter:description" content="1. Object.assign()作用：用于将所有可枚举的属性的值从一个或多个源对象复制到目标对象语法：Object.assign(target, …sources)参数：  target: 目标对象 sources（多个）源对象  返回值：目标对象是否改变原对象：若target是已存在对象，则改变，只改变target兼容性：IE-版本：ES6描述：如果目标对象中的属性具有相同的键，则属性将被源">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/06/26/Object对象内置方法总结/"/>
+
+
+
+
+
+  <title>Object对象内置方法总结 | Hexo</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/06/26/Object对象内置方法总结/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Godzhang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Object对象内置方法总结</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-26T20:36:04+08:00">
+                2017-06-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="1-Object-assign"><a href="#1-Object-assign" class="headerlink" title="1. Object.assign()"></a>1. Object.assign()</h1><p>作用：用于将所有可枚举的属性的值从一个或多个源对象复制到目标对象<br>语法：Object.assign(target, …sources)<br>参数：</p>
+<ul>
+<li>target: 目标对象</li>
+<li>sources（多个）源对象</li>
+</ul>
+<p>返回值：目标对象<br>是否改变原对象：若target是已存在对象，则改变，只改变target<br>兼容性：IE-<br>版本：ES6<br>描述：如果目标对象中的属性具有相同的键，则属性将被源中的属性覆盖。后来的源的属性将类似地覆盖早先的属性。<br>Object.assign 方法只会拷贝源对象自身的并且可枚举的属性到目标对象身上。该方法使用源对象的 [ [ Get ] ] 和目标对象的 [ [ Set ] ]，所以它会调用相关 getter 和 setter。因此，它分配属性而不是复制或定义新的属性。<br>注意， Object.assign 会跳过那些值为 null 或 undefined 的源对象。</p>
+<pre><code>//复制一个object
+var obj = { a: 1 };
+var copy = Object.assign({}, obj);
+console.log(copy); // { a: 1 }
+
+//深度拷贝问题
+//针对深度拷贝，需要使用其他方法，因为 Object.assign() 拷贝的是属性值。假如源对象的属性值是一个指向对象的引用，它也只拷贝那个引用值。
+function test() {
+  let a = { b: {c:4} , d: { e: {f:1}} }
+  let g = Object.assign({},a)
+  let h = JSON.parse(JSON.stringify(a));
+  console.log(g.d) // { e: { f: 1 } }
+  g.d.e = 32
+  console.log(&apos;g.d.e set to 32.&apos;) // g.d.e set to 32.
+  console.log(g) // { b: { c: 4 }, d: { e: 32 } }
+  console.log(a) // { b: { c: 4 }, d: { e: 32 } }
+  console.log(h) // { b: { c: 4 }, d: { e: { f: 1 } } }
+  h.d.e = 54
+  console.log(&apos;h.d.e set to 54.&apos;) // h.d.e set to 54.
+  console.log(g) // { b: { c: 4 }, d: { e: 32 } }
+  console.log(a) // { b: { c: 4 }, d: { e: 32 } }
+  console.log(h) // { b: { c: 4 }, d: { e: 54 } }
+}
+test();
+
+//合并objects
+var o1 = { a: 1 };
+var o2 = { b: 2 };
+var o3 = { c: 3 };
+var obj = Object.assign(o1, o2, o3);
+console.log(obj); // { a: 1, b: 2, c: 3 }
+console.log(o1);  // { a: 1, b: 2, c: 3 }, 注意目标对象自身也会改变。
+
+//拷贝 symbol 类型的属性
+var o1 = { a: 1 };
+var o2 = { [Symbol(&quot;foo&quot;)]: 2 };
+var obj = Object.assign({}, o1, o2);
+console.log(obj); // { a: 1, [Symbol(&quot;foo&quot;)]: 2 }
+
+//继承属性和不可枚举属性是不能拷贝的
+var obj = Object.create({foo: 1}, { // foo 是个继承属性。
+    bar: {
+        value: 2  // bar 是个不可枚举属性。
+    },
+    baz: {
+        value: 3,
+        enumerable: true  // baz 是个自身可枚举属性。
+    }
+});
+var copy = Object.assign({}, obj);
+console.log(copy); // { baz: 3 }
+
+//原始类型会被包装为 object
+var v1 = &quot;abc&quot;;
+var v2 = true;
+var v3 = 10;
+var v4 = Symbol(&quot;foo&quot;)
+var obj = Object.assign({}, v1, null, v2, undefined, v3, v4); 
+// 原始类型会被包装，null 和 undefined 会被忽略。
+// 注意，只有字符串的包装对象才可能有自身可枚举属性。
+console.log(obj); // { &quot;0&quot;: &quot;a&quot;, &quot;1&quot;: &quot;b&quot;, &quot;2&quot;: &quot;c&quot; }
+
+//异常会打断接下来的拷贝任务
+var target = Object.defineProperty({}, &quot;foo&quot;, {
+    value: 1,
+    writable: false
+}); // target 的 foo 属性是个只读属性。
+
+Object.assign(target, {bar: 2}, {foo2: 3, foo: 3, foo3: 3}, {baz: 4});
+// TypeError: &quot;foo&quot; is read-only
+// 注意这个异常是在拷贝第二个源对象的第二个属性时发生的。
+
+console.log(target.bar);  // 2，说明第一个源对象拷贝成功了。
+console.log(target.foo2); // 3，说明第二个源对象的第一个属性也拷贝成功了。
+console.log(target.foo);  // 1，只读属性不能被覆盖，所以第二个源对象的第二个属性拷贝失败了。
+console.log(target.foo3); // undefined，异常之后 assign 方法就退出了，第三个属性是不会被拷贝到的。
+console.log(target.baz);  // undefined，第三个源对象更是不会被拷贝到的。
+</code></pre><h1 id="2-Object-create"><a href="#2-Object-create" class="headerlink" title="2. Object.create()"></a>2. Object.create()</h1><p>作用：使用指定的原型对象和其属性创建了一个新的对象<br>语法：Object.create(proto, propertiesObject)<br>参数：</p>
+<ul>
+<li>proto: 一个对象，应该是新创建的对象的原型</li>
+<li>propertiesObject: 可选。该参数对象是一组属性与值，该对象的属性名称将是新创建的对象的属性名称，值是属性描述符（这些属性描述符的结构与Object.defineProperties()的第二个参数一样）。注意：该参数对象不能是 undefined，另外只有该对象中自身拥有的可枚举的属性才有效，也就是说该对象的原型链上属性是无效的。</li>
+</ul>
+<p>返回值：具有指定原型对象属性的新的对象<br>是否改变原对象：false<br>兼容性：IE9+<br>版本：ES5<br>描述：如果 proto 参数不是 null 或一个对象值，则抛出一个 TypeError 异常。</p>
+<pre><code>function Shape() {
+  this.x = 0;
+  this.y = 0;
+}
+
+Shape.prototype.move = function(x, y) {
+    this.x += x;
+    this.y += y;
+    console.info(&quot;Shape moved.&quot;);
+};
+
+function Rectangle() {
+  Shape.call(this); //call super constructor.
+}
+Rectangle.prototype = Object.create(Shape.prototype);
+
+var rect = new Rectangle();
+
+rect instanceof Rectangle; //true
+rect instanceof Shape; //true
+
+function Fn(){
+    this.name = &apos;zhangqi&apos;;
+}
+
+Fn.prototype = {
+    init: function(){
+        console.log(1);
+    }
+}
+
+var a = Object.create(Fn.prototype,{foo:{writable:true, configurable:true, value: &quot;hello&quot;}});
+
+console.log(a.foo); //hello
+</code></pre><h1 id="3-Object-defineProperties"><a href="#3-Object-defineProperties" class="headerlink" title="3. Object.defineProperties()"></a>3. Object.defineProperties()</h1><p>作用：直接在一个对象上定义新的属性或修改现有属性<br>语法：Object.defineProperties(obj, props)<br>参数：</p>
+<ul>
+<li>obj: 将要被添加或修改属性的对象</li>
+<li>props: 该对象的一个或多个键值对定义了将要为对象添加或修改的属性的具体配置</li>
+</ul>
+<p>返回值：被传递给函数的对象<br>是否改变原对象：true<br>兼容性：IE9+<br>版本：ES5<br>描述：—</p>
+<pre><code>var obj = {};
+Object.defineProperties(obj, {
+  &quot;property1&quot;: {
+    value: true,
+    writable: true
+  },
+  &quot;property2&quot;: {
+    value: &quot;Hello&quot;,
+    writable: false
+  }
+  // 等等.
+});
+alert(obj.property2) //弹出&quot;Hello&quot;
+</code></pre><h1 id="4-Object-defineProperty"><a href="#4-Object-defineProperty" class="headerlink" title="4. Object.defineProperty()"></a>4. Object.defineProperty()</h1><p>作用：直接在一个对象上定义一个新属性，或者修改一个对象的现有属性<br>语法：Object.defineProperty(obj, prop, descriptor)<br>参数：</p>
+<ul>
+<li>obj: 要在其上定义属性的对象</li>
+<li>prop: 要定义或修改的属性名称</li>
+<li>descriptor: 将被定义或修改的属性的描述符</li>
+</ul>
+<p>返回值：被传递给函数的对象<br>是否改变原对象：true<br>兼容性：IE9+<br>版本：ES5<br>描述：<br>数据描述符和存取描述符均具有以下可选键值：</p>
+<h3 id="configurable"><a href="#configurable" class="headerlink" title="configurable"></a>configurable</h3><p>当且仅当该属性的 configurable 为 true 时，该属性描述符才能够被改变，也能够被删除。默认为 false。</p>
+<h3 id="enumerable"><a href="#enumerable" class="headerlink" title="enumerable"></a>enumerable</h3><p>当且仅当该属性的 enumerable 为 true 时，该属性才能够出现在对象的枚举属性中。默认为 false。<br>数据描述符同时具有以下可选键值：</p>
+<h3 id="value"><a href="#value" class="headerlink" title="value"></a>value</h3><p>该属性对应的值。可以是任何有效的 JavaScript 值（数值，对象，函数等）。默认为 undefined。</p>
+<h3 id="writable"><a href="#writable" class="headerlink" title="writable"></a>writable</h3><p>当且仅当该属性的 writable 为 true 时，该属性才能被赋值运算符改变。默认为 false。<br>存取描述符同时具有以下可选键值：</p>
+<h3 id="get"><a href="#get" class="headerlink" title="get"></a>get</h3><p>一个给属性提供 getter 的方法，如果没有 getter 则为 undefined。该方法返回值被用作属性值。默认为 undefined。</p>
+<h3 id="set"><a href="#set" class="headerlink" title="set"></a>set</h3><p>一个给属性提供 setter 的方法，如果没有 setter 则为 undefined。该方法将接受唯一参数，并将该参数的新值分配给该属性。默认为 undefined。</p>
+<pre><code>var o = {}; // 创建一个新对象
+property descriptor
+Object.defineProperty(o, &quot;a&quot;, {
+  value : 37,
+  writable : true,
+  enumerable : true,
+  configurable : true
+});
+// 对象o拥有了属性a，值为37
+var bValue;
+Object.defineProperty(o, &quot;b&quot;, {
+  get : function(){
+    return bValue;
+  },
+  set : function(newValue){
+    bValue = newValue;
+  },
+  enumerable : true,
+  configurable : true
+});
+o.b = 38;
+// 对象o拥有了属性b，值为38
+
+// 数据描述符和存取描述符不能混合使用
+Object.defineProperty(o, &quot;conflict&quot;, {
+  value: 0x9f91102, 
+  get: function() { 
+    return 0xdeadbeef; 
+  } 
+});
+// throws a TypeError: value appears only in data descriptors, get appears only in accessor descriptors
+
+//Writable 属性
+var o = {}; // 创建一个新对象
+Object.defineProperty(o, &quot;a&quot;, { value : 37, writable : false });
+console.log(o.a); // 打印 37
+o.a = 25; // 没有错误抛出（在严格模式下会抛出，即使之前已经有相同的值）
+console.log(o.a); // 打印 37， 赋值不起作用。
+
+//Enumerable 特性
+var o = {};
+Object.defineProperty(o, &quot;a&quot;, { value : 1, enumerable:true });
+Object.defineProperty(o, &quot;b&quot;, { value : 2, enumerable:false });
+Object.defineProperty(o, &quot;c&quot;, { value : 3 }); // enumerable defaults to false
+o.d = 4; // 如果使用直接赋值的方式创建对象的属性，则这个属性的enumerable为true
+for (var i in o) {    
+  console.log(i);  
+}
+// 打印 &apos;a&apos; 和 &apos;d&apos; (in undefined order)
+Object.keys(o); // [&quot;a&quot;, &quot;d&quot;]
+o.propertyIsEnumerable(&apos;a&apos;); // true
+o.propertyIsEnumerable(&apos;b&apos;); // false
+o.propertyIsEnumerable(&apos;c&apos;); // false
+
+//Configurable 特性
+//configurable 特性表示对象的属性是否可以被删除，以及除 writable 特性外的其他特性是否可以被修改。
+var o = {};
+Object.defineProperty(o, &quot;a&quot;, { get : function(){return 1;}, configurable : false } );
+// throws a TypeError一旦把属性定义为不可配置的，就不能再变回可配置了
+Object.defineProperty(o, &quot;a&quot;, {configurable : true}); 
+// throws a TypeError
+Object.defineProperty(o, &quot;a&quot;, {enumerable : true}); 
+// throws a TypeError (set was undefined previously) 
+Object.defineProperty(o, &quot;a&quot;, {set : function(){}}); 
+// throws a TypeError (even though the new get does exactly the same thing) 
+Object.defineProperty(o, &quot;a&quot;, {get : function(){return 1;}});
+// throws a TypeError
+Object.defineProperty(o, &quot;a&quot;, {value : 12});
+console.log(o.a); // 1
+delete o.a; // Nothing happens
+console.log(o.a); // 1
+
+//一般的 Setters 和 Getters
+function Archiver() {
+  var temperature = null;
+  var archive = [];
+
+  Object.defineProperty(this, &apos;temperature&apos;, {
+    get: function() {
+      console.log(&apos;get!&apos;);
+      return temperature;
+    },
+    set: function(value) {
+      temperature = value;
+      archive.push({ val: temperature });
+    }
+  });
+
+  this.getArchive = function() { return archive; };
+}
+
+var arc = new Archiver();
+arc.temperature; // &apos;get!&apos;
+arc.temperature = 11;
+arc.temperature = 13;
+arc.getArchive(); // [{ val: 11 }, { val: 13 }]
+</code></pre><h1 id="5-Object-entries"><a href="#5-Object-entries" class="headerlink" title="5. Object.entries()"></a>5. Object.entries()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原对象：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="6-Object-freeze"><a href="#6-Object-freeze" class="headerlink" title="6. Object.freeze()"></a>6. Object.freeze()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原对象：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="7-Object-getOwnPropertyDescriptor"><a href="#7-Object-getOwnPropertyDescriptor" class="headerlink" title="7. Object.getOwnPropertyDescriptor()"></a>7. Object.getOwnPropertyDescriptor()</h1><p>作用：返回指定对象上一个自有属性对应的属性描述符<br>语法：Object.getOwnPropertyDescriptor(obj, prop)<br>参数：</p>
+<ul>
+<li>obj: 在该对象上查看属性</li>
+<li>prop: 一个属性名称，该属性的属性描述符将被返回</li>
+</ul>
+<p>返回值：如果指定的属性存在于对象上，则返回其属性描述符（property descriptor），否则返回 undefined。<br>是否改变原对象：false<br>兼容性：IE8+<br>版本：ES5<br>描述：<br>一个属性描述符是一个记录，由下面属性当中的某些组成的：<br>value<br>该属性的值(仅针对数据属性描述符有效)<br>writable<br>当且仅当属性的值可以被改变时为true。(仅针对数据属性描述有效)<br>get<br>获取该属性的访问器函数（getter）。如果没有访问器， 该值为undefined。(仅针对包含访问器或设置器的属性描述有效)<br>set<br>获取该属性的设置器函数（setter）。 如果没有设置器， 该值为undefined。(仅针对包含访问器或设置器的属性描述有效)<br>configurable<br>当且仅当指定对象的属性描述可以被改变或者属性可被删除时，为true。<br>enumerable<br>当且仅当指定对象的属性可以被枚举出时，为 true。</p>
+<pre><code>var o, d;
+
+o = { get foo() { return 17; } };
+d = Object.getOwnPropertyDescriptor(o, &quot;foo&quot;);
+// d is { configurable: true, enumerable: true, get: /*访问器函数*/, set: undefined }
+
+o = { bar: 42 };
+d = Object.getOwnPropertyDescriptor(o, &quot;bar&quot;);
+// d is { configurable: true, enumerable: true, value: 42, writable: true }
+
+o = {};
+Object.defineProperty(o, &quot;baz&quot;, { value: 8675309, writable: false, enumerable: false });
+d = Object.getOwnPropertyDescriptor(o, &quot;baz&quot;);
+// d is { value: 8675309, writable: false, enumerable: false, configurable: false }
+</code></pre><h1 id="8-Object-getOwnPropertyDescriptors"><a href="#8-Object-getOwnPropertyDescriptors" class="headerlink" title="8. Object.getOwnPropertyDescriptors()"></a>8. Object.getOwnPropertyDescriptors()</h1><p>作用：用来获取一个对象的所有自身属性的描述符<br>语法：Object.getOwnPropertyDescriptors(obj);<br>参数：obj: 任意对象<br>返回值：所指定对象的所有自身属性的描述符，如果没有任何自身属性，则返回空对象<br>是否改变原对象：false<br>兼容性：只有火狐支持<br>版本：ES8<br>描述：</p>
+<h1 id="9-Object-getOwnPropertyNames"><a href="#9-Object-getOwnPropertyNames" class="headerlink" title="9. Object.getOwnPropertyNames()"></a>9. Object.getOwnPropertyNames()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原对象：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="10-Object-getOwnPropertySymbols"><a href="#10-Object-getOwnPropertySymbols" class="headerlink" title="10. Object.getOwnPropertySymbols()"></a>10. Object.getOwnPropertySymbols()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原对象：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="11-Object-getPrototypeOf"><a href="#11-Object-getPrototypeOf" class="headerlink" title="11. Object.getPrototypeOf()"></a>11. Object.getPrototypeOf()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原对象：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="12-Object-is"><a href="#12-Object-is" class="headerlink" title="12. Object.is()"></a>12. Object.is()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原对象：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="13-Object-isExtensible"><a href="#13-Object-isExtensible" class="headerlink" title="13. Object.isExtensible()"></a>13. Object.isExtensible()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原对象：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="14-Object-isFrozen"><a href="#14-Object-isFrozen" class="headerlink" title="14. Object.isFrozen()"></a>14. Object.isFrozen()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原对象：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="15-Object-isSealed"><a href="#15-Object-isSealed" class="headerlink" title="15. Object.isSealed()"></a>15. Object.isSealed()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原对象：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="16-Object-keys"><a href="#16-Object-keys" class="headerlink" title="16. Object.keys()"></a>16. Object.keys()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原对象：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="17-Object-preventExtensions"><a href="#17-Object-preventExtensions" class="headerlink" title="17. Object.preventExtensions()"></a>17. Object.preventExtensions()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原对象：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="18-Object-prototype-defineGetter"><a href="#18-Object-prototype-defineGetter" class="headerlink" title="18. Object.prototype.defineGetter()"></a>18. Object.prototype.<strong>defineGetter</strong>()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原对象：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="19-Object-prototype-defineSetter"><a href="#19-Object-prototype-defineSetter" class="headerlink" title="19. Object.prototype.defineSetter()"></a>19. Object.prototype.<strong>defineSetter</strong>()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原对象：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="20-Object-prototype-lookupGetter"><a href="#20-Object-prototype-lookupGetter" class="headerlink" title="20. Object.prototype.lookupGetter()"></a>20. Object.prototype.<strong>lookupGetter</strong>()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原对象：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="21-Object-prototype-lookupSetter"><a href="#21-Object-prototype-lookupSetter" class="headerlink" title="21. Object.prototype.lookupSetter()"></a>21. Object.prototype.<strong>lookupSetter</strong>()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原对象：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="22-Object-prototype-hasOwnProperty"><a href="#22-Object-prototype-hasOwnProperty" class="headerlink" title="22. Object.prototype.hasOwnProperty()"></a>22. Object.prototype.hasOwnProperty()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原对象：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="23-Object-prototype-isPrototypeOf"><a href="#23-Object-prototype-isPrototypeOf" class="headerlink" title="23. Object.prototype.isPrototypeOf()"></a>23. Object.prototype.isPrototypeOf()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原对象：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="24-Object-prototype-propertyIsEnumerable"><a href="#24-Object-prototype-propertyIsEnumerable" class="headerlink" title="24. Object.prototype.propertyIsEnumerable()"></a>24. Object.prototype.propertyIsEnumerable()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原对象：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="25-Object-prototype-toLocalString"><a href="#25-Object-prototype-toLocalString" class="headerlink" title="25. Object.prototype.toLocalString()"></a>25. Object.prototype.toLocalString()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原对象：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="26-Object-prototype-toSource"><a href="#26-Object-prototype-toSource" class="headerlink" title="26. Object.prototype.toSource()"></a>26. Object.prototype.toSource()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原对象：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="27-Object-prototype-unwatch"><a href="#27-Object-prototype-unwatch" class="headerlink" title="27. Object.prototype.unwatch()"></a>27. Object.prototype.unwatch()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原对象：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="28-Object-prototype-valueOf"><a href="#28-Object-prototype-valueOf" class="headerlink" title="28. Object.prototype.valueOf()"></a>28. Object.prototype.valueOf()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原对象：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="29-Object-prototype-watch"><a href="#29-Object-prototype-watch" class="headerlink" title="29. Object.prototype.watch()"></a>29. Object.prototype.watch()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原对象：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="30-Object-seal"><a href="#30-Object-seal" class="headerlink" title="30. Object.seal()"></a>30. Object.seal()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原对象：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="31-Object-setPrototypeOf"><a href="#31-Object-setPrototypeOf" class="headerlink" title="31. Object.setPrototypeOf()"></a>31. Object.setPrototypeOf()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原对象：<br>兼容性：<br>版本：<br>描述：</p>
+<h1 id="32-Object-values"><a href="#32-Object-values" class="headerlink" title="32. Object.values()"></a>32. Object.values()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原对象：<br>兼容性：<br>版本：<br>描述：</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/06/25/前端算法总结/" rel="next" title="前端算法总结">
+                <i class="fa fa-chevron-left"></i> 前端算法总结
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/06/26/String对象内置方法总结/" rel="prev" title="String对象内置方法总结">
+                String对象内置方法总结 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Godzhang" />
+          <p class="site-author-name" itemprop="name">Godzhang</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-Object-assign"><span class="nav-number">1.</span> <span class="nav-text">1. Object.assign()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-Object-create"><span class="nav-number">2.</span> <span class="nav-text">2. Object.create()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-Object-defineProperties"><span class="nav-number">3.</span> <span class="nav-text">3. Object.defineProperties()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-Object-defineProperty"><span class="nav-number">4.</span> <span class="nav-text">4. Object.defineProperty()</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#configurable"><span class="nav-number">4.0.1.</span> <span class="nav-text">configurable</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#enumerable"><span class="nav-number">4.0.2.</span> <span class="nav-text">enumerable</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#value"><span class="nav-number">4.0.3.</span> <span class="nav-text">value</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#writable"><span class="nav-number">4.0.4.</span> <span class="nav-text">writable</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#get"><span class="nav-number">4.0.5.</span> <span class="nav-text">get</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#set"><span class="nav-number">4.0.6.</span> <span class="nav-text">set</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-Object-entries"><span class="nav-number">5.</span> <span class="nav-text">5. Object.entries()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-Object-freeze"><span class="nav-number">6.</span> <span class="nav-text">6. Object.freeze()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#7-Object-getOwnPropertyDescriptor"><span class="nav-number">7.</span> <span class="nav-text">7. Object.getOwnPropertyDescriptor()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#8-Object-getOwnPropertyDescriptors"><span class="nav-number">8.</span> <span class="nav-text">8. Object.getOwnPropertyDescriptors()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#9-Object-getOwnPropertyNames"><span class="nav-number">9.</span> <span class="nav-text">9. Object.getOwnPropertyNames()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#10-Object-getOwnPropertySymbols"><span class="nav-number">10.</span> <span class="nav-text">10. Object.getOwnPropertySymbols()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#11-Object-getPrototypeOf"><span class="nav-number">11.</span> <span class="nav-text">11. Object.getPrototypeOf()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#12-Object-is"><span class="nav-number">12.</span> <span class="nav-text">12. Object.is()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#13-Object-isExtensible"><span class="nav-number">13.</span> <span class="nav-text">13. Object.isExtensible()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#14-Object-isFrozen"><span class="nav-number">14.</span> <span class="nav-text">14. Object.isFrozen()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#15-Object-isSealed"><span class="nav-number">15.</span> <span class="nav-text">15. Object.isSealed()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#16-Object-keys"><span class="nav-number">16.</span> <span class="nav-text">16. Object.keys()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#17-Object-preventExtensions"><span class="nav-number">17.</span> <span class="nav-text">17. Object.preventExtensions()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#18-Object-prototype-defineGetter"><span class="nav-number">18.</span> <span class="nav-text">18. Object.prototype.defineGetter()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#19-Object-prototype-defineSetter"><span class="nav-number">19.</span> <span class="nav-text">19. Object.prototype.defineSetter()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#20-Object-prototype-lookupGetter"><span class="nav-number">20.</span> <span class="nav-text">20. Object.prototype.lookupGetter()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#21-Object-prototype-lookupSetter"><span class="nav-number">21.</span> <span class="nav-text">21. Object.prototype.lookupSetter()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#22-Object-prototype-hasOwnProperty"><span class="nav-number">22.</span> <span class="nav-text">22. Object.prototype.hasOwnProperty()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#23-Object-prototype-isPrototypeOf"><span class="nav-number">23.</span> <span class="nav-text">23. Object.prototype.isPrototypeOf()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#24-Object-prototype-propertyIsEnumerable"><span class="nav-number">24.</span> <span class="nav-text">24. Object.prototype.propertyIsEnumerable()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#25-Object-prototype-toLocalString"><span class="nav-number">25.</span> <span class="nav-text">25. Object.prototype.toLocalString()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#26-Object-prototype-toSource"><span class="nav-number">26.</span> <span class="nav-text">26. Object.prototype.toSource()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#27-Object-prototype-unwatch"><span class="nav-number">27.</span> <span class="nav-text">27. Object.prototype.unwatch()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#28-Object-prototype-valueOf"><span class="nav-number">28.</span> <span class="nav-text">28. Object.prototype.valueOf()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#29-Object-prototype-watch"><span class="nav-number">29.</span> <span class="nav-text">29. Object.prototype.watch()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#30-Object-seal"><span class="nav-number">30.</span> <span class="nav-text">30. Object.seal()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#31-Object-setPrototypeOf"><span class="nav-number">31.</span> <span class="nav-text">31. Object.setPrototypeOf()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#32-Object-values"><span class="nav-number">32.</span> <span class="nav-text">32. Object.values()</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Godzhang</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
