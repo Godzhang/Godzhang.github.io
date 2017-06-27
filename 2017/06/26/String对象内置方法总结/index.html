@@ -90,16 +90,16 @@
 
 
 
-<meta name="description" content="1. String.fromCharCode()作用：语法：参数：返回值：是否改变原字符串：兼容性：版本：描述： 2. String.fromCodePoint()作用：语法：参数：返回值：是否改变原字符串：兼容性：版本：描述： 3. String.prototype.anchor()作用：语法：参数：返回值：是否改变原字符串：兼容性：版本：描述： 4. String.prototype.big(">
+<meta name="description" content="1. String.fromCharCode()作用：静态 String.fromCharCode() 方法返回使用指定的Unicode值序列创建的字符串语法：String.fromCharCode(num1, …, numN)参数：num1, …, numN: 一组序列数字，表示Unicode值返回值：新字符串是否改变原字符串：false兼容性：all版本：ES1描述：为了处理所有的 Unico">
 <meta property="og:type" content="article">
 <meta property="og:title" content="String对象内置方法总结">
 <meta property="og:url" content="http://yoursite.com/2017/06/26/String对象内置方法总结/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="1. String.fromCharCode()作用：语法：参数：返回值：是否改变原字符串：兼容性：版本：描述： 2. String.fromCodePoint()作用：语法：参数：返回值：是否改变原字符串：兼容性：版本：描述： 3. String.prototype.anchor()作用：语法：参数：返回值：是否改变原字符串：兼容性：版本：描述： 4. String.prototype.big(">
-<meta property="og:updated_time" content="2017-06-26T15:36:19.336Z">
+<meta property="og:description" content="1. String.fromCharCode()作用：静态 String.fromCharCode() 方法返回使用指定的Unicode值序列创建的字符串语法：String.fromCharCode(num1, …, numN)参数：num1, …, numN: 一组序列数字，表示Unicode值返回值：新字符串是否改变原字符串：false兼容性：all版本：ES1描述：为了处理所有的 Unico">
+<meta property="og:updated_time" content="2017-06-27T12:50:48.596Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="String对象内置方法总结">
-<meta name="twitter:description" content="1. String.fromCharCode()作用：语法：参数：返回值：是否改变原字符串：兼容性：版本：描述： 2. String.fromCodePoint()作用：语法：参数：返回值：是否改变原字符串：兼容性：版本：描述： 3. String.prototype.anchor()作用：语法：参数：返回值：是否改变原字符串：兼容性：版本：描述： 4. String.prototype.big(">
+<meta name="twitter:description" content="1. String.fromCharCode()作用：静态 String.fromCharCode() 方法返回使用指定的Unicode值序列创建的字符串语法：String.fromCharCode(num1, …, numN)参数：num1, …, numN: 一组序列数字，表示Unicode值返回值：新字符串是否改变原字符串：false兼容性：all版本：ES1描述：为了处理所有的 Unico">
 
 
 
@@ -317,36 +317,60 @@
       
 
       
-        <h1 id="1-String-fromCharCode"><a href="#1-String-fromCharCode" class="headerlink" title="1. String.fromCharCode()"></a>1. String.fromCharCode()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
-<h1 id="2-String-fromCodePoint"><a href="#2-String-fromCodePoint" class="headerlink" title="2. String.fromCodePoint()"></a>2. String.fromCodePoint()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
-<h1 id="3-String-prototype-anchor"><a href="#3-String-prototype-anchor" class="headerlink" title="3. String.prototype.anchor()"></a>3. String.prototype.anchor()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
-<h1 id="4-String-prototype-big"><a href="#4-String-prototype-big" class="headerlink" title="4. String.prototype.big()"></a>4. String.prototype.big()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
-<h1 id="5-String-prototype-blink"><a href="#5-String-prototype-blink" class="headerlink" title="5. String.prototype.blink()"></a>5. String.prototype.blink()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
-<h1 id="6-String-prototype-bold"><a href="#6-String-prototype-bold" class="headerlink" title="6. String.prototype.bold()"></a>6. String.prototype.bold()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
-<h1 id="7-String-prototype-charAt"><a href="#7-String-prototype-charAt" class="headerlink" title="7. String.prototype.charAt()"></a>7. String.prototype.charAt()</h1><p>作用：从一个字符串中返回指定的字符<br>语法：str.charAt(index)<br>参数：index: 默认为0，（index &gt;= 0 &amp;&amp; index &lt; str.length)的整数<br>      index &lt; 0 =&gt; 返回空(“”)<br>返回值：指定位置的字符<br>是否改变原字符串：false<br>兼容性：all<br>版本：ES1<br>描述：</p>
+        <h1 id="1-String-fromCharCode"><a href="#1-String-fromCharCode" class="headerlink" title="1. String.fromCharCode()"></a>1. String.fromCharCode()</h1><p>作用：静态 String.fromCharCode() 方法返回使用指定的Unicode值序列创建的字符串<br>语法：String.fromCharCode(num1, …, numN)<br>参数：num1, …, numN: 一组序列数字，表示Unicode值<br>返回值：新字符串<br>是否改变原字符串：false<br>兼容性：all<br>版本：ES1<br>描述：为了处理所有的 Unicode 值（至 21 bits），只用 fromCharCode() 是不足的。由于高位编码字符是用两个低位编码（lower value）表示形成的一个字符，因此String.fromCodePoint()被用来返回这样一对低位编码，从而可以完全表示这些高位编码字符。</p>
+<pre><code>var a = String.fromCharCode(65,66,67);
+console.log(a);//ABC
+</code></pre><h1 id="2-String-fromCodePoint"><a href="#2-String-fromCodePoint" class="headerlink" title="2. String.fromCodePoint()"></a>2. String.fromCodePoint()</h1><p>作用：String.fromCodePoint() 静态方法返回使用指定的代码点序列创建的字符串<br>语法：String.fromCodePoint(num1, …, numN)<br>参数：num1, …, numN: 一串Unicode编码<br>返回值：新字符串<br>是否改变原字符串：false<br>兼容性：IE- Safari-<br>版本：ES6<br>描述：因为 fromCodePoint()  是 String 的一个静态方法，所以只能通过 String.fromCodePoint() 这样的方式来使用，不能在你创建的 String 对象实例上直接调用。</p>
+<pre><code>String.fromCodePoint(42);       // &quot;*&quot;
+String.fromCodePoint(65, 90);   // &quot;AZ&quot;
+String.fromCodePoint(0x404);    // &quot;\u0404&quot;
+String.fromCodePoint(0x2F804);  // &quot;\uD87E\uDC04&quot;
+String.fromCodePoint(194564);   // &quot;\uD87E\uDC04&quot;
+String.fromCodePoint(0x1D306, 0x61, 0x1D307) // &quot;\uD834\uDF06a\uD834\uDF07&quot;
+
+String.fromCodePoint(&apos;_&apos;);      // RangeError
+String.fromCodePoint(Infinity); // RangeError
+String.fromCodePoint(-1);       // RangeError
+String.fromCodePoint(3.14);     // RangeError
+String.fromCodePoint(3e-2);     // RangeError
+String.fromCodePoint(NaN);      // RangeError
+</code></pre><h1 id="3-String-prototype-anchor"><a href="#3-String-prototype-anchor" class="headerlink" title="3. String.prototype.anchor()"></a>3. String.prototype.anchor()</h1><p>作用：创建一个 <a> HTML 锚元素，被用作超文本靶标<br>语法：str.anchor(name)<br>参数：name: 一个字符串，表示被创建标签的name属性<br>返回值：创建的a标签(没有href属性)<br>是否改变原字符串：false<br>兼容性：all<br>版本：ES6<br>描述：使用 anchor 方法创建的锚点（anchors）将会成为 document.anchors 数组的元素。</a></p>
+<pre><code>var myString = &quot;Table of Contents&quot;;
+document.body.innerHTML = myString.anchor(&quot;contents_anchor&quot;);
+//&lt;a name=&quot;contents_anchor&quot;&gt;Table of Contents&lt;/a&gt;
+console.log(document.anchors[0]);
+//&lt;a name=&quot;contents_anchor&quot;&gt;Table of Contents&lt;/a&gt;
+</code></pre><h1 id="4-String-prototype-charAt"><a href="#4-String-prototype-charAt" class="headerlink" title="4. String.prototype.charAt()"></a>4. String.prototype.charAt()</h1><p>作用：从一个字符串中返回指定的字符<br>语法：str.charAt(index)<br>参数：index: 默认为0，（index &gt;= 0 &amp;&amp; index &lt; str.length)的整数<br>      index &lt; 0 =&gt; 返回空(“”)<br>返回值：指定位置的字符<br>是否改变原字符串：false<br>兼容性：all<br>版本：ES1<br>描述：</p>
 <pre><code>var str = &apos;zhangqi&apos;;
 var newStr = str.charAt( ); //z
 var newStr = str.charAt(3); //n
-</code></pre><h1 id="8-String-prototype-charCodeAt"><a href="#8-String-prototype-charCodeAt" class="headerlink" title="8. String.prototype.charCodeAt()"></a>8. String.prototype.charCodeAt()</h1><p>作用：从一个字符串中返回指定字符的Unicode编码<br>语法：str.charCodeAt(index)<br>参数：index : 和charAt()相同<br>返回值：表示给定索引处字符的 UTF-16 代码单元值的数字；如果索引超出范围，则返回 NaN。<br>是否改变原字符串：false<br>兼容性：all<br>版本：ES1<br>描述：charCodeAt 总是返回一个小于 65,536 的值</p>
+</code></pre><h1 id="5-String-prototype-charCodeAt"><a href="#5-String-prototype-charCodeAt" class="headerlink" title="5. String.prototype.charCodeAt()"></a>5. String.prototype.charCodeAt()</h1><p>作用：从一个字符串中返回指定字符的Unicode编码<br>语法：str.charCodeAt(index)<br>参数：index : 和charAt()相同<br>返回值：表示给定索引处字符的 UTF-16 代码单元值的数字；如果索引超出范围，则返回 NaN。<br>是否改变原字符串：false<br>兼容性：all<br>版本：ES1<br>描述：charCodeAt 总是返回一个小于 65,536 的值</p>
 <pre><code>var str = &apos;zhangqi&apos;;
 var a = str.charCodeAt(2); //97
 var a = str.charCodeAt(20); //NaN
-</code></pre><h1 id="9-String-prototype-codePointAt"><a href="#9-String-prototype-codePointAt" class="headerlink" title="9. String.prototype.codePointAt()"></a>9. String.prototype.codePointAt()</h1><p>作用：返回一个 Unicode 编码点值的非负整数<br>语法：str.codePointAt(pos)<br>参数：pos: 这个字符串中需要转码的元素的位置<br>返回值：在字符串中的给定索引的编码单元体现的数字，如果在索引处没找到元素则返回 undefined<br>是否改变原字符串：false<br>兼容性：IE11,safari-<br>版本：ES6<br>描述：如果在索引处开始没有UTF-16 代理对，将直接返回在那个索引处的编码单元。</p>
+</code></pre><h1 id="6-String-prototype-codePointAt"><a href="#6-String-prototype-codePointAt" class="headerlink" title="6. String.prototype.codePointAt()"></a>6. String.prototype.codePointAt()</h1><p>作用：返回一个 Unicode 编码点值的非负整数<br>语法：str.codePointAt(pos)<br>参数：pos: 这个字符串中需要转码的元素的位置<br>返回值：在字符串中的给定索引的编码单元体现的数字，如果在索引处没找到元素则返回 undefined<br>是否改变原字符串：false<br>兼容性：IE11,safari-<br>版本：ES6<br>描述：如果在索引处开始没有UTF-16 代理对，将直接返回在那个索引处的编码单元。</p>
 <pre><code>&apos;ABC&apos;.codePointAt(1);          // 66
 &apos;\uD800\uDC00&apos;.codePointAt(0); // 65536
 &apos;XYZ&apos;.codePointAt(42); // undefined
-</code></pre><h1 id="9-String-prototype-concat"><a href="#9-String-prototype-concat" class="headerlink" title="9. String.prototype.concat()"></a>9. String.prototype.concat()</h1><p>作用：将一个或多个字符串与原字符串连接合并，形成一个新的字符串并返回<br>语法：str.concat(string2, string3, …stringN)<br>参数：string2, string3, …stringN: 和原字符串连接的多个字符串<br>返回值：新的字符串<br>是否改变原字符串：false<br>兼容性：all<br>版本：ES3<br>描述：</p>
+</code></pre><h1 id="7-String-prototype-concat"><a href="#7-String-prototype-concat" class="headerlink" title="7. String.prototype.concat()"></a>7. String.prototype.concat()</h1><p>作用：将一个或多个字符串与原字符串连接合并，形成一个新的字符串并返回<br>语法：str.concat(string2, string3, …stringN)<br>参数：string2, string3, …stringN: 和原字符串连接的多个字符串<br>返回值：新的字符串<br>是否改变原字符串：false<br>兼容性：all<br>版本：ES3<br>描述：</p>
 <pre><code>var str = &apos;zhangqi&apos;;
 var a = str.concat(&apos;li&apos;,&apos;ul&apos;);
 console.log(str); //&apos;zhangqi&apos;
 console.log(a); //&apos;zhangqiliul&apos;
 var b = String.prototype.concat.call(str,&apos;man&apos;);
 console.log(b); //&apos;zhangqiman&apos;
-</code></pre><h1 id="10-String-prototype-endsWith"><a href="#10-String-prototype-endsWith" class="headerlink" title="10. String.prototype.endsWith()"></a>10. String.prototype.endsWith()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
-<h1 id="11-String-prototype-fixed"><a href="#11-String-prototype-fixed" class="headerlink" title="11. String.prototype.fixed()"></a>11. String.prototype.fixed()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
-<h1 id="12-String-prototype-fontcolor"><a href="#12-String-prototype-fontcolor" class="headerlink" title="12. String.prototype.fontcolor()"></a>12. String.prototype.fontcolor()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
-<h1 id="13-String-prototype-fontsize"><a href="#13-String-prototype-fontsize" class="headerlink" title="13. String.prototype.fontsize()"></a>13. String.prototype.fontsize()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
-<h1 id="14-String-prototype-includes"><a href="#14-String-prototype-includes" class="headerlink" title="14. String.prototype.includes()"></a>14. String.prototype.includes()</h1><p>作用：用于判断一个字符串是否包含在另一个字符串中<br>语法：str.includes(searchString, position)<br>参数：</p>
+</code></pre><h1 id="8-String-prototype-endsWith"><a href="#8-String-prototype-endsWith" class="headerlink" title="8. String.prototype.endsWith()"></a>8. String.prototype.endsWith()</h1><p>作用：用来判断当前字符串是否是以另外一个给定的子字符串“结尾”的<br>语法：str.endsWith(searchString, position)<br>参数：</p>
+<ul>
+<li>searchString: 要搜索的子字符串</li>
+<li>position: 在str中搜索searchString的结束位置，默认为str.length,也就是真正的字符串结尾处</li>
+</ul>
+<p>返回值：true || false<br>是否改变原字符串：false<br>兼容性：firefox,chrome,IE-<br>版本：ES6<br>描述：</p>
+<pre><code>var str = &quot;To be, or not to be, that is the question.&quot;;
+alert( str.endsWith(&quot;question.&quot;) );  // true
+alert( str.endsWith(&quot;to be&quot;) );      // false
+alert( str.endsWith(&quot;to be&quot;, 19) );  // true
+alert( str.endsWith(&quot;To be&quot;, 5) );   // true
+</code></pre><h1 id="9-String-prototype-includes"><a href="#9-String-prototype-includes" class="headerlink" title="9. String.prototype.includes()"></a>9. String.prototype.includes()</h1><p>作用：用于判断一个字符串是否包含在另一个字符串中<br>语法：str.includes(searchString, position)<br>参数：</p>
 <ul>
 <li>searchString: 要搜索的字符串</li>
 <li>position: 寻找起始位置，默认为0。如果 position &lt; 0 则查找整个字符串（如同传进了 0）。如果 position &gt;= str.length，则该方法返回 false，除非被查找的字符串是一个空字符串，此时返回 false。</li>
@@ -358,10 +382,10 @@ console.log(str.includes(&apos;question&apos;));    // true
 console.log(str.includes(&apos;nonexistent&apos;)); // false
 console.log(str.includes(&apos;To be&apos;, 1));    // false
 console.log(str.includes(&apos;TO BE&apos;));       // false
-</code></pre><h1 id="15-String-prototype-indexOf"><a href="#15-String-prototype-indexOf" class="headerlink" title="15. String.prototype.indexOf()"></a>15. String.prototype.indexOf()</h1><p>作用：返回调用  String 对象中第一次出现的指定值的索引，开始在 fromIndex进行搜索<br>语法：str.indexOf(searchValue, fromIndex);<br>参数：</p>
+</code></pre><h1 id="10-String-prototype-indexOf"><a href="#10-String-prototype-indexOf" class="headerlink" title="10. String.prototype.indexOf()"></a>10. String.prototype.indexOf()</h1><p>作用：返回调用  String 对象中第一次出现的指定值的索引，开始在 fromIndex进行搜索<br>语法：str.indexOf(searchValue, fromIndex);<br>参数：</p>
 <ul>
 <li>searchValue: 一个字符串表示被查找的值</li>
-<li>fromIndex: 起始索引，默认为0,如果 fromIndex &lt; 0 则查找整个字符串（如同传进了 0）。如果 fromIndex &gt;= str.length，则该方法返回 -1，除非被查找的字符串是一个空字符串，此时返回 str.length。</li>
+<li>fromIndex: 起始索引，默认为0,如果 fromIndex &lt; 0 则查找整个字符串（如同传进了 0）。如果 fromIndex &gt;= str.length，则该方法返回 -1，除非被查找的字符串是一个空字符串,如果fromIndex &lt; str.length,返回fromIndex，否则返回 str.length。</li>
 </ul>
 <p>返回值：指定值的第一次出现的索引; 如果没有返回 -1<br>是否改变原字符串：false<br>兼容性：all<br>版本：ES1<br>描述：indexOf 方法区分大小写</p>
 <pre><code>&quot;Blue Whale&quot;.indexOf(&quot;Blue&quot;);     // returns  0
@@ -371,8 +395,7 @@ console.log(str.includes(&apos;TO BE&apos;));       // false
 &quot;Blue Whale&quot;.indexOf(&quot;&quot;, 9);      // returns  9
 &quot;Blue Whale&quot;.indexOf(&quot;&quot;, 10);     // returns 10
 &quot;Blue Whale&quot;.indexOf(&quot;&quot;, 11);     // returns 10
-</code></pre><h1 id="16-String-prototype-italics"><a href="#16-String-prototype-italics" class="headerlink" title="16. String.prototype.italics()"></a>16. String.prototype.italics()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
-<h1 id="17-String-prototype-lastIndexOf"><a href="#17-String-prototype-lastIndexOf" class="headerlink" title="17. String.prototype.lastIndexOf()"></a>17. String.prototype.lastIndexOf()</h1><p>作用：返回指定值在调用该方法的字符串中最后出现的位置，如果没找到则返回 -1。从该字符串的后面向前查找，从 fromIndex 处开始<br>语法：str.lastIndexOf(searchValue, fromIndex)<br>参数：</p>
+</code></pre><h1 id="11-String-prototype-lastIndexOf"><a href="#11-String-prototype-lastIndexOf" class="headerlink" title="11. String.prototype.lastIndexOf()"></a>11. String.prototype.lastIndexOf()</h1><p>作用：返回指定值在调用该方法的字符串中最后出现的位置，如果没找到则返回 -1。从该字符串的后面向前查找，从 fromIndex 处开始<br>语法：str.lastIndexOf(searchValue, fromIndex)<br>参数：</p>
 <ul>
 <li>searchValue: 一个字符串表示被查找的值</li>
 <li>fromIndex: 可以是任意整数。默认值为 str.length。如果为负值，则被看作 0。如果 fromIndex &gt; str.length，则 fromIndex 被看作 str.length。</li>
@@ -382,35 +405,285 @@ console.log(str.includes(&apos;TO BE&apos;));       // false
 &quot;canal&quot;.lastIndexOf(&quot;a&quot;,2) // returns 1
 &quot;canal&quot;.lastIndexOf(&quot;a&quot;,0) // returns -1
 &quot;canal&quot;.lastIndexOf(&quot;x&quot;)   // returns -1
-</code></pre><h1 id="18-String-prototype-link"><a href="#18-String-prototype-link" class="headerlink" title="18. String.prototype.link()"></a>18. String.prototype.link()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
-<h1 id="19-String-prototype-localeCompare"><a href="#19-String-prototype-localeCompare" class="headerlink" title="19. String.prototype.localeCompare()"></a>19. String.prototype.localeCompare()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
-<h1 id="20-String-prototype-match"><a href="#20-String-prototype-match" class="headerlink" title="20. String.prototype.match()"></a>20. String.prototype.match()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
-<h1 id="21-String-prototype-normalize"><a href="#21-String-prototype-normalize" class="headerlink" title="21. String.prototype.normalize()"></a>21. String.prototype.normalize()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
-<h1 id="22-String-prototype-padEnd"><a href="#22-String-prototype-padEnd" class="headerlink" title="22. String.prototype.padEnd()"></a>22. String.prototype.padEnd()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
-<h1 id="23-String-prototype-padStart"><a href="#23-String-prototype-padStart" class="headerlink" title="23. String.prototype.padStart()"></a>23. String.prototype.padStart()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
-<h1 id="24-String-prototype-repeat"><a href="#24-String-prototype-repeat" class="headerlink" title="24. String.prototype.repeat()"></a>24. String.prototype.repeat()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
-<h1 id="25-String-prototype-replace"><a href="#25-String-prototype-replace" class="headerlink" title="25. String.prototype.replace()"></a>25. String.prototype.replace()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
-<h1 id="26-String-prototype-search"><a href="#26-String-prototype-search" class="headerlink" title="26. String.prototype.search()"></a>26. String.prototype.search()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
-<h1 id="27-String-prototype-slice"><a href="#27-String-prototype-slice" class="headerlink" title="27. String.prototype.slice()"></a>27. String.prototype.slice()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
-<h1 id="28-String-prototype-small"><a href="#28-String-prototype-small" class="headerlink" title="28. String.prototype.small()"></a>28. String.prototype.small()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
-<h1 id="29-String-prototype-split"><a href="#29-String-prototype-split" class="headerlink" title="29. String.prototype.split()"></a>29. String.prototype.split()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
-<h1 id="30-String-prototype-startsWith"><a href="#30-String-prototype-startsWith" class="headerlink" title="30. String.prototype.startsWith()"></a>30. String.prototype.startsWith()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
-<h1 id="31-String-prototype-strike"><a href="#31-String-prototype-strike" class="headerlink" title="31. String.prototype.strike()"></a>31. String.prototype.strike()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
-<h1 id="32-String-prototype-sub"><a href="#32-String-prototype-sub" class="headerlink" title="32. String.prototype.sub()"></a>32. String.prototype.sub()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
-<h1 id="33-String-prototype-substr"><a href="#33-String-prototype-substr" class="headerlink" title="33. String.prototype.substr()"></a>33. String.prototype.substr()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
-<h1 id="34-String-prototype-substring"><a href="#34-String-prototype-substring" class="headerlink" title="34. String.prototype.substring()"></a>34. String.prototype.substring()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
-<h1 id="35-String-prototype-sup"><a href="#35-String-prototype-sup" class="headerlink" title="35. String.prototype.sup()"></a>35. String.prototype.sup()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
-<h1 id="36-String-prototype-toLocaleLowerCase"><a href="#36-String-prototype-toLocaleLowerCase" class="headerlink" title="36. String.prototype.toLocaleLowerCase()"></a>36. String.prototype.toLocaleLowerCase()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
-<h1 id="37-String-prototype-toLocaleUpperCase"><a href="#37-String-prototype-toLocaleUpperCase" class="headerlink" title="37. String.prototype.toLocaleUpperCase()"></a>37. String.prototype.toLocaleUpperCase()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
-<h1 id="38-String-prototype-toLowerCase"><a href="#38-String-prototype-toLowerCase" class="headerlink" title="38. String.prototype.toLowerCase()"></a>38. String.prototype.toLowerCase()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
-<h1 id="39-String-prototype-toSource"><a href="#39-String-prototype-toSource" class="headerlink" title="39. String.prototype.toSource()"></a>39. String.prototype.toSource()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
-<h1 id="40-String-prototype-toString"><a href="#40-String-prototype-toString" class="headerlink" title="40. String.prototype.toString()"></a>40. String.prototype.toString()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
-<h1 id="41-String-prototype-toUpperCase"><a href="#41-String-prototype-toUpperCase" class="headerlink" title="41. String.prototype.toUpperCase()"></a>41. String.prototype.toUpperCase()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
-<h1 id="42-String-prototype-trim"><a href="#42-String-prototype-trim" class="headerlink" title="42. String.prototype.trim()"></a>42. String.prototype.trim()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
-<h1 id="43-String-prototype-trimLeft"><a href="#43-String-prototype-trimLeft" class="headerlink" title="43. String.prototype.trimLeft()"></a>43. String.prototype.trimLeft()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
-<h1 id="44-String-prototype-trimRight"><a href="#44-String-prototype-trimRight" class="headerlink" title="44. String.prototype.trimRight()"></a>44. String.prototype.trimRight()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
-<h1 id="45-String-prototype-valueOf"><a href="#45-String-prototype-valueOf" class="headerlink" title="45. String.prototype.valueOf()"></a>45. String.prototype.valueOf()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
-<h1 id="46-String-raw"><a href="#46-String-raw" class="headerlink" title="46. String.raw()"></a>46. String.raw()</h1><p>作用：<br>语法：<br>参数：<br>返回值：<br>是否改变原字符串：<br>兼容性：<br>版本：<br>描述：</p>
+</code></pre><h1 id="12-String-prototype-link"><a href="#12-String-prototype-link" class="headerlink" title="12. String.prototype.link()"></a>12. String.prototype.link()</h1><p>作用：创建一个 <a> HTML 元素，用该字符串作为超链接的显示文本，参数作为指向另一个 URL 的超链接。<br>语法：str.link(url)<br>参数：url: 任何能够指定 a 标签的 href 属性的字符串；它应当是有效的 URL（相对或绝对），任何 &amp; 字符将会被转义为 &amp;，任何 “ 字符将会被转义为 &quot;。<br>返回值：创建好的a标签<br>是否改变原字符串：false<br>兼容性：all<br>版本：ES6<br>描述：使用 link 方法创建一个超链接 HTML 片段。返回的字符串可以通过 document.write 或 element.innerHTML 方法添加到文档中。<br>使用 link 方法创建的链接将会成为 document.links 数组中的元素。</a></p>
+<pre><code>var hotText = &quot;MDN&quot;;
+var URL = &quot;https://developer.mozilla.org/&quot;;
+document.body.innerHTML = hotText.link(URL));
+//&lt;a href=&quot;https://developer.mozilla.org/&quot;&gt;MDN&lt;/a&gt;
+</code></pre><h1 id="13-String-prototype-localeCompare"><a href="#13-String-prototype-localeCompare" class="headerlink" title="13. String.prototype.localeCompare()"></a>13. String.prototype.localeCompare()</h1><p>作用：返回一个数字来指示一个参考字符串是否在排序顺序前面或之后或与给定字符串相同。<br>语法：referenceStr.localeCompare(compareString, locales, options)<br>参数：</p>
+<ul>
+<li>compareString: 用来比较的字符串</li>
+<li>locales: 用来比较的语言</li>
+<li>options: 影响结果的参数</li>
+</ul>
+<p>返回值：+num, 0, -num<br>是否改变原字符串：false<br>兼容性：safari-,IE11+<br>版本：ES3<br>描述：返回一个数字表示是否 引用字符串 在排序中位于 比较字符串 的前面，后面，或者二者相同。<br>当 引用字符串 在 比较字符串 前面时返回 -1<br>当 引用字符串 在 比较字符串 后面时返回 1<br>相同位置时返回 0<br>切勿依赖于 -1 或 1 这样特定的返回值。不同浏览器之间（以及不同浏览器版本之间） 返回的正负数的值各有不同，因为W3C规范中只要求返回值是正值和负值，而没有规定具体的值。一些浏览器可能返回-2或2或其他一些负的、正的值。</p>
+<pre><code>// &apos;a&apos;排在&apos;c&apos;前面
+&apos;a&apos;.localeCompare(&apos;c&apos;); 
+// -2 or -1 (or some other negative value)
+
+// &apos;a&apos;排在&apos;c&apos;后面
+&apos;check&apos;.localeCompare(&apos;against&apos;); 
+// 2 or 1 (or some other positive value)
+
+// &quot;a&quot; and &quot;a&quot; are equivalent yielding a neutral value of zero
+&apos;a&apos;.localeCompare(&apos;a&apos;); 
+// 0
+</code></pre><h1 id="14-String-prototype-match"><a href="#14-String-prototype-match" class="headerlink" title="14. String.prototype.match()"></a>14. String.prototype.match()</h1><p>作用：当一个字符串与一个正则表达式匹配时， match()方法检索匹配项<br>语法：str.match(regexp)<br>参数：regexp: 一个正则表达式对象如果传入一个非正则表达式对象，则会隐式地使用 new RegExp(obj) 将其转换为一个 RegExp 。如果你未提供任何参数，直接使用 match() ，那么你会得到一个包含空字符串的 Array ：[“”] 。<br>返回值：一个包含了整个匹配结果以及任何括号捕获的匹配结果的 Array ；如果没有匹配项，则返回 null<br>是否改变原字符串：false<br>兼容性：all<br>版本：ES3<br>描述：如果正则表达式没有 g 标志，则 str.match() 会返回和 RegExp.exec() 相同的结果。而且返回的 Array 拥有一个额外的 input 属性，该属性包含被解析的原始字符串。另外，还拥有一个 index 属性，该属性表示匹配结果在原字符串中的索引（以0开始）。<br>如果正则表达式包含 g 标志，则该方法返回一个 Array ，它包含所有匹配的子字符串而不是匹配对象。捕获组不会被返回。如果没有匹配到，则返回  null 。</p>
+<pre><code>var reg = /an/g;
+var str = &apos;zhangqi&apos;;
+console.log(str.match(reg)); //[&quot;an&quot;]
+console.log(str.match());    //[&quot;&quot;, index: 0, input: &quot;zhangqi&quot;]
+console.log(str.match(&apos;an&apos;));//[&quot;an&quot;, index: 2, input: &quot;zhangqi&quot;]
+console.log(str.match(/za/g));//null
+
+var str = &apos;For more information, see Chapter 3.4.5.1&apos;;
+var re = /see (chapter \d+(\.\d)*)/i;
+var found = str.match(re);
+
+console.log(found);
+//[ &apos;see Chapter 3.4.5.1&apos;,
+//&apos;Chapter 3.4.5.1&apos;,
+//&apos;.1&apos;,
+//index: 22,
+//input: &apos;For more information, see Chapter 3.4.5.1&apos; ]
+</code></pre><h1 id="15-String-prototype-normalize"><a href="#15-String-prototype-normalize" class="headerlink" title="15. String.prototype.normalize()"></a>15. String.prototype.normalize()</h1><p>作用：按照指定的一种 Unicode 正规形式将当前字符串正规化<br>语法：str.normalize([form])<br>参数：form: 四种正规形式: NFC, NFD, NFKC, NFKD  默认为NFC<br>返回值：正规化后的字符串<br>是否改变原字符串：true<br>兼容性：IE-,Opera-, Safari-<br>版本：ES6<br>描述：如果给 form 传入了非法的参数值, 则会抛出 RangeError 异常.</p>
+<pre><code>var str = &quot;\u1E9B\u0323&quot;;
+str.normalize(); // &quot;\u1E9B\u0323&quot;
+str.normalize(&quot;NFD&quot;); // &quot;\u017F\u0323\u0307&quot;
+str.normalize(&quot;NFKC&quot;); // &quot;\u1E69&quot;
+str.normalize(&quot;NFKD&quot;); // &quot;\u0073\u0323\u0307&quot;
+</code></pre><h1 id="16-String-prototype-padEnd-————expering"><a href="#16-String-prototype-padEnd-————expering" class="headerlink" title="16. String.prototype.padEnd()————expering"></a>16. String.prototype.padEnd()————expering</h1><p>作用：用第二个参数中指定的填充字符串，在当前字符串的尾部不断填充，直到它达到第一个参数中指定的目标长度。<br>语法：str.padEnd(targetLength, padString)<br>参数：</p>
+<ul>
+<li>targetLength: 当前字符串需要填充到的目标长度。如果当前字符串原本就达到了该长度，那么该方法什么都不会做，直接返回原字符串。</li>
+<li>padString: 填充字符串。如果在填充过程中发现用不完这一整个填充字符串，则优先用左侧部分，能用多少用多少。该参数为可选参数，默认值为空格 “ “</li>
+</ul>
+<p>返回值：在原字符串尾部填充指定的填充字符串直到目标长度所形成的新字符串<br>是否改变原字符串：false<br>兼容性：firefox,chrome<br>版本：仍是ECMAScript提案<br>描述：—</p>
+<pre><code>&apos;abc&apos;.padEnd(10);         // &quot;abc       &quot;
+&apos;abc&apos;.padEnd(10, &quot;foo&quot;);  // &quot;abcfoofoof&quot;
+&apos;abc&apos;.padEnd(6,&quot;123465&quot;); // &quot;abc123&quot;
+</code></pre><h1 id="17-String-prototype-padStart-————expering"><a href="#17-String-prototype-padStart-————expering" class="headerlink" title="17. String.prototype.padStart()————expering"></a>17. String.prototype.padStart()————expering</h1><p>作用：用第二个参数中指定的填充字符串，在当前字符串的头部不断填充，直到它达到第一个参数中指定的目标长度<br>语法：str.padStart(targetLength, padString)<br>参数：</p>
+<ul>
+<li>targetLength: 当前字符串需要填充到的目标长度。如果当前字符串原本就达到了该长度，那么该方法什么都不会做，直接返回原字符串。</li>
+<li>padString: 填充字符串。如果在填充过程中发现用不完这一整个填充字符串，则优先用左侧部分，能用多少用多少。该参数为可选参数，默认值为空格 “ “</li>
+</ul>
+<p>返回值：在原字符串开头填充指定的填充字符串直到目标长度所形成的新字符串<br>是否改变原字符串：false<br>兼容性：firefox,chrome<br>版本：仍是ECMAScript提案<br>描述：</p>
+<pre><code>&apos;abc&apos;.padStart(10);         // &quot;       abc&quot;
+&apos;abc&apos;.padStart(10, &quot;foo&quot;);  // &quot;foofoofabc&quot;
+&apos;abc&apos;.padStart(6,&quot;123465&quot;); // &quot;123abc&quot;
+</code></pre><h1 id="18-String-prototype-repeat"><a href="#18-String-prototype-repeat" class="headerlink" title="18. String.prototype.repeat()"></a>18. String.prototype.repeat()</h1><p>作用：构造并返回一个新字符串，该字符串包含被连接在一起的指定数量的字符串的副本<br>语法：let resultString = str.repeat(count);<br>参数：count: [0, 正无穷)表示在新构造的字符串中重复了多少遍原字符串<br>返回值：包含指定字符串的指定数量副本的新字符串<br>是否改变原字符串：false<br>兼容性：IE-,Opera-<br>版本：ES6<br>描述：RangeError: 重复次数不能为负数。<br>      RangeError: 重复次数必须小于 infinity，且长度不会大于最长的字符串。</p>
+<pre><code>&quot;abc&quot;.repeat(-1) // RangeError: repeat count must be positive and less than inifinity
+&quot;abc&quot;.repeat(0)  // &quot;&quot;
+&quot;abc&quot;.repeat(1)  // &quot;abc&quot;
+&quot;abc&quot;.repeat(2)  // &quot;abcabc&quot;
+&quot;abc&quot;.repeat(3.5)// &quot;abcabcabc&quot; 参数count将会被自动转换成整数.
+&quot;abc&quot;.repeat(1/0)// RangeError: repeat count must be positive and less than inifinity
+</code></pre><h1 id="19-String-prototype-replace"><a href="#19-String-prototype-replace" class="headerlink" title="19. String.prototype.replace()"></a>19. String.prototype.replace()</h1><p>作用：返回一个由替换值替换一些或所有匹配的的模式后的新字符串<br>语法：str.replace(regexp|substr, newSubStr|function)<br>参数：</p>
+<ul>
+<li>regexp: 一个 RegExp 对象或者其字面量。该正则所匹配的内容会被第二个参数的返回值替换掉</li>
+<li><p>substr: 一个要被 newSubStr 替换的字符串。其被视为一整个字符串，而不是一个正则表达式。仅仅是第一个匹配会被替换。</p>
+<ul>
+<li>$$: 插入一个 “$”</li>
+<li>$&amp;: 插入匹配的子串</li>
+<li>$`: 插入当前匹配的子串左边的内容</li>
+<li>$\’: 插入当前匹配的子串右边的内容</li>
+<li>$n: 假如第一个参数是 RegExp对象，并且 n 是个小于100的非负整数，那么插入第 n 个括号匹配的字符串。</li>
+</ul>
+</li>
+<li><p>newSubStr: 用于替换掉第一个参数在原字符串中的匹配部分的 字符串</p>
+</li>
+<li>function: 一个用来创建新子字符串的函数，该函数的返回值将替换掉第一个参数匹配到的结果。</li>
+</ul>
+<p>返回值：一个部分或全部匹配由替代模式所取代的新的字符串<br>是否改变原字符串：false<br>兼容性：all<br>版本：ES3<br>描述：</p>
+<pre><code>var str = &apos;zhangqi&apos;;
+var a = str.replace(&apos;an&apos;,&apos;q$q&apos;); //zhq$agqi
+var a = str.replace(&apos;an&apos;,&apos;q$$q&apos;);//同上
+var a = str.replace(&apos;an&apos;,&apos;q$&amp;q&apos;); //zhqanqgqi
+var a = str.replace(&apos;an&apos;,&apos;q$`q&apos;); //zhqzhqgqi
+var a = str.replace(&apos;an&apos;,&apos;q$\&apos;q&apos;);//zhqgqiqgqi
+
+//function参数说明
+function replacer(match, p1, p2, p3, offset, string){
+    //match: 匹配的子串
+    //p1,p2,p3: 匹配的子项
+    //offset: 匹配到的子字符串在原字符串中的偏移量（比如，如果原字符串是“abcd”，匹配到的子字符串是“bc”，那么这个参数将是1）
+    //string: 被匹配的原字符串
+    return [p1, p2, p3].join(&apos;-&apos;);
+}
+var newString = &apos;abc12345#$*%&apos;.replace(/([^\d]*)(\d*)([^\w]*)/, replacer);
+//abc-12345-#$*%
+
+//交换字符串中的两个单词
+var re = /(\w+)\s(\w+)/;
+var str = &quot;John Smith&quot;;
+var newstr = str.replace(re, &quot;$2, $1&quot;);
+console.log(newstr);// Smith, John
+</code></pre><h1 id="20-String-prototype-search"><a href="#20-String-prototype-search" class="headerlink" title="20. String.prototype.search()"></a>20. String.prototype.search()</h1><p>作用：执行正则表达式和 String对象之间的一个搜索匹配<br>语法：str.search(regexp)<br>参数：regexp: 一个正则表达式对象。如果传入一个非正则表达式对象，则会使用 new RegExp(obj) 隐式地将其转换为正则表达式对象。<br>返回值：如果匹配成功，则 search() 返回正则表达式在字符串中首次匹配项的索引。否则，返回 -1<br>是否改变原字符串：false<br>兼容性：all<br>版本：ES3<br>描述：当你想要知道字符串中是否存在某个模式（pattern）时可使用 search，类似于正则表达式的 test 方法。当要了解更多匹配信息时，可使用 match（会更慢），该方法类似于正则表达式的 exec 方法。</p>
+<pre><code>var str = &apos;zhangqi&apos;;
+var reg = /an/g;
+var result = str.search(reg); //2
+var result = str.search();    //0
+var result = str.search(/za/g);//-1
+
+function testinput(re, str){
+  var midstring;
+  if (str.search(re) != -1){
+    midstring = &quot; contains &quot;;
+  } else {
+    midstring = &quot; does not contain &quot;;
+  }
+  console.log (str + midstring + re);
+}
+</code></pre><h1 id="21-String-prototype-slice"><a href="#21-String-prototype-slice" class="headerlink" title="21. String.prototype.slice()"></a>21. String.prototype.slice()</h1><p>作用：提取一个字符串的一部分，并返回一个新的字符串<br>语法：str.slice(beginSlice, endSlice)<br>参数：</p>
+<ul>
+<li>beginSlice: 起始索引 beginSlice &lt; 0 ? str.length + beginSlice</li>
+<li>endSlice: 结束索引 endSlice &lt; 0 ? str.length + endSlice</li>
+</ul>
+<p>返回值：提取后的新字符串<br>是否改变原字符串：false<br>兼容性：all<br>版本：ES3<br>描述：</p>
+<pre><code>var str1 = &apos;The morning is upon us.&apos;;
+var str2 = str1.slice(); //The morning is upon us.不写参数全部提取
+var str2 = str1.slice(4, -2);// morning is upon u
+
+var str = &apos;The morning is upon us.&apos;;
+str.slice(-3);     // &apos;us.&apos;
+str.slice(-3, -1); // &apos;us&apos;
+str.slice(0, -1);  // &apos;The morning is upon us&apos;
+</code></pre><h1 id="22-String-prototype-split"><a href="#22-String-prototype-split" class="headerlink" title="22. String.prototype.split()"></a>22. String.prototype.split()</h1><p>作用：将一个字符串分割成字符串数组<br>语法：str.split(separator, limit)<br>参数：</p>
+<ul>
+<li>separator: 指定用来分割字符串的字符（串）。separator 可以是一个字符串或正则表达式。 如果忽略 separator，则返回整个字符串的数组形式。如果 separator 是一个空字符串，则 str 将会把原字符串中每个字符的数组形式返回。</li>
+<li>limit: 一个整数，限定返回的分割片段数量。split 方法仍然分割每一个匹配的 separator，但是返回的数组只会截取最多 limit 个元素。</li>
+</ul>
+<p>返回值：返回分割后的一个数组<br>是否改变原字符串：false<br>兼容性：all<br>版本：ES3<br>描述：</p>
+<pre><code>var str = &apos;zhangqi&apos;;
+var a = str.split();  //[&quot;zhangqi&quot;]
+var a = str.split(&quot;a&quot;); //[&quot;zh&quot;, &quot;ngqi&quot;]
+var a = str.split(&quot;a&quot;, 1); //[&quot;zh&quot;]
+var a = str.split(&quot;&quot;); //[&quot;z&quot;, &quot;h&quot;, &quot;a&quot;, &quot;n&quot;, &quot;g&quot;, &quot;q&quot;, &quot;i&quot;]
+var a = &quot;&quot;.split(&quot;&quot;); //空数组[]
+var a = &quot;&quot;.split(&quot;a&quot;);//[&quot;&quot;]包含空字符串的数组,length=1
+
+//移出字符串中的空格
+var names = &quot;Harry Trump ;Fred Barney; Helen Rigby ; Bill Abel ;Chris Hand &quot;;
+var re = /\s*;\s*/;
+var nameList = names.split(re);
+console.log(nameList);//[Harry Trump,Fred Barney,Helen Rigby,Bill Abel,Chris Hand]
+
+var myString = &quot;Hello 1 word. Sentence number 2.&quot;;
+var splits = myString.split(/(\d)/);
+console.log(splits);//[&quot;Hello &quot;, &quot;1&quot;, &quot; word. Sentence number &quot;, &quot;2&quot;, &quot;.&quot;]
+</code></pre><h1 id="23-String-prototype-startsWith"><a href="#23-String-prototype-startsWith" class="headerlink" title="23. String.prototype.startsWith()"></a>23. String.prototype.startsWith()</h1><p>作用：用来判断当前字符串是否是以另外一个给定的子字符串“开头”的<br>语法：str.startsWith(searchString, position)<br>参数：</p>
+<ul>
+<li>searchString: 要搜索的子字符串</li>
+<li>position: 在str中搜索searchString的开始位置，默认为0,也就是真正的字符串开头处</li>
+</ul>
+<p>返回值：true || false<br>是否改变原字符串：false<br>兼容性：IE-<br>版本：ES6<br>描述：</p>
+<pre><code>var str = &quot;To be, or not to be, that is the question.&quot;;
+alert(str.startsWith(&quot;To be&quot;));         // true
+alert(str.startsWith(&quot;not to be&quot;));     // false
+alert(str.startsWith(&quot;not to be&quot;, 10)); // true
+</code></pre><h1 id="24-String-prototype-substr"><a href="#24-String-prototype-substr" class="headerlink" title="24. String.prototype.substr()"></a>24. String.prototype.substr()</h1><p>作用：返回一个字符串中从指定位置开始到指定字符数的字符<br>语法：str.substr(start, length)<br>参数：</p>
+<ul>
+<li>start: 起始索引 start &lt; 0 ? str.length + start 默认为0</li>
+<li>length: 可选，提取的字符数</li>
+</ul>
+<p>返回值：新的字符串<br>是否改变原字符串：false<br>兼容性：all<br>版本：ES3<br>描述：如果 start 为正值，且大于或等于字符串的长度，则 substr 返回一个空字符串。<br>      如果 length 为 0 或负值，则 substr 返回一个空字符串。如果忽略 length，则 substr 提取字符，直到字符串末尾。</p>
+<pre><code>var str = &quot;abcdefghij&quot;;
+console.log(&quot;(1,2): &quot;    + str.substr(1,2));   // (1,2): bc
+console.log(&quot;(-3,2): &quot;   + str.substr(-3,2));  // (-3,2): hi
+console.log(&quot;(-3): &quot;     + str.substr(-3));    // (-3): hij
+console.log(&quot;(1): &quot;      + str.substr(1));     // (1): bcdefghij
+console.log(&quot;(-20, 2): &quot; + str.substr(-20,2)); // (-20, 2): ab
+console.log(&quot;(20, 2): &quot;  + str.substr(20,2));  // (20, 2):
+</code></pre><h1 id="25-String-prototype-substring"><a href="#25-String-prototype-substring" class="headerlink" title="25. String.prototype.substring()"></a>25. String.prototype.substring()</h1><p>作用：返回一个字符串在开始索引到结束索引之间的一个子集，或从开始索引直到字符串的末尾的一个子集<br>语法：str.substring(indexStart, indexEnd)<br>参数：</p>
+<ul>
+<li>indexStart: 起始索引 indexStart &lt; 0 ? 0 |indexStart &gt; str.length ? str.length</li>
+<li>indexEnd: 可选，结束索引 indexEnd &lt; 0 ? 0 |indexEnd &gt; str.length ? str.length</li>
+</ul>
+<p>返回值：新的字符（串）<br>是否改变原字符串：false<br>兼容性：all<br>版本：ES1<br>描述：<br>如果 indexStart 等于 indexEnd，substring 返回一个空字符串。<br>如果省略 indexEnd，substring 提取字符一直到字符串末尾。<br>如果任一参数小于 0 或为 NaN，则被当作 0。<br>如果任一参数大于 stringName.length，则被当作 stringName.length。<br>如果 indexStart 大于 indexEnd，则 substring 的执行效果就像两个参数调换了一样。例如，str.substring(1, 0) == str.substring(0, 1)。</p>
+<pre><code>var str = &apos;zhangqi&apos;;
+var a = str.substring(3,0); //zha
+var a = str.substring(3,3); //&quot;&quot;
+var a = str.substring(3);   //ngqi
+var a = str.substring(3,-3);//zha
+var a = str.substring(-3);  //zhangqi
+var a = str.substring(10);  //&quot;&quot;
+var a = str.substring(2,15);//angqi
+</code></pre><h1 id="26-String-prototype-toLocaleLowerCase"><a href="#26-String-prototype-toLocaleLowerCase" class="headerlink" title="26. String.prototype.toLocaleLowerCase()"></a>26. String.prototype.toLocaleLowerCase()</h1><p>作用：根据任何特定于语言环境的案例映射，返回调用字符串值转换为小写的值<br>语法：str.toLocaleLowerCase()<br>参数：无<br>返回值：根据任何特定于语言环境的案例映射，将表示调用字符串的新字符串转换为小写<br>是否改变原字符串：false<br>兼容性：ES3<br>版本：all<br>描述：大多数情况下，这个方法与 toLowerCase() 会产生相同的值，但是对于一些语言（locale）,例如土耳其语，因为它们的大小写映射规则与Unicode默认的映射规则不同，所以调用这两个方法将会产生不同的结果。</p>
+<pre><code>console.log(&apos;ALPHABET&apos;.toLocaleLowerCase()); 
+// &apos;alphabet&apos;
+console.log(&apos;中文简体 zh-CN || zh-Hans&apos;.toLocaleLowerCase());
+// &apos;中文简体 zh-cn || zh-hans&apos;
+</code></pre><h1 id="27-String-prototype-toLocaleUpperCase"><a href="#27-String-prototype-toLocaleUpperCase" class="headerlink" title="27. String.prototype.toLocaleUpperCase()"></a>27. String.prototype.toLocaleUpperCase()</h1><p>作用：使用本地化的大小写映射规则将输入的字符串转化成大写形式并返回结果字符串<br>语法：str.toLocaleUpperCase()<br>参数：无<br>返回值：一个新的字符串，即根据本地化的大小写映射规则将输入的字符串转化成大写形式的结果<br>是否改变原字符串：false<br>兼容性：all<br>版本：ES3<br>描述：大多数情况下，这个方法与 toUpperCase() 会产生相同的值，但是对于一些语言（locale）,例如土耳其语，因为它们的大小写映射规则与Unicode默认的映射规则不同，所以调用这两个方法将会产生不同的结果。</p>
+<pre><code>console.log(&apos;alphabet&apos;.toLocaleUpperCase()); // &apos;ALPHABET&apos;
+</code></pre><h1 id="28-String-prototype-toLowerCase"><a href="#28-String-prototype-toLowerCase" class="headerlink" title="28. String.prototype.toLowerCase()"></a>28. String.prototype.toLowerCase()</h1><p>作用：将调用该方法的字符串值转为小写形式，并返回<br>语法：str.toLowerCase()<br>参数：无<br>返回值：转换为小写后的新字符串<br>是否改变原字符串：false<br>兼容性：all<br>版本：ES1<br>描述：</p>
+<pre><code>console.log(&apos;中文简体 zh-CN || zh-Hans&apos;.toLowerCase());
+// 中文简体 zh-cn || zh-hans
+​console.log( &quot;ALPHABET&quot;.toLowerCase() ); 
+// &quot;alphabet&quot;
+</code></pre><h1 id="29-String-prototype-toSource-——————unstandard"><a href="#29-String-prototype-toSource-——————unstandard" class="headerlink" title="29. String.prototype.toSource()——————unstandard"></a>29. String.prototype.toSource()——————unstandard</h1><p>作用：返回一个代表对象的源代码<br>语法：str.toSource || String.toSource<br>参数：无<br>返回值：代表对象的源代码<br>是否改变原字符串：false<br>兼容性：仅火狐支持<br>版本：不属于任何规范<br>描述：</p>
+<pre><code>//火狐下
+var str = &apos;ZHANGqi&apos;;
+var a = str.toSource();
+console.log(str); //ZHANGqi
+console.log(a);   //(new String(&quot;ZHANGqi&quot;))
+</code></pre><h1 id="30-String-prototype-toString"><a href="#30-String-prototype-toString" class="headerlink" title="30. String.prototype.toString()"></a>30. String.prototype.toString()</h1><p>作用：返回指定对象的字符串形式<br>语法：str.toString()<br>参数：无<br>返回值：指定对象的字符串形式<br>是否改变原字符串：false<br>兼容性：all<br>版本：ES1<br>描述：String 对象覆盖了Object 对象的 toString 方法；并没有继承 Object.toString()。对于 String 对象，toString 方法返回该对象的字符串形式，和 String.prototype.valueOf() 方法返回值一样。</p>
+<pre><code>var x = new String(&quot;Hello world&quot;);
+alert(x.toString())      // 输出 &quot;Hello world&quot;
+</code></pre><h1 id="31-String-prototype-toUpperCase"><a href="#31-String-prototype-toUpperCase" class="headerlink" title="31. String.prototype.toUpperCase()"></a>31. String.prototype.toUpperCase()</h1><p>作用：将调用该方法的字符串值转换为大写形式，并返回<br>语法：str.toUpperCase()<br>参数：无<br>返回值：转换为大写后的新字符串<br>是否改变原字符串：false<br>兼容性：all<br>版本：ES1<br>描述：</p>
+<pre><code>​console.log( &quot;alphabet&quot;.toUpperCase() ); // &quot;ALPHABET&quot;
+</code></pre><h1 id="32-String-prototype-trim"><a href="#32-String-prototype-trim" class="headerlink" title="32. String.prototype.trim()"></a>32. String.prototype.trim()</h1><p>作用：从一个字符串的两端删除空白字符。在这个上下文中的空白字符是所有的空白字符 (space, tab, no-break space 等) 以及所有行终止符字符（如 LF，CR）。<br>语法：str.trim()<br>参数：无<br>返回值：去掉两端空白字符的新字符串<br>是否改变原字符串：false<br>兼容性：IE9+<br>版本：ES5<br>描述：</p>
+<pre><code>var orig = &apos;   foo  &apos;;
+console.log(orig.trim()); // &apos;foo&apos;
+var orig = &apos;foo    &apos;;
+console.log(orig.trim()); // &apos;foo&apos;
+</code></pre><h1 id="33-String-prototype-trimLeft-——————unstandard"><a href="#33-String-prototype-trimLeft-——————unstandard" class="headerlink" title="33. String.prototype.trimLeft()——————unstandard"></a>33. String.prototype.trimLeft()——————unstandard</h1><p>作用：从一个字符串的左端移除空白字符<br>语法：str.trimLeft()<br>参数：无<br>返回值：去掉左端空白字符的新字符串<br>是否改变原字符串：false<br>兼容性：chrome, firefox<br>版本：无相关规范<br>描述：</p>
+<pre><code>var str = &quot;   foo  &quot;;
+alert(str.length); // 8
+str = str.trimLeft();
+alert(str.length); // 5
+alert( str ); //&quot;foo  &quot;
+</code></pre><h1 id="34-String-prototype-trimRight-——————unstandard"><a href="#34-String-prototype-trimRight-——————unstandard" class="headerlink" title="34. String.prototype.trimRight()——————unstandard"></a>34. String.prototype.trimRight()——————unstandard</h1><p>作用：从一个字符串的右端移除空白字符<br>语法：str.trimRight()<br>参数：无<br>返回值：去掉右端空白字符的新字符串<br>是否改变原字符串：false<br>兼容性：chrome, firefox<br>版本：无相关规范<br>描述：</p>
+<pre><code>var str = &quot;   foo  &quot;;
+alert(str.length); // 8
+str = str.trimRight();
+alert(str.length); // 6
+alert( str ); //&quot;   foo&quot;
+</code></pre><h1 id="35-String-prototype-valueOf"><a href="#35-String-prototype-valueOf" class="headerlink" title="35. String.prototype.valueOf()"></a>35. String.prototype.valueOf()</h1><p>作用：返回一个String对象的原始值<br>语法：str.valueOf()<br>参数：无<br>返回值：String对象的原始值<br>是否改变原字符串：false<br>兼容性：all<br>版本：ES1<br>描述：String 对象的 valueOf 方法返回一个String对象的原始值。该值等同于String.prototype.toString()。<br>该方法通常在 JavaScript 内部被调用，而不是在代码里显示调用。</p>
+<pre><code>x = new String(&quot;Hello world&quot;);
+alert(x.valueOf())          // Displays &quot;Hello world&quot;
+</code></pre><h1 id="36-String-raw"><a href="#36-String-raw" class="headerlink" title="36. String.raw()"></a>36. String.raw()</h1><p>作用：一个模板字符串的标签函数,用来获取一个模板字符串的原始字面量值的<br>语法：String.raw(callSite, …substitutions)<br>参数：</p>
+<ul>
+<li>callSite: 一个模板字符串的“调用点对象”</li>
+<li>substitutions: 任意个可选的参数，表示任意个内插表达式对应的值</li>
+</ul>
+<p>返回值：<br>是否改变原字符串：<br>兼容性：chrome, firefox<br>版本：ES6<br>描述：String.raw() 是唯一一个内置的模板字符串标签函数，因为它太常用了。不过它并没有什么特殊能力，你自己也可以实现一个和它功能一模一样的标签函数。</p>
+<pre><code>//String.raw方法，往往用来充当模板字符串的处理函数，返回一个斜杠都被转义（即斜杠前面再加一个斜杠）的字符串，对应于替换变量后的模板字符串。
+String.raw`Hi\n${2+3}!`;
+// &quot;Hi\\n5!&quot;
+String.raw`Hi\u000A!`;
+// &apos;Hi\u000A!&apos;
+
+如果原字符串的斜杠已经转义，那么String.raw不会做任何处理。
+String.raw`Hi\\n`
+// &quot;Hi\\n&quot;
+
+String.raw方法也可以作为正常的函数使用。这时，它的第一个参数，应该是一个具有raw属性的对象，且raw属性的值应该是一个数组。
+String.raw({ raw: &apos;test&apos; }, 0, 1, 2);
+// &apos;t0e1s2t&apos;
+// 等同于
+String.raw({ raw: [&apos;t&apos;,&apos;e&apos;,&apos;s&apos;,&apos;t&apos;] }, 0, 1, 2);
+</code></pre><h1 id="已被废除的特性"><a href="#已被废除的特性" class="headerlink" title="已被废除的特性"></a>已被废除的特性</h1><ul>
+<li>String.prototype.big()</li>
+<li>String.prototype.blink()</li>
+<li>String.prototype.bold()</li>
+<li>String.prototype.fixed()</li>
+<li>String.prototype.fontcolor()</li>
+<li>String.prototype.fontsize()</li>
+<li>String.prototype.italics()</li>
+<li>String.prototype.small()</li>
+<li>String.prototype.strike()</li>
+<li>String.prototype.sub()</li>
+<li>String.prototype.sup()</li>
+</ul>
 
       
     </div>
@@ -456,6 +729,10 @@ console.log(str.includes(&apos;TO BE&apos;));       // false
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/06/27/Javascript继承方式/" rel="prev" title="Javascript继承方式">
+                Javascript继承方式 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -527,7 +804,7 @@ console.log(str.includes(&apos;TO BE&apos;));       // false
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -566,7 +843,7 @@ console.log(str.includes(&apos;TO BE&apos;));       // false
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-String-fromCharCode"><span class="nav-number">1.</span> <span class="nav-text">1. String.fromCharCode()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-String-fromCodePoint"><span class="nav-number">2.</span> <span class="nav-text">2. String.fromCodePoint()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-String-prototype-anchor"><span class="nav-number">3.</span> <span class="nav-text">3. String.prototype.anchor()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-String-prototype-big"><span class="nav-number">4.</span> <span class="nav-text">4. String.prototype.big()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-String-prototype-blink"><span class="nav-number">5.</span> <span class="nav-text">5. String.prototype.blink()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-String-prototype-bold"><span class="nav-number">6.</span> <span class="nav-text">6. String.prototype.bold()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#7-String-prototype-charAt"><span class="nav-number">7.</span> <span class="nav-text">7. String.prototype.charAt()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#8-String-prototype-charCodeAt"><span class="nav-number">8.</span> <span class="nav-text">8. String.prototype.charCodeAt()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#9-String-prototype-codePointAt"><span class="nav-number">9.</span> <span class="nav-text">9. String.prototype.codePointAt()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#9-String-prototype-concat"><span class="nav-number">10.</span> <span class="nav-text">9. String.prototype.concat()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#10-String-prototype-endsWith"><span class="nav-number">11.</span> <span class="nav-text">10. String.prototype.endsWith()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#11-String-prototype-fixed"><span class="nav-number">12.</span> <span class="nav-text">11. String.prototype.fixed()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#12-String-prototype-fontcolor"><span class="nav-number">13.</span> <span class="nav-text">12. String.prototype.fontcolor()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#13-String-prototype-fontsize"><span class="nav-number">14.</span> <span class="nav-text">13. String.prototype.fontsize()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#14-String-prototype-includes"><span class="nav-number">15.</span> <span class="nav-text">14. String.prototype.includes()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#15-String-prototype-indexOf"><span class="nav-number">16.</span> <span class="nav-text">15. String.prototype.indexOf()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#16-String-prototype-italics"><span class="nav-number">17.</span> <span class="nav-text">16. String.prototype.italics()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#17-String-prototype-lastIndexOf"><span class="nav-number">18.</span> <span class="nav-text">17. String.prototype.lastIndexOf()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#18-String-prototype-link"><span class="nav-number">19.</span> <span class="nav-text">18. String.prototype.link()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#19-String-prototype-localeCompare"><span class="nav-number">20.</span> <span class="nav-text">19. String.prototype.localeCompare()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#20-String-prototype-match"><span class="nav-number">21.</span> <span class="nav-text">20. String.prototype.match()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#21-String-prototype-normalize"><span class="nav-number">22.</span> <span class="nav-text">21. String.prototype.normalize()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#22-String-prototype-padEnd"><span class="nav-number">23.</span> <span class="nav-text">22. String.prototype.padEnd()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#23-String-prototype-padStart"><span class="nav-number">24.</span> <span class="nav-text">23. String.prototype.padStart()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#24-String-prototype-repeat"><span class="nav-number">25.</span> <span class="nav-text">24. String.prototype.repeat()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#25-String-prototype-replace"><span class="nav-number">26.</span> <span class="nav-text">25. String.prototype.replace()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#26-String-prototype-search"><span class="nav-number">27.</span> <span class="nav-text">26. String.prototype.search()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#27-String-prototype-slice"><span class="nav-number">28.</span> <span class="nav-text">27. String.prototype.slice()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#28-String-prototype-small"><span class="nav-number">29.</span> <span class="nav-text">28. String.prototype.small()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#29-String-prototype-split"><span class="nav-number">30.</span> <span class="nav-text">29. String.prototype.split()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#30-String-prototype-startsWith"><span class="nav-number">31.</span> <span class="nav-text">30. String.prototype.startsWith()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#31-String-prototype-strike"><span class="nav-number">32.</span> <span class="nav-text">31. String.prototype.strike()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#32-String-prototype-sub"><span class="nav-number">33.</span> <span class="nav-text">32. String.prototype.sub()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#33-String-prototype-substr"><span class="nav-number">34.</span> <span class="nav-text">33. String.prototype.substr()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#34-String-prototype-substring"><span class="nav-number">35.</span> <span class="nav-text">34. String.prototype.substring()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#35-String-prototype-sup"><span class="nav-number">36.</span> <span class="nav-text">35. String.prototype.sup()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#36-String-prototype-toLocaleLowerCase"><span class="nav-number">37.</span> <span class="nav-text">36. String.prototype.toLocaleLowerCase()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#37-String-prototype-toLocaleUpperCase"><span class="nav-number">38.</span> <span class="nav-text">37. String.prototype.toLocaleUpperCase()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#38-String-prototype-toLowerCase"><span class="nav-number">39.</span> <span class="nav-text">38. String.prototype.toLowerCase()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#39-String-prototype-toSource"><span class="nav-number">40.</span> <span class="nav-text">39. String.prototype.toSource()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#40-String-prototype-toString"><span class="nav-number">41.</span> <span class="nav-text">40. String.prototype.toString()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#41-String-prototype-toUpperCase"><span class="nav-number">42.</span> <span class="nav-text">41. String.prototype.toUpperCase()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#42-String-prototype-trim"><span class="nav-number">43.</span> <span class="nav-text">42. String.prototype.trim()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#43-String-prototype-trimLeft"><span class="nav-number">44.</span> <span class="nav-text">43. String.prototype.trimLeft()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#44-String-prototype-trimRight"><span class="nav-number">45.</span> <span class="nav-text">44. String.prototype.trimRight()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#45-String-prototype-valueOf"><span class="nav-number">46.</span> <span class="nav-text">45. String.prototype.valueOf()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#46-String-raw"><span class="nav-number">47.</span> <span class="nav-text">46. String.raw()</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-String-fromCharCode"><span class="nav-number">1.</span> <span class="nav-text">1. String.fromCharCode()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-String-fromCodePoint"><span class="nav-number">2.</span> <span class="nav-text">2. String.fromCodePoint()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-String-prototype-anchor"><span class="nav-number">3.</span> <span class="nav-text">3. String.prototype.anchor()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-String-prototype-charAt"><span class="nav-number">4.</span> <span class="nav-text">4. String.prototype.charAt()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-String-prototype-charCodeAt"><span class="nav-number">5.</span> <span class="nav-text">5. String.prototype.charCodeAt()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-String-prototype-codePointAt"><span class="nav-number">6.</span> <span class="nav-text">6. String.prototype.codePointAt()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#7-String-prototype-concat"><span class="nav-number">7.</span> <span class="nav-text">7. String.prototype.concat()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#8-String-prototype-endsWith"><span class="nav-number">8.</span> <span class="nav-text">8. String.prototype.endsWith()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#9-String-prototype-includes"><span class="nav-number">9.</span> <span class="nav-text">9. String.prototype.includes()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#10-String-prototype-indexOf"><span class="nav-number">10.</span> <span class="nav-text">10. String.prototype.indexOf()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#11-String-prototype-lastIndexOf"><span class="nav-number">11.</span> <span class="nav-text">11. String.prototype.lastIndexOf()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#12-String-prototype-link"><span class="nav-number">12.</span> <span class="nav-text">12. String.prototype.link()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#13-String-prototype-localeCompare"><span class="nav-number">13.</span> <span class="nav-text">13. String.prototype.localeCompare()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#14-String-prototype-match"><span class="nav-number">14.</span> <span class="nav-text">14. String.prototype.match()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#15-String-prototype-normalize"><span class="nav-number">15.</span> <span class="nav-text">15. String.prototype.normalize()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#16-String-prototype-padEnd-————expering"><span class="nav-number">16.</span> <span class="nav-text">16. String.prototype.padEnd()————expering</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#17-String-prototype-padStart-————expering"><span class="nav-number">17.</span> <span class="nav-text">17. String.prototype.padStart()————expering</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#18-String-prototype-repeat"><span class="nav-number">18.</span> <span class="nav-text">18. String.prototype.repeat()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#19-String-prototype-replace"><span class="nav-number">19.</span> <span class="nav-text">19. String.prototype.replace()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#20-String-prototype-search"><span class="nav-number">20.</span> <span class="nav-text">20. String.prototype.search()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#21-String-prototype-slice"><span class="nav-number">21.</span> <span class="nav-text">21. String.prototype.slice()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#22-String-prototype-split"><span class="nav-number">22.</span> <span class="nav-text">22. String.prototype.split()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#23-String-prototype-startsWith"><span class="nav-number">23.</span> <span class="nav-text">23. String.prototype.startsWith()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#24-String-prototype-substr"><span class="nav-number">24.</span> <span class="nav-text">24. String.prototype.substr()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#25-String-prototype-substring"><span class="nav-number">25.</span> <span class="nav-text">25. String.prototype.substring()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#26-String-prototype-toLocaleLowerCase"><span class="nav-number">26.</span> <span class="nav-text">26. String.prototype.toLocaleLowerCase()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#27-String-prototype-toLocaleUpperCase"><span class="nav-number">27.</span> <span class="nav-text">27. String.prototype.toLocaleUpperCase()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#28-String-prototype-toLowerCase"><span class="nav-number">28.</span> <span class="nav-text">28. String.prototype.toLowerCase()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#29-String-prototype-toSource-——————unstandard"><span class="nav-number">29.</span> <span class="nav-text">29. String.prototype.toSource()——————unstandard</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#30-String-prototype-toString"><span class="nav-number">30.</span> <span class="nav-text">30. String.prototype.toString()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#31-String-prototype-toUpperCase"><span class="nav-number">31.</span> <span class="nav-text">31. String.prototype.toUpperCase()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#32-String-prototype-trim"><span class="nav-number">32.</span> <span class="nav-text">32. String.prototype.trim()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#33-String-prototype-trimLeft-——————unstandard"><span class="nav-number">33.</span> <span class="nav-text">33. String.prototype.trimLeft()——————unstandard</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#34-String-prototype-trimRight-——————unstandard"><span class="nav-number">34.</span> <span class="nav-text">34. String.prototype.trimRight()——————unstandard</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#35-String-prototype-valueOf"><span class="nav-number">35.</span> <span class="nav-text">35. String.prototype.valueOf()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#36-String-raw"><span class="nav-number">36.</span> <span class="nav-text">36. String.raw()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#已被废除的特性"><span class="nav-number">37.</span> <span class="nav-text">已被废除的特性</span></a></li></ol></div>
             
 
           </div>

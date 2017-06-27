@@ -1,0 +1,909 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="继承是面向对象编程中又一非常重要的概念，JavaScript支持实现继承，不支持接口继承，实现继承主要依靠原型链来实现的。 1. 原型链继承实现思想：让一个原型对象指向另一个类型的实例 function Fn(){     this.property = true; } Fn.prototype.getProperty = function(){     return this.property;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Javascript继承方式">
+<meta property="og:url" content="http://yoursite.com/2017/06/27/Javascript继承方式/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="继承是面向对象编程中又一非常重要的概念，JavaScript支持实现继承，不支持接口继承，实现继承主要依靠原型链来实现的。 1. 原型链继承实现思想：让一个原型对象指向另一个类型的实例 function Fn(){     this.property = true; } Fn.prototype.getProperty = function(){     return this.property;">
+<meta property="og:updated_time" content="2017-06-27T12:50:48.946Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Javascript继承方式">
+<meta name="twitter:description" content="继承是面向对象编程中又一非常重要的概念，JavaScript支持实现继承，不支持接口继承，实现继承主要依靠原型链来实现的。 1. 原型链继承实现思想：让一个原型对象指向另一个类型的实例 function Fn(){     this.property = true; } Fn.prototype.getProperty = function(){     return this.property;">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/06/27/Javascript继承方式/"/>
+
+
+
+
+
+  <title>Javascript继承方式 | Hexo</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/06/27/Javascript继承方式/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Godzhang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Javascript继承方式</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-27T20:51:12+08:00">
+                2017-06-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>继承是面向对象编程中又一非常重要的概念，JavaScript支持实现继承，不支持接口继承，实现继承主要依靠原型链来实现的。</p>
+<h1 id="1-原型链继承"><a href="#1-原型链继承" class="headerlink" title="1. 原型链继承"></a>1. 原型链继承</h1><p><em>实现思想：让一个原型对象指向另一个类型的实例</em></p>
+<pre><code>function Fn(){
+    this.property = true;
+}
+Fn.prototype.getProperty = function(){
+    return this.property;
+}
+
+function newFn(){
+    this.subproperty = &apos;zhangqi&apos;;
+}
+newFn.prototype = new Fn();
+
+var instance = new newFn();
+console.log(instance.getProperty()); //true
+console.log(instance instanceof Fn); //true
+console.log(instance.subproperty); //zhangqi
+</code></pre><p>newFn继承了Fn，而继承是通过创建Fn的实例，并将该实例赋给newFn.prototype实现的<br>实现的本质是重写了newFn的原型对象，Fn的实例中的属性方法也存在于newFn.prototype中了</p>
+<pre><code>原型链：
+instance.__proto__ === newFn.prototype
+newFn.prototype.__proto__ === Fn.prototype
+</code></pre><h3 id="添加方法"><a href="#添加方法" class="headerlink" title="添加方法"></a>添加方法</h3><p>在给newFn原型添加方法或属性的时候，如果父类上也有同样的名字，newFn将会覆盖这个方法或属性，但这个方法或属性依然存在与父类中</p>
+<pre><code>function Fn(){
+    this.property = true;
+}
+Fn.prototype.getProperty = function(){
+    return this.property;
+}
+
+function newFn(){
+    this.subproperty = &apos;zhangqi&apos;;
+}
+newFn.prototype = new Fn();
+//覆盖Fn中实例属性
+newFn.prototype.property = &apos;newFn&apos;;
+
+var instance = new newFn();
+console.log(instance.getProperty()); //&apos;newFn&apos;
+//覆盖Fn的getProperty方法
+newFn.prototype.getProperty = function(){
+    return this.subproperty;
+}
+
+console.log(instance.getProperty()); //&apos;zhangqi&apos;
+</code></pre><p>不能以字面量的形式添加，否则等于又重写了newFn.prototype，会导致原型链截断</p>
+<pre><code>function Fn(){
+    this.property = true;
+}
+Fn.prototype.getProperty = function(){
+    return this.property;
+}
+
+function newFn(){
+    this.subproperty = &apos;zhangqi&apos;;
+}
+newFn.prototype = new Fn();
+
+newFn.prototype = {
+    getSubValue: function(){
+        return this.subproperty;
+    }
+}
+
+var instance = new newFn();
+console.log(instance.getProperty()); 
+//instance.getProperty is not a function
+</code></pre><h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><p>引用类型的属性被所有实例共享</p>
+<pre><code>function Fn(){
+    this.property = [&apos;a&apos;,&apos;b&apos;,&apos;c&apos;];
+}
+Fn.prototype.getProperty = function(){
+    return this.property;
+}
+
+function newFn(){
+    this.subproperty = &apos;zhangqi&apos;;
+}
+newFn.prototype = new Fn();
+
+var instance_1 = new newFn();
+var instance_2 = new newFn();
+
+instance_1.property.push(&apos;d&apos;,&apos;e&apos;);
+console.log(instance_1.property);
+console.log(instance_2.property);
+</code></pre><p>newFn的所有实例都会共享property这个属性，修改其中一个引用类型值，会反映到其他实例中</p>
+<h1 id="2-借用构造函数"><a href="#2-借用构造函数" class="headerlink" title="2. 借用构造函数"></a>2. 借用构造函数</h1><p><em>实现思想：在子类构造函数内部调用父类构造函数，可以借助call和apply方法改变对象的执行上下文</em><br>此方法为了解决原型链继承中包含引用类型值所带来的问题</p>
+<pre><code>function Fn(){
+    this.property = [&apos;a&apos;,&apos;b&apos;,&apos;c&apos;];
+}
+
+function newFn(){
+    Fn.call(this);
+}
+
+var instance_1 = new newFn();
+var instance_2 = new newFn();
+var instance_3 = new Fn();
+
+instance_1.property.push(&apos;d&apos;,&apos;e&apos;);
+console.log(instance_1.property); //[&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;e&quot;]
+console.log(instance_2.property); //[&quot;a&quot;, &quot;b&quot;, &quot;c&quot;]
+console.log(instance_3.property); //[&quot;a&quot;, &quot;b&quot;, &quot;c&quot;]
+</code></pre><p>避免了引用类型的属性被所有实例共享</p>
+<h3 id="可以在子类中向父类传参"><a href="#可以在子类中向父类传参" class="headerlink" title="可以在子类中向父类传参"></a>可以在子类中向父类传参</h3><pre><code>function Fn(name){
+    this.name = name;
+}
+
+function newFn(name, age){
+    Fn.call(this, name);
+    this.age = age;
+}
+
+var instance_1 = new newFn(&apos;zhangqi&apos;);
+var instance_2 = new newFn(&apos;tuqi&apos;);
+
+console.log(instance_1.name); //zhangqi
+console.log(instance_2.name); //tuqi
+</code></pre><p>缺点：方法都在构造函数中定义，每次创建实例都会创建一遍方法，函数无法达到复用</p>
+<h1 id="3-组合继承-原型链继承-构造函数继承"><a href="#3-组合继承-原型链继承-构造函数继承" class="headerlink" title="3. 组合继承(原型链继承+构造函数继承)"></a>3. 组合继承(原型链继承+构造函数继承)</h1><p><em>实现思想：使用原型链继承实现对原型属性和方法的继承，通过构造函数继承实现对实例属性的继承</em><br>既通过在原型上定义方法实现了复用，又能保证每个实例都有它自己的属性</p>
+<pre><code>function Fn(name){
+    this.name = name;
+}
+Fn.prototype.getProperty = function(){
+    return this.property;
+}
+
+function newFn(name){
+    Fn.call(this, name);
+    this.property = &apos;newFn&apos;;
+}
+newFn.prototype = new Fn();
+
+var instance_1 = new newFn(&apos;zhangqi&apos;);
+
+console.log(instance_1.name); //zhangqi
+console.log(instance_1.getProperty()); //newFn
+</code></pre><p>这种模式避免了原型链和构造函数继承的缺陷，融合了他们的优点，是最常用的一种继承模式<br>这种模式会产生两组name属性，一组在newFn实例上，一组在newFn原型上<br>一次是在newFn.prototype = new Fn();<br>一次是在var instance_1 = new newFn(‘zhangqi’);<br>只不过实例上的屏蔽了原型上的</p>
+<h1 id="4-原型式继承"><a href="#4-原型式继承" class="headerlink" title="4. 原型式继承"></a>4. 原型式继承</h1><p>可以基于已有的对象创建新对象，不必创建自定义类型<br>在object函数内部，先创建一个临时性的构造函数，然后将传入的对象作为这个构造函数的原型，最后返回这个临时类型的一个新实例。</p>
+<pre><code>function Fn(name){
+    this.property = true;
+    this.name = name;
+}
+Fn.prototype.getProperty = function(){
+    return this.property;
+}
+//封装方法
+function object(obj){
+    if(Object.create){
+        return Object.create(obj);
+    }else{
+        function F(){};
+        F.prototype = obj;
+        return new F();
+    }
+}
+
+var newFn = object(Fn.prototype);
+newFn.property = false;
+console.log(newFn.getProperty()); //false
+
+function Fn(name){
+    this.property = true;
+    this.name = name;
+}
+Fn.prototype.getProperty = function(){
+    return this.property;
+}
+//封装方法
+function object(newObj, oldObj){
+    if(Object.create){
+        newObj.prototype = Object.create(oldObj);
+    }else{
+        function F(){};
+        F.prototype = oldObj;
+        newObj.prototype = new F();
+    }
+}
+
+function newFn(name){
+    Fn.call(this, name);
+}
+
+object(newFn, Fn.prototype);
+var fn = new newFn(&apos;zhangqi&apos;);
+console.log(fn.name); //zhangqi
+console.log(fn.getProperty()); //true
+</code></pre><p>缺点：所有实例都会共享属性，修改其中一个引用类型值，会反映到其他实例中</p>
+<pre><code>var person = {
+    name: &apos;zhangqi&apos;,
+    arr: [1,2,3]
+}
+
+var a = Object.create(person);
+a.arr.push(4,5);
+
+console.log(a.arr);      //[1, 2, 3, 4, 5]
+console.log(person.arr); //[1, 2, 3, 4, 5]
+</code></pre><h1 id="5-寄生式继承"><a href="#5-寄生式继承" class="headerlink" title="5. 寄生式继承"></a>5. 寄生式继承</h1><p><em>实现思想：与寄生构造函数和工程模式类似，创建一个仅用于封装继承过程的函数</em></p>
+<pre><code>function createAnother(o) {
+  var clone = Object.create(o) // 创建一个新对象
+  clone.sayHi = function() { // 添加方法
+    console.log(&apos;hi&apos;)
+  }
+  return clone  // 返回这个对象
+}
+var person = {
+  name: &apos;Jiang&apos;
+}
+var anotherPeson = createAnother(person)
+anotherPeson.sayHi(); //hi
+</code></pre><p>基于person返回了一个新对象anotherPeson，新对象不仅拥有了person的属性和方法，还有自己的sayHi方法。</p>
+<p>缺点：跟借用构造函数模式一样，每次创建对象都会创建一遍方法</p>
+<h1 id="6-寄生组合式继承"><a href="#6-寄生组合式继承" class="headerlink" title="6. 寄生组合式继承"></a>6. 寄生组合式继承</h1><p>可以规避组合式继承产生两组属性的问题。<br>这种模式通过借用构造函数来继承属性，通过原型链的混成形式来继承方法<br><em>实现思路：不必为了指定子类型的原型而调用父类的构造函数，我们需要的无非就是父类原型的一个副本。</em><br>本质上就是使用寄生式继承来继承父类的原型，再将结果指定给子类型</p>
+<p>function inheritPrototype(child, parent){<br>    var prototype = Object.create(parent.prototype);<br>    prototype.constructor = child;<br>    child.prototype = prototype;<br>}<br>1、创建父类型的副本<br>2、将创建的副本添加constructor属性<br>3、将子类的原型指向这个副本</p>
+<pre><code>function SuperType(name) {
+  this.name = name
+  this.colors = [&apos;red&apos;, &apos;blue&apos;, &apos;green&apos;]
+}
+SuperType.prototype.sayName = function () {
+  console.log(this.name)
+}
+function SubType(name, job) {
+  // 继承属性
+  SuperType.call(this, name)
+
+  this.job = job
+}
+// 继承
+inheritPrototype(SubType, SuperType)
+var instance = new SubType(&apos;Jiang&apos;, &apos;student&apos;)
+instance.sayName()
+</code></pre><p>直接使用Object.create来实现，其实就是将上面封装的函数拆开，这样演示可以更容易理解。</p>
+<pre><code>function SuperType(name) {
+  this.name = name
+  this.colors = [&apos;red&apos;, &apos;blue&apos;, &apos;green&apos;]
+}
+SuperType.prototype.sayName = function () {
+  console.log(this.name)
+}
+function SubType(name, job) {
+  // 继承属性
+  SuperType.call(this, name)
+
+  this.job = job
+}
+// 继承
+SubType.prototype = Object.create(SuperType.prototype)
+// 修复constructor
+SubType.prototype.constructor = SubType
+var instance = new SubType(&apos;Jiang&apos;, &apos;student&apos;)
+instance.sayName()
+</code></pre>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/06/26/String对象内置方法总结/" rel="next" title="String对象内置方法总结">
+                <i class="fa fa-chevron-left"></i> String对象内置方法总结
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Godzhang" />
+          <p class="site-author-name" itemprop="name">Godzhang</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-原型链继承"><span class="nav-number">1.</span> <span class="nav-text">1. 原型链继承</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#添加方法"><span class="nav-number">1.0.1.</span> <span class="nav-text">添加方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#问题"><span class="nav-number">1.0.2.</span> <span class="nav-text">问题</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-借用构造函数"><span class="nav-number">2.</span> <span class="nav-text">2. 借用构造函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#可以在子类中向父类传参"><span class="nav-number">2.0.1.</span> <span class="nav-text">可以在子类中向父类传参</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-组合继承-原型链继承-构造函数继承"><span class="nav-number">3.</span> <span class="nav-text">3. 组合继承(原型链继承+构造函数继承)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-原型式继承"><span class="nav-number">4.</span> <span class="nav-text">4. 原型式继承</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-寄生式继承"><span class="nav-number">5.</span> <span class="nav-text">5. 寄生式继承</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-寄生组合式继承"><span class="nav-number">6.</span> <span class="nav-text">6. 寄生组合式继承</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Godzhang</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
