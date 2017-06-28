@@ -1,0 +1,825 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="属性1. Number.EPSILONNumber.EPSILON 属性表示 1 和大于 1 的最小值（可表示为 Number）的差值。EPSILON 属性的值接近于 2.2204460492503130808472633361816E-16，或者 2-52。 var x = 0.2,     y = 0.3,     z = 0.1; console.log(Math.abs(x-y+z) &amp;l">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Number对象内置方法总结">
+<meta property="og:url" content="http://yoursite.com/2017/06/28/Number对象内置方法总结/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="属性1. Number.EPSILONNumber.EPSILON 属性表示 1 和大于 1 的最小值（可表示为 Number）的差值。EPSILON 属性的值接近于 2.2204460492503130808472633361816E-16，或者 2-52。 var x = 0.2,     y = 0.3,     z = 0.1; console.log(Math.abs(x-y+z) &amp;l">
+<meta property="og:updated_time" content="2017-06-28T12:42:33.956Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Number对象内置方法总结">
+<meta name="twitter:description" content="属性1. Number.EPSILONNumber.EPSILON 属性表示 1 和大于 1 的最小值（可表示为 Number）的差值。EPSILON 属性的值接近于 2.2204460492503130808472633361816E-16，或者 2-52。 var x = 0.2,     y = 0.3,     z = 0.1; console.log(Math.abs(x-y+z) &amp;l">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/06/28/Number对象内置方法总结/"/>
+
+
+
+
+
+  <title>Number对象内置方法总结 | Hexo</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/06/28/Number对象内置方法总结/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Godzhang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Number对象内置方法总结</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-28T20:42:46+08:00">
+                2017-06-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h1><h2 id="1-Number-EPSILON"><a href="#1-Number-EPSILON" class="headerlink" title="1. Number.EPSILON"></a>1. Number.EPSILON</h2><p>Number.EPSILON 属性表示 1 和大于 1 的最小值（可表示为 Number）的差值。<br>EPSILON 属性的值接近于 2.2204460492503130808472633361816E-16，或者 2-52。</p>
+<pre><code>var x = 0.2,
+    y = 0.3,
+    z = 0.1;
+console.log(Math.abs(x-y+z) &lt; Number.EPSILON); //true
+</code></pre><p><strong>兼容性：</strong>IE-<br><strong>版本：</strong>ES6</p>
+<h2 id="2-Number-MAX-SAFE-INTEGER"><a href="#2-Number-MAX-SAFE-INTEGER" class="headerlink" title="2. Number.MAX_SAFE_INTEGER"></a>2. Number.MAX_SAFE_INTEGER</h2><p>Number.MAX_SAFE_INTEGER 常量表示在 JavaScript 中最大的安全整数（253 - 1）<br>MAX_SAFE_INTEGER 常量值为 9007199254740991</p>
+<pre><code>Number.MAX_SAFE_INTEGER // 9007199254740991, IE全部返回undefined
+</code></pre><p><strong>兼容性：</strong>IE-<br><strong>版本：</strong>ES6</p>
+<h2 id="3-Number-MAX-VALUE"><a href="#3-Number-MAX-VALUE" class="headerlink" title="3. Number.MAX_VALUE"></a>3. Number.MAX_VALUE</h2><p>Number.MAX_VALUE 属性表示在 JavaScript 里所能表示的最大数值<br>MAX_VALUE 属性值接近于 1.79E+308。大于 MAX_VALUE 的值代表 “Infinity”</p>
+<pre><code>console.log(Number.MAX_VALUE); //1.7976931348623157e+308
+</code></pre><p><strong>兼容性：</strong>all<br><strong>版本：</strong>ES1</p>
+<h2 id="4-Number-MIN-SAFE-INTEGER"><a href="#4-Number-MIN-SAFE-INTEGER" class="headerlink" title="4. Number.MIN_SAFE_INTEGER"></a>4. Number.MIN_SAFE_INTEGER</h2><p>Number.MIN_SAFE_INTEGER 代表在 JavaScript中最小的安全的integer型数字 (-(253 - 1))<br>MIN_SAFE_INTEGER 的值是-9007199254740991</p>
+<pre><code>Number.MIN_SAFE_INTEGER // -9007199254740991, IE全部返回undefined
+</code></pre><p><strong>兼容性：</strong>IE- Safari-<br><strong>版本：</strong>ES6</p>
+<h2 id="5-Number-MIN-VALUE"><a href="#5-Number-MIN-VALUE" class="headerlink" title="5. Number.MIN_VALUE"></a>5. Number.MIN_VALUE</h2><p>Number.MIN_VALUE 属性表示在 JavaScript 中最接近0的最小的正值,而不是最小的负值<br>MIN_VALUE 的值约为 5e-324。小于 MIN_VALUE (“underflow values”) 的值将会转换为 0</p>
+<pre><code>console.log(Number.MIN_VALUE); //5e-324
+</code></pre><p><strong>兼容性：</strong>all<br><strong>版本：</strong>ES1</p>
+<h2 id="6-Number-NEGATIVE-INFINITY"><a href="#6-Number-NEGATIVE-INFINITY" class="headerlink" title="6. Number.NEGATIVE_INFINITY"></a>6. Number.NEGATIVE_INFINITY</h2><p>Number.NEGATIVE_INFINITY 属性表示负无穷大,和全局对象的 Infinity 属性的负值相同</p>
+<p><strong>兼容性：</strong>all<br><strong>版本：</strong>ES1</p>
+<h2 id="7-Number-NaN"><a href="#7-Number-NaN" class="headerlink" title="7. Number.NaN"></a>7. Number.NaN</h2><p>Number.NaN 表示“非数字”（Not-A-Number）。和 NaN 相同</p>
+<p><strong>兼容性：</strong>all<br><strong>版本：</strong>ES1</p>
+<h2 id="8-Number-POSITIVE-INFINITY"><a href="#8-Number-POSITIVE-INFINITY" class="headerlink" title="8. Number.POSITIVE_INFINITY"></a>8. Number.POSITIVE_INFINITY</h2><p>Number.POSITIVE_INFINITY 属性表示正无穷大,同全局对象 Infinity 属性的值相同</p>
+<p><strong>兼容性：</strong>all<br><strong>版本：</strong>ES1</p>
+<h1 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h1><h2 id="1-Number-isFinite"><a href="#1-Number-isFinite" class="headerlink" title="1. Number.isFinite()"></a>1. Number.isFinite()</h2><p><strong>作用：</strong>用来检测传入的参数是否是一个有穷数<br><strong>语法：</strong>Number.isFinite(value)<br><strong>参数：</strong>value: 被检测的值<br><strong>返回值：</strong>true || false<br><strong>是否改变原对象：</strong>false<br><strong>兼容性：</strong>IE-<br><strong>版本：</strong>ES6<br><strong>描述：</strong>和全局的 isFinite() 函数相比，这个方法不会强制将一个非数值的参数转换成数值，这就意味着，只有数值类型的值，且是有穷的（finite），才返回 true。</p>
+<pre><code>console.log(Number.isFinite(Infinity));  //false
+console.log(Number.isFinite(NaN));       //false
+console.log(Number.isFinite(-Infinity)); //false
+console.log(Number.isFinite(0));         //true
+console.log(Number.isFinite(2e64));      //true
+console.log(Number.isFinite(&apos;0&apos;));       //false
+console.log(isFinite(&apos;0&apos;));              //true
+</code></pre><h2 id="2-Number-isInteger"><a href="#2-Number-isInteger" class="headerlink" title="2. Number.isInteger()"></a>2. Number.isInteger()</h2><p><strong>作用：</strong>用来判断给定的参数是否为整数<br><strong>语法：</strong>Number.isInteger(value)<br><strong>参数：</strong>value<br><strong>返回值：</strong>true || false<br><strong>是否改变原对象：</strong>false<br><strong>兼容性：</strong>IE-<br><strong>版本：</strong>ES6<br><strong>描述：</strong>NaN 和正负 Infinity 不是整数</p>
+<pre><code>Number.isInteger(0);         // true
+Number.isInteger(1);         // true
+Number.isInteger(-100000);   // true
+
+Number.isInteger(0.1);       // false
+Number.isInteger(Math.PI);   // false
+
+Number.isInteger(Infinity);  // false
+Number.isInteger(-Infinity); // false
+Number.isInteger(&quot;10&quot;);      // false
+Number.isInteger(true);      // false
+Number.isInteger(false);     // false
+Number.isInteger([1]);       // false
+</code></pre><h2 id="3-Number-isNaN"><a href="#3-Number-isNaN" class="headerlink" title="3. Number.isNaN()"></a>3. Number.isNaN()</h2><p><strong>作用：</strong>确定传递的值是否为 NaN和其类型是 Number<br><strong>语法：</strong>Number.isNaN(value)<br><strong>参数：</strong>value<br><strong>返回值：</strong>true || false<br><strong>是否改变原对象：</strong>false<br><strong>兼容性：</strong>IE- Safari-<br><strong>版本：</strong>ES6<br><strong>描述：</strong>在 JavaScript 中，NaN 最特殊的地方就是，我们不能使用相等运算符（== 和 ===）来判断一个值是否是 NaN，因为 NaN == NaN 和 NaN === NaN 都会返回 false。因此，必须要有一个判断值是否是 NaN 的方法。</p>
+<p>和全局函数 isNaN() 相比，该方法不会强制将参数转换成数字，只有在参数是真正的数字类型，且值为 NaN 的时候才会返回 true。</p>
+<pre><code>Number.isNaN(NaN);        // true
+Number.isNaN(Number.NaN); // true
+Number.isNaN(0 / 0)       // true
+
+// 下面这几个如果使用全局的 isNaN() 时，会返回 true。
+Number.isNaN(&quot;NaN&quot;);      // false，字符串 &quot;NaN&quot; 不会被隐式转换成数字 NaN。
+Number.isNaN(undefined);  // false
+Number.isNaN({});         // false
+Number.isNaN(&quot;blabla&quot;);   // false
+
+// 下面的都返回 false
+Number.isNaN(true);
+Number.isNaN(null);
+Number.isNaN(37);
+Number.isNaN(&quot;37&quot;);
+Number.isNaN(&quot;37.37&quot;);
+Number.isNaN(&quot;&quot;);
+Number.isNaN(&quot; &quot;);
+</code></pre><h2 id="4-Number-isSafeInteger"><a href="#4-Number-isSafeInteger" class="headerlink" title="4. Number.isSafeInteger()"></a>4. Number.isSafeInteger()</h2><p><strong>作用：</strong>判断传入的参数值是否是一个“安全整数”<br><strong>语法：</strong>Number.isSafeInteger(testValue)<br><strong>参数：</strong>testValue<br><strong>返回值：</strong>true || false<br><strong>是否改变原对象：</strong>false<br><strong>兼容性：</strong>IE-<br><strong>版本：</strong>ES6<br><strong>描述：</strong>安全整数范围为 -(2^53 - 1)到 2^53 - 1 之间的整数，包含 -(2^53 - 1)和 2^53 - 1</p>
+<pre><code>Number.isSafeInteger(3);                    // true
+Number.isSafeInteger(Math.pow(2, 53))       // false
+Number.isSafeInteger(Math.pow(2, 53) - 1)   // true
+Number.isSafeInteger(NaN);                  // false
+Number.isSafeInteger(Infinity);             // false
+Number.isSafeInteger(&quot;3&quot;);                  // false
+Number.isSafeInteger(3.1);                  // false
+Number.isSafeInteger(3.0);                  // true
+</code></pre><h2 id="5-Number-parseFloat"><a href="#5-Number-parseFloat" class="headerlink" title="5. Number.parseFloat()"></a>5. Number.parseFloat()</h2><p><strong>作用：</strong>把一个字符串解析成浮点数<br><strong>语法：</strong>Number.parseFloat(string)<br><strong>参数：</strong>string: 被解析的字符串<br><strong>返回值：</strong>解析后的值<br><strong>是否改变原对象：</strong>false<br><strong>兼容性：</strong>IE- Safari-<br><strong>版本：</strong>ES6<br><strong>描述：</strong>该方法和全局的 parseFloat() 函数是同一个函数</p>
+<pre><code>parseFloat(&quot;3.14&quot;);   //3.14
+parseFloat(&quot;314e-2&quot;);   //3.14
+parseFloat(&quot;0.0314E+2&quot;);   //3.14
+parseFloat(&quot;3.14more non-digit characters&quot;);   //3.14
+parseFloat(&quot;FF2&quot;);  //NaN
+</code></pre><h2 id="6-Number-parseInt"><a href="#6-Number-parseInt" class="headerlink" title="6. Number.parseInt()"></a>6. Number.parseInt()</h2><p><strong>作用：</strong>根据给定的进制数把一个字符串解析成整数<br><strong>语法：</strong>Number.parseInt(string, radix)<br><strong>参数：</strong>解析后的值</p>
+<ul>
+<li>string: 被解析的值</li>
+<li>radix: 进制转换基数</li>
+</ul>
+<p><strong>返回值：</strong><br><strong>是否改变原对象：</strong><br><strong>兼容性：</strong>IE- Safari-<br><strong>版本：</strong>ES6<br><strong>描述：</strong>该方法和全局的 parseInt() 函数是同一个函数</p>
+<pre><code>parseInt(&quot;15&quot;, 10); == parseInt(&quot;15&quot;); //15
+parseInt(&quot;Hello&quot;, 8); //NaN
+parseInt(&quot;0e0&quot;, 16); //224
+</code></pre><h2 id="7-Number-prototype-toExponential"><a href="#7-Number-prototype-toExponential" class="headerlink" title="7. Number.prototype.toExponential()"></a>7. Number.prototype.toExponential()</h2><p><strong>作用：</strong>以指数表示法返回该数值字符串表示形式<br><strong>语法：</strong>numObj.toExponential(fractionDigits)<br><strong>参数：</strong>fractionDigits: 可选。一个整数，用来指定小数点后有几位数字<br><strong>返回值：</strong>一个用幂的形式来表示Number 对象的字符串<br><strong>是否改变原对象：</strong>false<br><strong>兼容性：</strong>all<br><strong>版本：</strong>ES3<br><strong>描述：</strong><br>RangeError: (范围错误)<br>如果 fractionDigits 太小或太大将会抛出该错误。介于 0 和 20（包括20）之间的值不会引起 RangeError 。 执行环境也可以支持更大或更小范围。<br>TypeError: （类型错误）<br>如果该方法在一个非数值类型对象上调用。</p>
+<pre><code>var numObj = 776666666.1234;;
+alert(numObj.toExponential()); //输出 7.766666661234e+8
+alert(numObj.toExponential(4)); //输出 7.7667e+8
+alert(numObj.toExponential(2)); //输出 7.77e+8
+alert(77.1234.toExponential()); //输出 7.71234e+1
+alert(77 .toExponential()); //输出 7.7e+1
+</code></pre><h2 id="8-Number-prototype-toFixed"><a href="#8-Number-prototype-toFixed" class="headerlink" title="8. Number.prototype.toFixed()"></a>8. Number.prototype.toFixed()</h2><p><strong>作用：</strong>使用定点表示法来格式化一个数<br><strong>语法：</strong>numObj.toFixed(digits)<br><strong>参数：</strong>小数点后数字的个数；介于 0 到 20 （包括）之间，实现环境可能支持更大范围。如果忽略该参数，则默认为 0。<br><strong>返回值：</strong>一个数值的字符串表现形式，不使用指数记数法，而是在小数点后有 digits 位数字<br><strong>是否改变原对象：</strong>false<br><strong>兼容性：</strong>all<br><strong>版本：</strong>ES3<br><strong>描述：</strong><br>RangeError:<br>如果 digits 参数太小或太大。0 到 20（包括）之间的值不会引起 RangeError。实现环境（implementations）也可以支持更大或更小的值。<br>TypeError:<br>如果该方法在一个非Number类型的对象上调用。</p>
+<pre><code>var numObj = 12345.6789;
+
+numObj.toFixed();         // 返回 &quot;12346&quot;：进行四舍五入，不包括小数部分
+numObj.toFixed(1);        // 返回 &quot;12345.7&quot;：进行四舍五入
+numObj.toFixed(6);        // 返回 &quot;12345.678900&quot;：用0填充
+(1.23e+20).toFixed(2);    // 返回 &quot;123000000000000000000.00&quot;
+(1.23e-10).toFixed(2);    // 返回 &quot;0.00&quot;
+2.34.toFixed(1);          // 返回 &quot;2.3&quot;
+-2.34.toFixed(1);         // 返回 -2.3 （由于操作符优先级，负数不会返回字符串）
+(-2.34).toFixed(1);       // 返回 &quot;-2.3&quot; （若用括号提高优先级，则返回字符串）
+</code></pre><h2 id="9-Number-prototype-toLocaleString"><a href="#9-Number-prototype-toLocaleString" class="headerlink" title="9. Number.prototype.toLocaleString()"></a>9. Number.prototype.toLocaleString()</h2><p><strong>作用：</strong>返回这个数字在特定语言环境下的表示字符串<br><strong>语法：</strong>numObj.toLocaleString(locales, options)<br><strong>参数：</strong>(详见MDN)</p>
+<ul>
+<li>locales: 可选.缩写语言代码的字符串或者这些字符串组成的数组<ul>
+<li>nu: 要使用的编号系统。可能的值有: “arab”, “arabext”, “bali”, “beng”, “deva”, “fullwide”, “gujr”, “guru”, “hanidec”(中文十进制数字), “khmr”, “knda”, “laoo”, “latn”, “limb”, “mlym”, “mong”, “mymr”, “orya”, “tamldec”, “telu”, “thai”, “tibt”.</li>
+</ul>
+</li>
+<li>options: 可选. 包含一些或所有的下面属性的类:<ul>
+<li>localeMatcher: 使用的local的匹配算法</li>
+<li>style: 格式化时使用的样式</li>
+<li>currency: 在货币格式化中使用的货币符号</li>
+<li>currencyDisplay: 如何在货币格式化中显示货币</li>
+<li>useGrouping: 是否使用分组分隔符</li>
+<li>minimumIntegerDigits: 使用的整数数字的最小数目</li>
+<li>minimumFractionDigits: 使用的小数位数的最小数目</li>
+<li>maximumFractionDigits: 使用的小数位数的最大数目</li>
+<li>minimumSignificantDigits: 使用的有效数字的最小数目</li>
+<li>maximumSignificantDigits: 使用的有效数字的最大数量</li>
+</ul>
+</li>
+</ul>
+<p><strong>返回值：</strong>返回一个语言环境下的表示字符串<br><strong>是否改变原对象：</strong>false<br><strong>兼容性：</strong>IE11+<br><strong>版本：</strong>ES3<br><strong>描述：</strong></p>
+<pre><code>var numObj = 12345;
+
+var a = numObj.toLocaleString();  
+console.log(a);  //12,345
+</code></pre><h2 id="10-Number-prototype-toPrecision"><a href="#10-Number-prototype-toPrecision" class="headerlink" title="10. Number.prototype.toPrecision()"></a>10. Number.prototype.toPrecision()</h2><p><strong>作用：</strong>以指定的精度返回该数值对象的字符串表示<br><strong>语法：</strong>numObj.toPrecision(precision)<br><strong>参数：</strong>precision: 可选，用来指定有效数个数的整数<br><strong>返回值：</strong>以定点表示法或指数表示法表示的一个数值对象的字符串<br><strong>是否改变原对象：</strong><br><strong>兼容性：</strong>all<br><strong>版本：</strong>ES3<br><strong>描述：</strong>如果忽略 precision 参数，则该方法表现类似于 Number.prototype.toString()。如果该参数是一个非整数值，将会向下舍入到最接近的整数。</p>
+<pre><code>var numObj = 5.123456;
+console.log(numObj.toPrecision());  //输出 5.123456
+console.log(numObj.toPrecision(5)); //输出 5.1235
+console.log(numObj.toPrecision(2)); //输出 5.1
+console.log(numObj.toPrecision(1)); //输出 5
+</code></pre><p>// 注意：在某些情况下会以指数表示法返回<br>console.log((1234.5).toPrecision(2)); // “1.2e+3”</p>
+<h2 id="11-Number-prototype-toSource-————unstandard"><a href="#11-Number-prototype-toSource-————unstandard" class="headerlink" title="11. Number.prototype.toSource()————unstandard"></a>11. Number.prototype.toSource()————unstandard</h2><p><strong>作用：</strong>返回该对象源码的字符串表示<br><strong>语法：</strong>Number.toSource()<br><strong>参数：</strong>无<br><strong>返回值：</strong>该对象源码的字符串表示<br><strong>是否改变原对象：</strong>false<br><strong>兼容性：</strong>firefox<br><strong>版本：</strong>不是任何标准的一部分<br><strong>描述：</strong></p>
+<pre><code>//firefox
+var numObj = 5.123456;
+console.log(numObj.toSource());  //(new Number(5.123456))
+</code></pre><h2 id="12-Number-prototype-toString"><a href="#12-Number-prototype-toString" class="headerlink" title="12. Number.prototype.toString()"></a>12. Number.prototype.toString()</h2><p><strong>作用：</strong>返回指定 Number 对象的字符串表示形式<br><strong>语法：</strong>numObj.toString(radix)<br><strong>参数：</strong>radix: 转换基数，默认为10<br><strong>返回值：</strong>字符串表示形式<br><strong>是否改变原对象：</strong>false<br><strong>兼容性：</strong>all<br><strong>版本：</strong>ES1<br><strong>描述：</strong><br>RangeError<br>如果 toString() 的 radix 参数不在 2 到 36 之间，将会抛出一个 RangeError。</p>
+<pre><code>var count = 10;
+
+console.log(count.toString());    // 输出 &apos;10&apos;
+console.log((17).toString());     // 输出 &apos;17&apos;
+console.log((17.2).toString());   // 输出 &apos;17.2&apos;
+
+var x = 6;
+
+console.log(x.toString(2));       // 输出 &apos;110&apos;
+console.log((254).toString(16));  // 输出 &apos;fe&apos;
+
+console.log((-10).toString(2));   // 输出 &apos;-1010&apos;
+console.log((-0xff).toString(2)); // 输出 &apos;-11111111&apos;
+</code></pre><h2 id="13-Number-prototype-valueOf"><a href="#13-Number-prototype-valueOf" class="headerlink" title="13. Number.prototype.valueOf()"></a>13. Number.prototype.valueOf()</h2><p><strong>作用：</strong>返回一个被 Number 对象包装的原始值<br><strong>语法：</strong>numObj.valueOf()<br><strong>参数：</strong>无<br><strong>返回值：</strong>Number 对象的原始值<br><strong>是否改变原对象：</strong>false<br><strong>兼容性：</strong>all<br><strong>版本：</strong>ES1<br><strong>描述：</strong>该方法通常是由 JavaScript 引擎在内部隐式调用的，而不是由用户在代码中显式调用的</p>
+<pre><code>var numObj = new Number(10);
+console.log(typeof numObj); // object
+
+var num = numObj.valueOf();
+console.log(num);           // 10
+console.log(typeof num);    // number
+</code></pre>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/06/28/Function对象内置方法总结/" rel="next" title="Function对象内置方法总结">
+                <i class="fa fa-chevron-left"></i> Function对象内置方法总结
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/06/28/RegExp对象内置方法总结/" rel="prev" title="RegExp对象内置方法总结">
+                RegExp对象内置方法总结 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Godzhang" />
+          <p class="site-author-name" itemprop="name">Godzhang</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#属性"><span class="nav-number">1.</span> <span class="nav-text">属性</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Number-EPSILON"><span class="nav-number">1.1.</span> <span class="nav-text">1. Number.EPSILON</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Number-MAX-SAFE-INTEGER"><span class="nav-number">1.2.</span> <span class="nav-text">2. Number.MAX_SAFE_INTEGER</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Number-MAX-VALUE"><span class="nav-number">1.3.</span> <span class="nav-text">3. Number.MAX_VALUE</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Number-MIN-SAFE-INTEGER"><span class="nav-number">1.4.</span> <span class="nav-text">4. Number.MIN_SAFE_INTEGER</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-Number-MIN-VALUE"><span class="nav-number">1.5.</span> <span class="nav-text">5. Number.MIN_VALUE</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-Number-NEGATIVE-INFINITY"><span class="nav-number">1.6.</span> <span class="nav-text">6. Number.NEGATIVE_INFINITY</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-Number-NaN"><span class="nav-number">1.7.</span> <span class="nav-text">7. Number.NaN</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-Number-POSITIVE-INFINITY"><span class="nav-number">1.8.</span> <span class="nav-text">8. Number.POSITIVE_INFINITY</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#方法"><span class="nav-number">2.</span> <span class="nav-text">方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Number-isFinite"><span class="nav-number">2.1.</span> <span class="nav-text">1. Number.isFinite()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Number-isInteger"><span class="nav-number">2.2.</span> <span class="nav-text">2. Number.isInteger()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Number-isNaN"><span class="nav-number">2.3.</span> <span class="nav-text">3. Number.isNaN()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Number-isSafeInteger"><span class="nav-number">2.4.</span> <span class="nav-text">4. Number.isSafeInteger()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-Number-parseFloat"><span class="nav-number">2.5.</span> <span class="nav-text">5. Number.parseFloat()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-Number-parseInt"><span class="nav-number">2.6.</span> <span class="nav-text">6. Number.parseInt()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-Number-prototype-toExponential"><span class="nav-number">2.7.</span> <span class="nav-text">7. Number.prototype.toExponential()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-Number-prototype-toFixed"><span class="nav-number">2.8.</span> <span class="nav-text">8. Number.prototype.toFixed()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-Number-prototype-toLocaleString"><span class="nav-number">2.9.</span> <span class="nav-text">9. Number.prototype.toLocaleString()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-Number-prototype-toPrecision"><span class="nav-number">2.10.</span> <span class="nav-text">10. Number.prototype.toPrecision()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-Number-prototype-toSource-————unstandard"><span class="nav-number">2.11.</span> <span class="nav-text">11. Number.prototype.toSource()————unstandard</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12-Number-prototype-toString"><span class="nav-number">2.12.</span> <span class="nav-text">12. Number.prototype.toString()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#13-Number-prototype-valueOf"><span class="nav-number">2.13.</span> <span class="nav-text">13. Number.prototype.valueOf()</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Godzhang</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
