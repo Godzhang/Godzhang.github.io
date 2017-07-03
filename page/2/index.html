@@ -251,6 +251,126 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/06/23/Boolean对象内置方法总结/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Godzhang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/06/23/Boolean对象内置方法总结/" itemprop="url">Boolean对象内置方法总结</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-23T23:31:45+08:00">
+                2017-06-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="1-toString"><a href="#1-toString" class="headerlink" title="1. toString"></a>1. toString</h3><p>参数：  无<br>作用：  返回指定的布尔对象的字符串形式<br>返回值：指定的布尔对象的字符串形式<br>描述：  当一个布尔对象作为文本值或进行字符串连接时，JavaScript 会自动调用其toString 方法</p>
+<pre><code>var flag = true;
+var myVar = flag.toString(); // &quot;true&quot;
+console.log(typeof a); //string
+</code></pre><h3 id="2-valueOf"><a href="#2-valueOf" class="headerlink" title="2. valueOf"></a>2. valueOf</h3><p>参数：无<br>作用：返回一个Boolean对象的原始值<br>返回值：Boolean对象的原始值<br>描述：该方法通常在 JavaScript 内部调用，而不是在代码中显示调用</p>
+<pre><code>var bol = true;
+var a = bol.valueOf(); //true
+console.log(typeof a); //boolean
+</code></pre><h3 id="3-toSource-不是任何标准的一部分"><a href="#3-toSource-不是任何标准的一部分" class="headerlink" title="3. toSource(不是任何标准的一部分)"></a>3. toSource(不是任何标准的一部分)</h3><p>参数：无<br>作用：返回一个表示对象的源码的字符串<br>返回值：返回一个表示对象的源码的字符串</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/28/firstNigth/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -525,7 +645,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-count">13</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

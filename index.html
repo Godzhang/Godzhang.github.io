@@ -251,6 +251,232 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/03/DOM方法总结/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Godzhang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/07/03/DOM方法总结/" itemprop="url">DOM方法总结</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-03T20:38:27+08:00">
+                2017-07-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="查找"><a href="#查找" class="headerlink" title="查找"></a>查找</h1><h3 id="1-getElementById"><a href="#1-getElementById" class="headerlink" title="1. getElementById()"></a>1. getElementById()</h3><p>返回对应ID的元素或者null。</p>
+<h3 id="2-getElementsByTagName"><a href="#2-getElementsByTagName" class="headerlink" title="2. getElementsByTagName()"></a>2. getElementsByTagName()</h3><p>返回空([])或者一个HTMLCollection对象集合(类似NodeList)。</p>
+<h3 id="3-getElementsByName"><a href="#3-getElementsByName" class="headerlink" title="3. getElementsByName()"></a>3. getElementsByName()</h3><p>返回带有给定name特性的所有元素的HTMLCollection对象集合</p>
+<h1 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h1><h3 id="1-nodeType-每个节点都有一个nodeType属性，表明节点的类型"><a href="#1-nodeType-每个节点都有一个nodeType属性，表明节点的类型" class="headerlink" title="1. nodeType: 每个节点都有一个nodeType属性，表明节点的类型"></a>1. nodeType: 每个节点都有一个nodeType属性，表明节点的类型</h3><pre><code>- 元素节点：1
+- 属性节点：2
+- 文本节点：3
+- document：9
+- documentFragment: 11
+</code></pre><h3 id="2-nodeName和nodeValue-节点的具体信息"><a href="#2-nodeName和nodeValue-节点的具体信息" class="headerlink" title="2. nodeName和nodeValue: 节点的具体信息"></a>2. nodeName和nodeValue: 节点的具体信息</h3><h6 id="nodeName"><a href="#nodeName" class="headerlink" title="nodeName:"></a>nodeName:</h6><pre><code>- 1: 元素标签名  nodeName === tagName
+- 2:
+- 3:
+- 4:
+- 5:
+- 6:
+- 7:
+- 8:
+- 9: #document
+- 10:
+- 11: 
+</code></pre><h6 id="nodeValue"><a href="#nodeValue" class="headerlink" title="nodeValue:"></a>nodeValue:</h6><pre><code>- 1：null
+- 2:
+- 3:
+- 4:
+- 5:
+- 6:
+- 7:
+- 8:
+- 9: null
+- 10:
+- 11: 
+</code></pre><h3 id="3-childNodes"><a href="#3-childNodes" class="headerlink" title="3. childNodes"></a>3. childNodes</h3><p>每一个节点都有一个childNodes属性，保存着一个NodeList对象(arraylike)，用于保存一组有序的节点。它实际上是基于DOM结构动态执行查询的结果，因此DOM肚饿偶的变化能够自动反应在NodeList对象中说。</p>
+<h3 id="4-parentNode"><a href="#4-parentNode" class="headerlink" title="4. parentNode"></a>4. parentNode</h3><p>该属性指向文档树中的父节点</p>
+<h3 id="5-previousSibling"><a href="#5-previousSibling" class="headerlink" title="5. previousSibling"></a>5. previousSibling</h3><p>节点的前一个同胞节点，列表中第一个节点的previousSibling属性值为null</p>
+<h3 id="6-nextSibling"><a href="#6-nextSibling" class="headerlink" title="6. nextSibling"></a>6. nextSibling</h3><p>节点的后一个同胞节点，列表中最后一个节点的nextSibling属性值为null，如果列表中只有一个节点，该节点的previousSibling和nextSibling都为null</p>
+<h3 id="7-firstChild"><a href="#7-firstChild" class="headerlink" title="7. firstChild"></a>7. firstChild</h3><p>父节点的第一个子节点</p>
+<h3 id="8-lastChild"><a href="#8-lastChild" class="headerlink" title="8. lastChild"></a>8. lastChild</h3><p>父节点的最后一个子节点</p>
+<p><img src="DOM.png" alt="Dom"></p>
+<h3 id="9-ownerDocument"><a href="#9-ownerDocument" class="headerlink" title="9. ownerDocument"></a>9. ownerDocument</h3><p>该属性指向表示整个文档的文档节点。任何节点只能存在于一个文档中</p>
+<h3 id="10-document-documentElement"><a href="#10-document-documentElement" class="headerlink" title="10. document.documentElement"></a>10. document.documentElement</h3><p>该属性始终指向HTML页面中的<html>元素，相比document.childNodes属性访问更快捷，更直接。所有浏览器都支持该属性</html></p>
+<h3 id="11-document-body"><a href="#11-document-body" class="headerlink" title="11. document.body"></a>11. document.body</h3><p>该属性指向<body>元素。所有浏览器都支持该属性</body></p>
+<h3 id="12-document-doctype"><a href="#12-document-doctype" class="headerlink" title="12. document.doctype"></a>12. document.doctype</h3><p>该属性指向&lt;!DOCTYPE&gt;元素，浏览器支持差别大，见红宝书P254</p>
+<pre><code>var doc = document.doctype;
+console.log(doc); //&lt;!DOCTYPE html&gt;
+</code></pre><h3 id="13-document-title"><a href="#13-document-title" class="headerlink" title="13. document.title"></a>13. document.title</h3><p>该属性指向<title>元素中的文本，可读写</title></p>
+<h3 id="14-URL-domain-referrer"><a href="#14-URL-domain-referrer" class="headerlink" title="14. URL,domain,referrer"></a>14. URL,domain,referrer</h3><p>document.URL：页面完整的URL<br>document.domain：页面的域名（可设置）<br>document.referrer：保存着链接到当前页面的那个页面的URL</p>
+<pre><code>document.URL      //&quot;https://www.baidu.com/&quot;
+document.domain   //&quot;www.baidu.com&quot;
+document.referrer //&quot;&quot;
+</code></pre><h3 id="15-document对象特殊集合"><a href="#15-document对象特殊集合" class="headerlink" title="15. document对象特殊集合"></a>15. document对象特殊集合</h3><p>document.anchors: 所有带有name特性的<a>元素<br>document.forms: 所有的<form>元素<br>document.images: 所有的<img>元素<br>document.links: 所有带href特性的<a>元素</a></form></a></p>
+<h3 id="16"><a href="#16" class="headerlink" title="16."></a>16.</h3><h1 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h1><h3 id="1-hasChildNodes"><a href="#1-hasChildNodes" class="headerlink" title="1. hasChildNodes()"></a>1. hasChildNodes()</h3><p>作用：判断节点是否含有子节点<br>语法：node.hasChildNodes()<br>返回值：true || false<br>描述：节点包含一个或多个子节点的情况下返回true,否则返回false</p>
+<h3 id="2-appendChild"><a href="#2-appendChild" class="headerlink" title="2. appendChild()"></a>2. appendChild()</h3><p>作用：向childNodes列表的末尾添加一个节点,childNodes<br>语法：fatherNode.appendChild(newNode)<br>返回值：新增的节点(newNode)</p>
+<h3 id="3-insertBefore"><a href="#3-insertBefore" class="headerlink" title="3. insertBefore()"></a>3. insertBefore()</h3><p>作用：把节点插入到childNodes中特定的位置<br>语法：fatherNode.insertBefore(newNode, referNode)<br>返回值：被插入的节点<br>描述：如果referNode为null，则insertBefore === appendChild</p>
+<h3 id="4-replaceChild"><a href="#4-replaceChild" class="headerlink" title="4. replaceChild()"></a>4. replaceChild()</h3><p>作用：替换节点<br>语法：fatherNode.replaceChild(newNode, referNode)<br>返回值：被替换的节点<br>描述：被替换的节点仍然还在文档中，但已经没有了自己的位置</p>
+<h3 id="5-removeChild"><a href="#5-removeChild" class="headerlink" title="5. removeChild()"></a>5. removeChild()</h3><p>作用：移除节点<br>语法：fatherNode.removeChild(referNode)<br>返回值：被移除的节点<br>描述：被移除的节点仍然还在文档中，但已经没有了自己的位置</p>
+<h3 id="6-cloneNode"><a href="#6-cloneNode" class="headerlink" title="6. cloneNode()"></a>6. cloneNode()</h3><p>作用：创建目标节点的一个完全相同的副本<br>语法：referNode.clone(boolean)<br>返回值：复制得到的副本<br>描述：参数为true，执行深复制，复制节点及其整个子节点数。参数为false，执行浅复制，只复制节点本身</p>
+<h3 id="7-normalize"><a href="#7-normalize" class="headerlink" title="7. normalize()"></a>7. normalize()</h3><p>作用：处理文档树中的文本节点<br>语法：<br>返回值：<br>描述：</p>
+<h3 id="8-namedItem"><a href="#8-namedItem" class="headerlink" title="8. namedItem()"></a>8. namedItem()</h3><p>作用：通过元素的name特性取得集合中的项<br>语法：list.namedItem(name)<br>描述：此方法为HTMLCollection对象的方法</p>
+<h3 id="9-document-implementation-hasFeature"><a href="#9-document-implementation-hasFeature" class="headerlink" title="9. document.implementation.hasFeature()"></a>9. document.implementation.hasFeature()</h3><p>作用：检测浏览器是否支持给定的名称和版本的功能<br>语法：document.implementation.hasFeature(“XML”, “1.0”)<br>返回值：true || false<br>描述：建议同时使用能力检测</p>
+<h3 id="10-document文档写入"><a href="#10-document文档写入" class="headerlink" title="10. document文档写入"></a>10. document文档写入</h3><ul>
+<li>document.write(), document.writeln()</li>
+</ul>
+<p>作用：将指定内容写入到网页中<br>描述：write()会原样写入，writeln()会在末尾添加一个换行符(\n),这里的换行在源码中能看出区别，实际页面效果中，会产生一个空格。</p>
+<ul>
+<li>document.open()</li>
+</ul>
+<p>作用：用于打开和关闭网页的输出流<br>语法：document.open(mimetype, replace)</p>
+<h6 id="参数："><a href="#参数：" class="headerlink" title="参数："></a>参数：</h6><ul>
+<li>mimetype: 可选。规定正在写的文档的类型。默认值是”text/html”。</li>
+<li>replace: 可选。当此参数设置后，可引起新文档从父文档继承历史条目。</li>
+</ul>
+<h6 id="描述："><a href="#描述：" class="headerlink" title="描述："></a>描述：</h6><ul>
+<li>open()方法将擦除当前HTML文档的内容，开始一个新的文档，新文档用write()方法或writeln()方法编写。</li>
+<li>调用open()方法打开一个新文档并且用write()方法设置文档内容后，必须记住用close()方法关闭文档，并迫使其内容显示出来。</li>
+<li><p>属于被覆盖的文档的一部分的脚本或事件句柄不能调用该方法，因为脚本或事件句柄自身也会被覆盖。</p>
+</li>
+<li><p>document.close()</p>
+</li>
+</ul>
+<p>作用：关闭一个由open()方法打开的输出流，并显示选定的数据。<br>语法：document.close()</p>
+<h6 id="描述：-1"><a href="#描述：-1" class="headerlink" title="描述："></a>描述：</h6><ul>
+<li>该方法将关闭open()方法打开的文档流，并强制地显示出所有缓存的输出内容。如果您使用write()方法动态地输出一个文档，必须记住当你这么做的时候要调用close()方法，以确保所有文档内容都能显示。document.write()不会隐式调用document.close()方法的，否则例2中将不会有This is a new window.内容了</li>
+<li>一旦调用了close()，就不应该再次调用write()，因为这会隐式地调用open()来擦除当前文档并开始一个新的文档。 </li>
+<li>在载入页面后，浏览器输出流自动关闭。在此之后，比如延迟脚本[setTimeout()]或是onload执行的方法，任何一个对当前页面进行操作的document.write()方法将打开—个新的输出流，它将清除当前页面内容(包括源文档的任何变量或值)。</li>
+</ul>
+<h3 id="11-getAttribute"><a href="#11-getAttribute" class="headerlink" title="11. getAttribute()"></a>11. getAttribute()</h3><p>作用：获取元素特性值<br>返回值：特性值或null<br>描述：开发人员经常不使用getAttribute(),而只使用对象的属性，只有在取得自定义特性值的情况下，才会使用getAttribute()方法</p>
+<h3 id="12-setAttribute"><a href="#12-setAttribute" class="headerlink" title="12. setAttribute()"></a>12. setAttribute()</h3><p>作用：设置特性<br>语法：node.setAttribute(name, value)<br>描述：如果特性存在，替换。不存在，创建。为DOM元素添加一个自定义的属性，该属性不会自动成为元素的特性</p>
+<pre><code>div.mycolor = &apos;red&apos;;
+alert(div.getAttribute(&quot;mycolor&quot;));  //null(IE除外)
+</code></pre><h3 id="13-removeAttribute"><a href="#13-removeAttribute" class="headerlink" title="13. removeAttribute()"></a>13. removeAttribute()</h3><p>作用：彻底删除元素的特性<br>语法：node.removeAttribute(name)<br>兼容性: IE6-<br>描述：该方法不仅会清除特性的值，也会从元素中完全删除特性。</p>
+<h3 id="14-attributes属性方法（读写）"><a href="#14-attributes属性方法（读写）" class="headerlink" title="14. attributes属性方法（读写）"></a>14. attributes属性方法（读写）</h3><pre><code>1. attributes.getNamedItem(name): 返回nodeName属性等于name的节点
+2. attributes.removeNamedItem(name)：从列表中移除nodeName属性等于name的节点,返回被删除特性的Attr节点
+3. attributes.setNamedItem(node)：向列表中添加节点，一节点的nodeName属性为索引
+4. attributes.item(pos)：返回位于数字pos位置处的节点
+
+&lt;a href=&quot;&quot; class=&quot;a2&quot; name=&quot;zhangqi&quot; id=&quot;zhangqi&quot;&gt;&lt;/a&gt;
+var elem = $(&quot;.a2&quot;)[0];
+var id = elem.attributes;    //NamedNodeMap {0: href, 1: class, 2: name, 3: id, length: 4}
+var id = elem.attributes.getNamedItem(&quot;id&quot;);  //id=&quot;zhangqi&quot;
+var id = elem.attributes[&quot;id&quot;];  //id=&quot;zhangqi&quot;
+var id = elem.attributes.getNamedItem(&quot;id&quot;).nodeName;  //id
+var id = elem.attributes.getNamedItem(&quot;id&quot;).nodeValue; //zhangqi
+console.log(elem.attributes[&apos;id&apos;].specified); //true
+console.log(elem.attributes[&apos;type&apos;].specified); //false,实际会报错
+
+//遍历枚举属性
+var elem = $(&quot;.a2&quot;)[0];
+var arr = [];
+for(var i=0,len=elem.attributes.length;i&lt;len;i++){
+    var name = elem.attributes[i].nodeName;
+    var value = elem.attributes[i].nodeValue;
+    if(!elem.attributes[i].specified) continue;
+    arr.push(name + &quot;=&quot; + value + &apos;\\&apos;);
+} 
+console.log(arr);  //[&quot;href=\&quot;, &quot;class=a2\&quot;, &quot;name=zhangqi\&quot;, &quot;id=zhangqi\&quot;]
+</code></pre><h3 id="15"><a href="#15" class="headerlink" title="15."></a>15.</h3><h3 id="16-1"><a href="#16-1" class="headerlink" title="16."></a>16.</h3><h3 id="17"><a href="#17" class="headerlink" title="17."></a>17.</h3><h3 id="18"><a href="#18" class="headerlink" title="18."></a>18.</h3><h3 id="19"><a href="#19" class="headerlink" title="19."></a>19.</h3><h3 id="20"><a href="#20" class="headerlink" title="20."></a>20.</h3><h3 id="21"><a href="#21" class="headerlink" title="21."></a>21.</h3><h3 id="22"><a href="#22" class="headerlink" title="22."></a>22.</h3><h3 id="23"><a href="#23" class="headerlink" title="23."></a>23.</h3><h3 id="24"><a href="#24" class="headerlink" title="24."></a>24.</h3><h3 id="25"><a href="#25" class="headerlink" title="25."></a>25.</h3><h3 id="26"><a href="#26" class="headerlink" title="26."></a>26.</h3><h3 id="27"><a href="#27" class="headerlink" title="27."></a>27.</h3><p>作用：<br>语法：<br>返回值：<br>描述：</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/06/28/RegExp对象内置方法总结/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -3491,126 +3717,6 @@ console.log(eArr.next().value); // p
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/06/23/Boolean对象内置方法总结/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Godzhang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/06/23/Boolean对象内置方法总结/" itemprop="url">Boolean对象内置方法总结</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-23T23:31:45+08:00">
-                2017-06-23
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="1-toString"><a href="#1-toString" class="headerlink" title="1. toString"></a>1. toString</h3><p>参数：  无<br>作用：  返回指定的布尔对象的字符串形式<br>返回值：指定的布尔对象的字符串形式<br>描述：  当一个布尔对象作为文本值或进行字符串连接时，JavaScript 会自动调用其toString 方法</p>
-<pre><code>var flag = true;
-var myVar = flag.toString(); // &quot;true&quot;
-console.log(typeof a); //string
-</code></pre><h3 id="2-valueOf"><a href="#2-valueOf" class="headerlink" title="2. valueOf"></a>2. valueOf</h3><p>参数：无<br>作用：返回一个Boolean对象的原始值<br>返回值：Boolean对象的原始值<br>描述：该方法通常在 JavaScript 内部调用，而不是在代码中显示调用</p>
-<pre><code>var bol = true;
-var a = bol.valueOf(); //true
-console.log(typeof a); //boolean
-</code></pre><h3 id="3-toSource-不是任何标准的一部分"><a href="#3-toSource-不是任何标准的一部分" class="headerlink" title="3. toSource(不是任何标准的一部分)"></a>3. toSource(不是任何标准的一部分)</h3><p>参数：无<br>作用：返回一个表示对象的源码的字符串<br>返回值：返回一个表示对象的源码的字符串</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -3660,7 +3766,7 @@ console.log(typeof a); //boolean
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-count">13</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
