@@ -90,18 +90,16 @@
 
 
 
-<meta name="description" content="查找1. getElementById()返回对应ID的元素或者null。 2. getElementsByTagName()返回空([])或者一个HTMLCollection对象集合(类似NodeList)。 3. getElementsByName()返回带有给定name特性的所有元素的HTMLCollection对象集合 属性1. nodeType: 每个节点都有一个nodeType属性，表">
+<meta name="description" content="查找1. getElementById()返回对应ID的元素或者null。 2. getElementsByTagName()返回空([])或者一个HTMLCollection对象集合(类似NodeList)。 3. getElementsByName()返回带有给定name特性的所有元素的HTMLCollection对象集合 4. querySelector()接受一个css选择符，返回与该模式">
 <meta property="og:type" content="article">
 <meta property="og:title" content="DOM方法总结">
 <meta property="og:url" content="http://yoursite.com/2017/07/03/DOM方法总结/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="查找1. getElementById()返回对应ID的元素或者null。 2. getElementsByTagName()返回空([])或者一个HTMLCollection对象集合(类似NodeList)。 3. getElementsByName()返回带有给定name特性的所有元素的HTMLCollection对象集合 属性1. nodeType: 每个节点都有一个nodeType属性，表">
-<meta property="og:image" content="http://yoursite.com/2017/07/03/DOM方法总结/DOM.png">
-<meta property="og:updated_time" content="2017-07-03T12:38:06.228Z">
+<meta property="og:description" content="查找1. getElementById()返回对应ID的元素或者null。 2. getElementsByTagName()返回空([])或者一个HTMLCollection对象集合(类似NodeList)。 3. getElementsByName()返回带有给定name特性的所有元素的HTMLCollection对象集合 4. querySelector()接受一个css选择符，返回与该模式">
+<meta property="og:updated_time" content="2017-07-04T13:50:22.169Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="DOM方法总结">
-<meta name="twitter:description" content="查找1. getElementById()返回对应ID的元素或者null。 2. getElementsByTagName()返回空([])或者一个HTMLCollection对象集合(类似NodeList)。 3. getElementsByName()返回带有给定name特性的所有元素的HTMLCollection对象集合 属性1. nodeType: 每个节点都有一个nodeType属性，表">
-<meta name="twitter:image" content="http://yoursite.com/2017/07/03/DOM方法总结/DOM.png">
+<meta name="twitter:description" content="查找1. getElementById()返回对应ID的元素或者null。 2. getElementsByTagName()返回空([])或者一个HTMLCollection对象集合(类似NodeList)。 3. getElementsByName()返回带有给定name特性的所有元素的HTMLCollection对象集合 4. querySelector()接受一个css选择符，返回与该模式">
 
 
 
@@ -322,40 +320,54 @@
         <h1 id="查找"><a href="#查找" class="headerlink" title="查找"></a>查找</h1><h3 id="1-getElementById"><a href="#1-getElementById" class="headerlink" title="1. getElementById()"></a>1. getElementById()</h3><p>返回对应ID的元素或者null。</p>
 <h3 id="2-getElementsByTagName"><a href="#2-getElementsByTagName" class="headerlink" title="2. getElementsByTagName()"></a>2. getElementsByTagName()</h3><p>返回空([])或者一个HTMLCollection对象集合(类似NodeList)。</p>
 <h3 id="3-getElementsByName"><a href="#3-getElementsByName" class="headerlink" title="3. getElementsByName()"></a>3. getElementsByName()</h3><p>返回带有给定name特性的所有元素的HTMLCollection对象集合</p>
-<h1 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h1><h3 id="1-nodeType-每个节点都有一个nodeType属性，表明节点的类型"><a href="#1-nodeType-每个节点都有一个nodeType属性，表明节点的类型" class="headerlink" title="1. nodeType: 每个节点都有一个nodeType属性，表明节点的类型"></a>1. nodeType: 每个节点都有一个nodeType属性，表明节点的类型</h3><pre><code>- 元素节点：1
-- 属性节点：2
-- 文本节点：3
-- document：9
-- documentFragment: 11
-</code></pre><h3 id="2-nodeName和nodeValue-节点的具体信息"><a href="#2-nodeName和nodeValue-节点的具体信息" class="headerlink" title="2. nodeName和nodeValue: 节点的具体信息"></a>2. nodeName和nodeValue: 节点的具体信息</h3><h6 id="nodeName"><a href="#nodeName" class="headerlink" title="nodeName:"></a>nodeName:</h6><pre><code>- 1: 元素标签名  nodeName === tagName
-- 2:
-- 3:
+<h3 id="4-querySelector"><a href="#4-querySelector" class="headerlink" title="4. querySelector()"></a>4. querySelector()</h3><p>接受一个css选择符，返回与该模式匹配的第一个元素或null</p>
+<pre><code>var body = document.querySelector(&quot;body&quot;);
+var div = document.querySelector(&quot;#div&quot;);
+var sel = document.querySelector(&quot;.selected&quot;);
+var img = document.querySelector(&quot;img.button&quot;);
+</code></pre><h3 id="5-querySelectorAll"><a href="#5-querySelectorAll" class="headerlink" title="5. querySelectorAll()"></a>5. querySelectorAll()</h3><p>同上，返回nodeList实例或空</p>
+<h3 id="6-matchesSelector"><a href="#6-matchesSelector" class="headerlink" title="6. matchesSelector()"></a>6. matchesSelector()</h3><p>接受一个css选择符，如果调用元素与该选择符匹配，返回true || false<br>不同浏览器实现方式：<br>msMatchesSelector()<br>mozMatchesSelector()<br>webkitMatchesSelector()</p>
+<pre><code>var div = $(&quot;#box&quot;)[0];
+console.log(div.webkitMatchesSelector(&quot;#box&quot;));  //true
+</code></pre><h3 id="7-getElementsByClassNmae"><a href="#7-getElementsByClassNmae" class="headerlink" title="7. getElementsByClassNmae()"></a>7. getElementsByClassNmae()</h3><p>接收一个或多个类名的字符串，返回带有指定类的所有元素的NodeList或空<br>兼容性：IE9+</p>
+<h3 id="8"><a href="#8" class="headerlink" title="8."></a>8.</h3><h3 id="9"><a href="#9" class="headerlink" title="9."></a>9.</h3><h1 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h1><h3 id="1-nodeType-每个节点都有一个nodeType属性，表明节点的类型"><a href="#1-nodeType-每个节点都有一个nodeType属性，表明节点的类型" class="headerlink" title="1. nodeType: 每个节点都有一个nodeType属性，表明节点的类型"></a>1. nodeType: 每个节点都有一个nodeType属性，表明节点的类型</h3><ul>
+<li>元素节点：1</li>
+<li>属性节点：2</li>
+<li>文本节点：3</li>
+<li>CDATASection: 4</li>
+<li>注释节点：8</li>
+<li>document：9</li>
+<li>DocumentType: 10</li>
+<li>documentFragment: 11</li>
+</ul>
+<h3 id="2-nodeName和nodeValue-节点的具体信息"><a href="#2-nodeName和nodeValue-节点的具体信息" class="headerlink" title="2. nodeName和nodeValue: 节点的具体信息"></a>2. nodeName和nodeValue: 节点的具体信息</h3><h6 id="nodeName"><a href="#nodeName" class="headerlink" title="nodeName:"></a>nodeName:</h6><pre><code>- 1: 元素标签名  nodeName === tagName
+- 2: 特性名称
+- 3: #text
 - 4:
 - 5:
 - 6:
 - 7:
-- 8:
+- 8: #comment
 - 9: #document
-- 10:
-- 11: 
+- 10: doctype的名称
+- 11: #document-fragment
 </code></pre><h6 id="nodeValue"><a href="#nodeValue" class="headerlink" title="nodeValue:"></a>nodeValue:</h6><pre><code>- 1：null
-- 2:
-- 3:
+- 2: 特性值
+- 3: 节点包含的文本
 - 4:
 - 5:
 - 6:
 - 7:
-- 8:
+- 8: 注释的内容
 - 9: null
-- 10:
-- 11: 
+- 10: null
+- 11: null
 </code></pre><h3 id="3-childNodes"><a href="#3-childNodes" class="headerlink" title="3. childNodes"></a>3. childNodes</h3><p>每一个节点都有一个childNodes属性，保存着一个NodeList对象(arraylike)，用于保存一组有序的节点。它实际上是基于DOM结构动态执行查询的结果，因此DOM肚饿偶的变化能够自动反应在NodeList对象中说。</p>
 <h3 id="4-parentNode"><a href="#4-parentNode" class="headerlink" title="4. parentNode"></a>4. parentNode</h3><p>该属性指向文档树中的父节点</p>
 <h3 id="5-previousSibling"><a href="#5-previousSibling" class="headerlink" title="5. previousSibling"></a>5. previousSibling</h3><p>节点的前一个同胞节点，列表中第一个节点的previousSibling属性值为null</p>
 <h3 id="6-nextSibling"><a href="#6-nextSibling" class="headerlink" title="6. nextSibling"></a>6. nextSibling</h3><p>节点的后一个同胞节点，列表中最后一个节点的nextSibling属性值为null，如果列表中只有一个节点，该节点的previousSibling和nextSibling都为null</p>
 <h3 id="7-firstChild"><a href="#7-firstChild" class="headerlink" title="7. firstChild"></a>7. firstChild</h3><p>父节点的第一个子节点</p>
 <h3 id="8-lastChild"><a href="#8-lastChild" class="headerlink" title="8. lastChild"></a>8. lastChild</h3><p>父节点的最后一个子节点</p>
-<p><img src="DOM.png" alt="Dom"></p>
 <h3 id="9-ownerDocument"><a href="#9-ownerDocument" class="headerlink" title="9. ownerDocument"></a>9. ownerDocument</h3><p>该属性指向表示整个文档的文档节点。任何节点只能存在于一个文档中</p>
 <h3 id="10-document-documentElement"><a href="#10-document-documentElement" class="headerlink" title="10. document.documentElement"></a>10. document.documentElement</h3><p>该属性始终指向HTML页面中的<html>元素，相比document.childNodes属性访问更快捷，更直接。所有浏览器都支持该属性</html></p>
 <h3 id="11-document-body"><a href="#11-document-body" class="headerlink" title="11. document.body"></a>11. document.body</h3><p>该属性指向<body>元素。所有浏览器都支持该属性</body></p>
@@ -368,14 +380,61 @@ console.log(doc); //&lt;!DOCTYPE html&gt;
 document.domain   //&quot;www.baidu.com&quot;
 document.referrer //&quot;&quot;
 </code></pre><h3 id="15-document对象特殊集合"><a href="#15-document对象特殊集合" class="headerlink" title="15. document对象特殊集合"></a>15. document对象特殊集合</h3><p>document.anchors: 所有带有name特性的<a>元素<br>document.forms: 所有的<form>元素<br>document.images: 所有的<img>元素<br>document.links: 所有带href特性的<a>元素</a></form></a></p>
-<h3 id="16"><a href="#16" class="headerlink" title="16."></a>16.</h3><h1 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h1><h3 id="1-hasChildNodes"><a href="#1-hasChildNodes" class="headerlink" title="1. hasChildNodes()"></a>1. hasChildNodes()</h3><p>作用：判断节点是否含有子节点<br>语法：node.hasChildNodes()<br>返回值：true || false<br>描述：节点包含一个或多个子节点的情况下返回true,否则返回false</p>
+<h3 id="16-textNode-data-textNode-nodeValue"><a href="#16-textNode-data-textNode-nodeValue" class="headerlink" title="16. textNode.data === textNode.nodeValue"></a>16. textNode.data === textNode.nodeValue</h3><h3 id="17-Attr节点属性"><a href="#17-Attr节点属性" class="headerlink" title="17. Attr节点属性"></a>17. Attr节点属性</h3><ul>
+<li>attr.name === attr.nodeName</li>
+<li>attr.value === attr.nodeValue</li>
+<li>attr.specified</li>
+</ul>
+<h3 id="18-DOM扩展的新属性"><a href="#18-DOM扩展的新属性" class="headerlink" title="18. DOM扩展的新属性"></a>18. DOM扩展的新属性</h3><p>对于元素间的空格，不会返回文本节点<br>兼容性：IE9+</p>
+<ul>
+<li>childElementCount: 返回子元素的个数(不包括文本节点和注释)</li>
+<li>firstElementChild: 第一个子元素</li>
+<li>lastElementChild: 最后一个子元素</li>
+<li>previousElementSibling: 前一个同辈元素</li>
+<li>nextElementSibling: 后一个同辈元素</li>
+</ul>
+<h3 id="19-document-activeElement"><a href="#19-document-activeElement" class="headerlink" title="19. document.activeElement"></a>19. document.activeElement</h3><p>兼容性：IE4+<br>这个属性始终会引用DOM中当前获得了焦点的元素</p>
+<pre><code>var btn = $(&quot;#btn&quot;)[0];
+btn.focus();
+console.log(document.activeElement); //&lt;button id=&quot;btn&quot;&gt;click&lt;/button&gt;
+</code></pre><h3 id="20-readyState"><a href="#20-readyState" class="headerlink" title="20. readyState"></a>20. readyState</h3><p>兼容性：IE4+<br>飚屎文档已经加载完成的指示器，有两个可能的值：</p>
+<ul>
+<li>loading: 正在加载文档</li>
+<li><p>complete: 已经加载文档</p>
+<p>  console.log(document.readyState);      //loading<br>  window.onload = function(){</p>
+<pre><code>console.log(document.readyState);  //complete
+</code></pre><p>  }</p>
+</li>
+</ul>
+<h3 id="21-document-compatMode"><a href="#21-document-compatMode" class="headerlink" title="21. document.compatMode"></a>21. document.compatMode</h3><p>告诉开发人员浏览器采用了那种渲染模式<br>标准模式: CSS1Compat<br>混杂模式: BackCompat</p>
+<h3 id="22-document-head"><a href="#22-document-head" class="headerlink" title="22. document.head"></a>22. document.head</h3><p>该属性指向<head>元素</head></p>
+<pre><code>var head = document.head || document.getElementsByTagName(&quot;head&quot;)[0];
+</code></pre><h3 id="23-字符集属性"><a href="#23-字符集属性" class="headerlink" title="23. 字符集属性"></a>23. 字符集属性</h3><p>document.charset: 文档中实际使用的字符集<br>document.defaultCharset: 根据默认浏览器及操作系统的设置，当前文档默认的字符集应该是什么</p>
+<h3 id="24-element-dataset"><a href="#24-element-dataset" class="headerlink" title="24. element.dataset"></a>24. element.dataset</h3><p>访问自定义属性</p>
+<pre><code>&lt;div id=&quot;div&quot; data-id=&quot;123&quot;&gt;&lt;/div&gt;
+var div = $(&quot;#div&quot;)[0];
+console.log(div.dataset.id);  //123
+</code></pre><h3 id="25-innerHTML"><a href="#25-innerHTML" class="headerlink" title="25. innerHTML"></a>25. innerHTML</h3><p>读模式下，返回调用元素的所有子节点(包括元素，注释，文本节点)对应的HTML标记<br>写模式下，根据指定的值创建新的DOM树，并替换调用元素原先的所有子节点</p>
+<h3 id="26-outerHTML"><a href="#26-outerHTML" class="headerlink" title="26. outerHTML"></a>26. outerHTML</h3><p>读模式下，返回调用元素和其所有子节点(包括元素，注释，文本节点)对应的HTML标签<br>写模式下，根据指定的值创建新的DOM树，并完全替换调用元素</p>
+<h3 id="27-element-children-element-childNodes"><a href="#27-element-children-element-childNodes" class="headerlink" title="27. element.children === element.childNodes"></a>27. element.children === element.childNodes</h3><p>IE8之前包含注释节点，IE9之后只返回元素节点</p>
+<h3 id="28"><a href="#28" class="headerlink" title="28."></a>28.</h3><h3 id="29"><a href="#29" class="headerlink" title="29."></a>29.</h3><h3 id="30"><a href="#30" class="headerlink" title="30."></a>30.</h3><h3 id="31"><a href="#31" class="headerlink" title="31."></a>31.</h3><h3 id="32"><a href="#32" class="headerlink" title="32."></a>32.</h3><h3 id="33"><a href="#33" class="headerlink" title="33."></a>33.</h3><h3 id="34"><a href="#34" class="headerlink" title="34."></a>34.</h3><h3 id="35"><a href="#35" class="headerlink" title="35."></a>35.</h3><h1 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h1><h3 id="1-hasChildNodes"><a href="#1-hasChildNodes" class="headerlink" title="1. hasChildNodes()"></a>1. hasChildNodes()</h3><p>作用：判断节点是否含有子节点<br>语法：node.hasChildNodes()<br>返回值：true || false<br>描述：节点包含一个或多个子节点的情况下返回true,否则返回false</p>
 <h3 id="2-appendChild"><a href="#2-appendChild" class="headerlink" title="2. appendChild()"></a>2. appendChild()</h3><p>作用：向childNodes列表的末尾添加一个节点,childNodes<br>语法：fatherNode.appendChild(newNode)<br>返回值：新增的节点(newNode)</p>
 <h3 id="3-insertBefore"><a href="#3-insertBefore" class="headerlink" title="3. insertBefore()"></a>3. insertBefore()</h3><p>作用：把节点插入到childNodes中特定的位置<br>语法：fatherNode.insertBefore(newNode, referNode)<br>返回值：被插入的节点<br>描述：如果referNode为null，则insertBefore === appendChild</p>
 <h3 id="4-replaceChild"><a href="#4-replaceChild" class="headerlink" title="4. replaceChild()"></a>4. replaceChild()</h3><p>作用：替换节点<br>语法：fatherNode.replaceChild(newNode, referNode)<br>返回值：被替换的节点<br>描述：被替换的节点仍然还在文档中，但已经没有了自己的位置</p>
 <h3 id="5-removeChild"><a href="#5-removeChild" class="headerlink" title="5. removeChild()"></a>5. removeChild()</h3><p>作用：移除节点<br>语法：fatherNode.removeChild(referNode)<br>返回值：被移除的节点<br>描述：被移除的节点仍然还在文档中，但已经没有了自己的位置</p>
 <h3 id="6-cloneNode"><a href="#6-cloneNode" class="headerlink" title="6. cloneNode()"></a>6. cloneNode()</h3><p>作用：创建目标节点的一个完全相同的副本<br>语法：referNode.clone(boolean)<br>返回值：复制得到的副本<br>描述：参数为true，执行深复制，复制节点及其整个子节点数。参数为false，执行浅复制，只复制节点本身</p>
-<h3 id="7-normalize"><a href="#7-normalize" class="headerlink" title="7. normalize()"></a>7. normalize()</h3><p>作用：处理文档树中的文本节点<br>语法：<br>返回值：<br>描述：</p>
-<h3 id="8-namedItem"><a href="#8-namedItem" class="headerlink" title="8. namedItem()"></a>8. namedItem()</h3><p>作用：通过元素的name特性取得集合中的项<br>语法：list.namedItem(name)<br>描述：此方法为HTMLCollection对象的方法</p>
+<h3 id="7-normalize"><a href="#7-normalize" class="headerlink" title="7. normalize()"></a>7. normalize()</h3><p>作用：处理文档树中的文本节点<br>语法：node.normalize()<br>描述：如果在一个包含两个或多个文本节点的父元素上调用normalize()方法，则会将所有文本节点合并成一个节点，nodeValue等于每个文本节点的nodeValue值拼接起来的值</p>
+<pre><code>&lt;div&gt;&lt;/div&gt;
+var div = $(&quot;div&quot;)[0];
+var text_1 = document.createTextNode(&quot;zhangqi&quot;);
+div.appendChild(text_1);
+var text_2 = document.createTextNode(&quot;zhaojinge&quot;);
+div.appendChild(text_2);
+console.log(div.childNodes.length);
+div.normalize();
+console.log(div.childNodes.length);
+console.log(div.childNodes[0]);  //&quot;zhangqizhaojinge&quot;
+</code></pre><h3 id="8-namedItem"><a href="#8-namedItem" class="headerlink" title="8. namedItem()"></a>8. namedItem()</h3><p>作用：通过元素的name特性取得集合中的项<br>语法：list.namedItem(name)<br>描述：此方法为HTMLCollection对象的方法</p>
 <h3 id="9-document-implementation-hasFeature"><a href="#9-document-implementation-hasFeature" class="headerlink" title="9. document.implementation.hasFeature()"></a>9. document.implementation.hasFeature()</h3><p>作用：检测浏览器是否支持给定的名称和版本的功能<br>语法：document.implementation.hasFeature(“XML”, “1.0”)<br>返回值：true || false<br>描述：建议同时使用能力检测</p>
 <h3 id="10-document文档写入"><a href="#10-document文档写入" class="headerlink" title="10. document文档写入"></a>10. document文档写入</h3><ul>
 <li>document.write(), document.writeln()</li>
@@ -433,8 +492,83 @@ for(var i=0,len=elem.attributes.length;i&lt;len;i++){
     arr.push(name + &quot;=&quot; + value + &apos;\\&apos;);
 } 
 console.log(arr);  //[&quot;href=\&quot;, &quot;class=a2\&quot;, &quot;name=zhangqi\&quot;, &quot;id=zhangqi\&quot;]
-</code></pre><h3 id="15"><a href="#15" class="headerlink" title="15."></a>15.</h3><h3 id="16-1"><a href="#16-1" class="headerlink" title="16."></a>16.</h3><h3 id="17"><a href="#17" class="headerlink" title="17."></a>17.</h3><h3 id="18"><a href="#18" class="headerlink" title="18."></a>18.</h3><h3 id="19"><a href="#19" class="headerlink" title="19."></a>19.</h3><h3 id="20"><a href="#20" class="headerlink" title="20."></a>20.</h3><h3 id="21"><a href="#21" class="headerlink" title="21."></a>21.</h3><h3 id="22"><a href="#22" class="headerlink" title="22."></a>22.</h3><h3 id="23"><a href="#23" class="headerlink" title="23."></a>23.</h3><h3 id="24"><a href="#24" class="headerlink" title="24."></a>24.</h3><h3 id="25"><a href="#25" class="headerlink" title="25."></a>25.</h3><h3 id="26"><a href="#26" class="headerlink" title="26."></a>26.</h3><h3 id="27"><a href="#27" class="headerlink" title="27."></a>27.</h3><p>作用：<br>语法：<br>返回值：<br>描述：</p>
-
+</code></pre><h3 id="15-document-createElement"><a href="#15-document-createElement" class="headerlink" title="15. document.createElement()"></a>15. document.createElement()</h3><p>作用：创建新元素<br>语法：document.createElement(“div”)<br>描述：在使用createElement()方法创建新元素的同时，也为新元素设置了ownerDocument属性</p>
+<pre><code>document.createElement(&quot;div&quot;);
+document.createElement(&quot;&lt;div id=\&quot;zhangqi\&quot; class=\&quot;box\&quot;&gt;&lt;/div&gt;&quot;);
+//指定完整标签能避开IE7中创建元素的某些问题
+</code></pre><h3 id="16-操作文本结点方法"><a href="#16-操作文本结点方法" class="headerlink" title="16. 操作文本结点方法"></a>16. 操作文本结点方法</h3><ul>
+<li>appendData(text)：将text添加到节点的末尾</li>
+<li>deleteData(offset, count)：从offset指定的位置开始删除count个字符</li>
+<li>insertData(offset, text)：在offset指定的位置插入text</li>
+<li>replaceData(offset, count, text)：用text替换从offset指定的位置开始到offset+count为止处的文本</li>
+<li>splitText(offset)：从offset指定的位置将当前文本节点分成两个文本节点</li>
+<li>substringData(offset, count)：提取从offset指定的位置开始到offset+count为止处的字符</li>
+</ul>
+<p>#<br>    <div>111</div><br>    var div = $(“div”)[0];<br>    var text = div.childNodes[0];<br>    text.appendData(“222”); //111222<br>    text.deleteData(2, 2);   //1122<br>    text.insertData(1, “zhangqi”); //1zhangqi122<br>    text.replaceData(1,7,”zhaojinge”); //1zhaojinge122<br>    var back = text.splitText(3);<br>    console.log(back);  //aojinge122<br>    console.log(text);  //1zh<br>    var str = back.substringData(1, 3);<br>    console.log(back);  //aojinge122<br>    console.log(str);  //oji</p>
+<h3 id="17-document-createTextNode"><a href="#17-document-createTextNode" class="headerlink" title="17. document.createTextNode()"></a>17. document.createTextNode()</h3><p>作用：创建新的文本节点<br>语法：document.createTextNode(text)</p>
+<h3 id="18-splitText"><a href="#18-splitText" class="headerlink" title="18. splitText()"></a>18. splitText()</h3><p>作用：将文本节点分成两个文本节点<br>语法：textNode.splitText(num)<br>描述：原来的文本节点包含从开始到指定位置之前的内容，新文本节点将包含剩下的文本</p>
+<pre><code>&lt;div&gt;zhangqizhaojinge&lt;/div&gt;
+var div = $(&quot;div&quot;)[0];
+var text = div.childNodes[0];
+var nextText = text.splitText(7);
+console.log(text);     //&quot;zhangqi&quot;
+console.log(nextText); //&quot;zhaojinge&quot;
+</code></pre><h3 id="19-document-createComment"><a href="#19-document-createComment" class="headerlink" title="19. document.createComment()"></a>19. document.createComment()</h3><p>作用：创建注释节点<br>语法：document.createComment(text)<br>描述：如果要访问注释节点，一定要保证他们是<html>元素的后代</html></p>
+<h3 id="20-document-createCDATASection"><a href="#20-document-createCDATASection" class="headerlink" title="20. document.createCDATASection()"></a>20. document.createCDATASection()</h3><p>作用：创建CDATA区域</p>
+<h3 id="21-document-createDocumentFragment"><a href="#21-document-createDocumentFragment" class="headerlink" title="21. document.createDocumentFragment()"></a>21. document.createDocumentFragment()</h3><p>作用：创建文档碎片<br>语法：document.createDocumentFragment()<br>描述：文档片段本身永远不会成为文档树的一部分</p>
+<pre><code>&lt;div id=&quot;box&quot;&gt;&lt;/div&gt;
+var div = $(&quot;#box&quot;)[0];
+var frag = document.createDocumentFragment();
+var a = document.createElement(&quot;div&quot;);
+a.id = &apos;zhangqi&apos;;
+frag.appendChild(a);
+var b = document.createElement(&quot;div&quot;);
+b.id = &apos;zhaojinge&apos;;
+frag.appendChild(b);
+div.appendChild(frag);
+//&lt;div id=&quot;box&quot;&gt;
+//    &lt;div id=&quot;zhangqi&quot;&gt;&lt;/div&gt;
+//    &lt;div id=&quot;zhaojinge&quot;&gt;&lt;/div&gt;
+//&lt;/div&gt;
+</code></pre><h3 id="22-document-createAttribute"><a href="#22-document-createAttribute" class="headerlink" title="22. document.createAttribute()"></a>22. document.createAttribute()</h3><p>作用：创建新的特性节点<br>语法：document.createAttribute(char)</p>
+<h3 id="23-element-getAttributeNode"><a href="#23-element-getAttributeNode" class="headerlink" title="23. element.getAttributeNode()"></a>23. element.getAttributeNode()</h3><p>作用：获取属性节点<br>语法：element.getAttributeNode(name)</p>
+<pre><code>var div = $(&quot;#box&quot;)[0];
+var attr = div.getAttributeNode(&quot;id&quot;);
+console.log(attr);  //id=&quot;box&quot;
+</code></pre><h3 id="24-classList属性方法"><a href="#24-classList属性方法" class="headerlink" title="24. classList属性方法"></a>24. classList属性方法</h3><ul>
+<li>add(value): 将给定字符串添加到列表，如果存在则不添加</li>
+<li>contains(value): 列表中是否存在给定的值</li>
+<li>remove(value): 从列表中删除给定的字符串</li>
+<li>toggle(value): 添加或删除给定的字符串</li>
+</ul>
+<h3 id="25-document-hasFoucs"><a href="#25-document-hasFoucs" class="headerlink" title="25. document.hasFoucs()"></a>25. document.hasFoucs()</h3><p>作用: 用于确定文档是否获得了焦点</p>
+<pre><code>var btn = $(&quot;#btn&quot;)[0];
+btn.focus();
+console.log(document.hasFocus()); // true
+</code></pre><h3 id="26-insertAdjacentHTML"><a href="#26-insertAdjacentHTML" class="headerlink" title="26. insertAdjacentHTML()"></a>26. insertAdjacentHTML()</h3><p>作用：插入标记<br>语法：element.insertAdjacentHTML(offset, html)<br>参数：</p>
+<h6 id="offset-插入位置，只有四种值"><a href="#offset-插入位置，只有四种值" class="headerlink" title="offset: 插入位置，只有四种值"></a>offset: 插入位置，只有四种值</h6><ul>
+<li>beforebegin: 当前元素之前插入一个同辈元素</li>
+<li>afterbegin: 在当前元素之下插入新的子元素活在第一个子元素之前插入新元素</li>
+<li>beforeend: 在当前元素之下插入新的子元素活在最后一个子元素之后插入新元素</li>
+<li>afterend: 当前元素之后插入一个同辈元素</li>
+</ul>
+<h3 id="27-scrollIntoView"><a href="#27-scrollIntoView" class="headerlink" title="27. scrollIntoView()"></a>27. scrollIntoView()</h3><p>作用：通过滚动浏览器窗口或容器窗口，使调用元素出现在视口中<br>语法：elem.scrollIntoView(boolean)<br>参数：默认为true</p>
+<ul>
+<li>true: 调用元素顶部与视口顶部尽可能平齐</li>
+<li>false: 调用元素全部出现在视口中(可能的话，底部与底部平齐)</li>
+</ul>
+<h3 id="28-contains"><a href="#28-contains" class="headerlink" title="28. contains()"></a>28. contains()</h3><p>alert(document.documentElement.contains(document.body)); //true</p>
+<h3 id="29-compareDocumentPosition"><a href="#29-compareDocumentPosition" class="headerlink" title="29. compareDocumentPosition()"></a>29. compareDocumentPosition()</h3><p>作用：确定节点关系<br>语法：elem.compareDocumentPosition(elem)<br>返回值：</p>
+<ul>
+<li>1: 无关</li>
+<li>2: 居前</li>
+<li>4: 居后</li>
+<li>8: 包含</li>
+<li><p>16: 被包含</p>
+<p>  console.log(document.documentElement.compareDocumentPosition(document.body));  //20</p>
+</li>
+</ul>
+<h3 id="30-1"><a href="#30-1" class="headerlink" title="30."></a>30.</h3><h3 id="31-1"><a href="#31-1" class="headerlink" title="31."></a>31.</h3><h3 id="32-1"><a href="#32-1" class="headerlink" title="32."></a>32.</h3><h3 id="33-1"><a href="#33-1" class="headerlink" title="33."></a>33.</h3><h3 id="34-1"><a href="#34-1" class="headerlink" title="34."></a>34.</h3><h3 id="35-1"><a href="#35-1" class="headerlink" title="35."></a>35.</h3><h3 id="36"><a href="#36" class="headerlink" title="36."></a>36.</h3><h3 id="37"><a href="#37" class="headerlink" title="37."></a>37.</h3><h3 id="38"><a href="#38" class="headerlink" title="38."></a>38.</h3><h3 id="39"><a href="#39" class="headerlink" title="39."></a>39.</h3>
       
     </div>
 
@@ -589,7 +723,7 @@ console.log(arr);  //[&quot;href=\&quot;, &quot;class=a2\&quot;, &quot;name=zhan
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#查找"><span class="nav-number">1.</span> <span class="nav-text">查找</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-getElementById"><span class="nav-number">1.0.1.</span> <span class="nav-text">1. getElementById()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-getElementsByTagName"><span class="nav-number">1.0.2.</span> <span class="nav-text">2. getElementsByTagName()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-getElementsByName"><span class="nav-number">1.0.3.</span> <span class="nav-text">3. getElementsByName()</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#属性"><span class="nav-number">2.</span> <span class="nav-text">属性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-nodeType-每个节点都有一个nodeType属性，表明节点的类型"><span class="nav-number">2.0.1.</span> <span class="nav-text">1. nodeType: 每个节点都有一个nodeType属性，表明节点的类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-nodeName和nodeValue-节点的具体信息"><span class="nav-number">2.0.2.</span> <span class="nav-text">2. nodeName和nodeValue: 节点的具体信息</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#nodeName"><span class="nav-number">2.0.2.0.0.1.</span> <span class="nav-text">nodeName:</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#nodeValue"><span class="nav-number">2.0.2.0.0.2.</span> <span class="nav-text">nodeValue:</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-childNodes"><span class="nav-number">2.0.3.</span> <span class="nav-text">3. childNodes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-parentNode"><span class="nav-number">2.0.4.</span> <span class="nav-text">4. parentNode</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-previousSibling"><span class="nav-number">2.0.5.</span> <span class="nav-text">5. previousSibling</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-nextSibling"><span class="nav-number">2.0.6.</span> <span class="nav-text">6. nextSibling</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-firstChild"><span class="nav-number">2.0.7.</span> <span class="nav-text">7. firstChild</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-lastChild"><span class="nav-number">2.0.8.</span> <span class="nav-text">8. lastChild</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-ownerDocument"><span class="nav-number">2.0.9.</span> <span class="nav-text">9. ownerDocument</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-document-documentElement"><span class="nav-number">2.0.10.</span> <span class="nav-text">10. document.documentElement</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-document-body"><span class="nav-number">2.0.11.</span> <span class="nav-text">11. document.body</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-document-doctype"><span class="nav-number">2.0.12.</span> <span class="nav-text">12. document.doctype</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#13-document-title"><span class="nav-number">2.0.13.</span> <span class="nav-text">13. document.title</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#14-URL-domain-referrer"><span class="nav-number">2.0.14.</span> <span class="nav-text">14. URL,domain,referrer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#15-document对象特殊集合"><span class="nav-number">2.0.15.</span> <span class="nav-text">15. document对象特殊集合</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#16"><span class="nav-number">2.0.16.</span> <span class="nav-text">16.</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#方法"><span class="nav-number">3.</span> <span class="nav-text">方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-hasChildNodes"><span class="nav-number">3.0.1.</span> <span class="nav-text">1. hasChildNodes()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-appendChild"><span class="nav-number">3.0.2.</span> <span class="nav-text">2. appendChild()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-insertBefore"><span class="nav-number">3.0.3.</span> <span class="nav-text">3. insertBefore()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-replaceChild"><span class="nav-number">3.0.4.</span> <span class="nav-text">4. replaceChild()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-removeChild"><span class="nav-number">3.0.5.</span> <span class="nav-text">5. removeChild()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-cloneNode"><span class="nav-number">3.0.6.</span> <span class="nav-text">6. cloneNode()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-normalize"><span class="nav-number">3.0.7.</span> <span class="nav-text">7. normalize()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-namedItem"><span class="nav-number">3.0.8.</span> <span class="nav-text">8. namedItem()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-document-implementation-hasFeature"><span class="nav-number">3.0.9.</span> <span class="nav-text">9. document.implementation.hasFeature()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-document文档写入"><span class="nav-number">3.0.10.</span> <span class="nav-text">10. document文档写入</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#参数："><span class="nav-number">3.0.10.0.0.1.</span> <span class="nav-text">参数：</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#描述："><span class="nav-number">3.0.10.0.0.2.</span> <span class="nav-text">描述：</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#描述：-1"><span class="nav-number">3.0.10.0.0.3.</span> <span class="nav-text">描述：</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-getAttribute"><span class="nav-number">3.0.11.</span> <span class="nav-text">11. getAttribute()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-setAttribute"><span class="nav-number">3.0.12.</span> <span class="nav-text">12. setAttribute()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#13-removeAttribute"><span class="nav-number">3.0.13.</span> <span class="nav-text">13. removeAttribute()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#14-attributes属性方法（读写）"><span class="nav-number">3.0.14.</span> <span class="nav-text">14. attributes属性方法（读写）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#15"><span class="nav-number">3.0.15.</span> <span class="nav-text">15.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#16-1"><span class="nav-number">3.0.16.</span> <span class="nav-text">16.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#17"><span class="nav-number">3.0.17.</span> <span class="nav-text">17.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#18"><span class="nav-number">3.0.18.</span> <span class="nav-text">18.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#19"><span class="nav-number">3.0.19.</span> <span class="nav-text">19.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#20"><span class="nav-number">3.0.20.</span> <span class="nav-text">20.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#21"><span class="nav-number">3.0.21.</span> <span class="nav-text">21.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#22"><span class="nav-number">3.0.22.</span> <span class="nav-text">22.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#23"><span class="nav-number">3.0.23.</span> <span class="nav-text">23.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#24"><span class="nav-number">3.0.24.</span> <span class="nav-text">24.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#25"><span class="nav-number">3.0.25.</span> <span class="nav-text">25.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#26"><span class="nav-number">3.0.26.</span> <span class="nav-text">26.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#27"><span class="nav-number">3.0.27.</span> <span class="nav-text">27.</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#查找"><span class="nav-number">1.</span> <span class="nav-text">查找</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-getElementById"><span class="nav-number">1.0.1.</span> <span class="nav-text">1. getElementById()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-getElementsByTagName"><span class="nav-number">1.0.2.</span> <span class="nav-text">2. getElementsByTagName()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-getElementsByName"><span class="nav-number">1.0.3.</span> <span class="nav-text">3. getElementsByName()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-querySelector"><span class="nav-number">1.0.4.</span> <span class="nav-text">4. querySelector()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-querySelectorAll"><span class="nav-number">1.0.5.</span> <span class="nav-text">5. querySelectorAll()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-matchesSelector"><span class="nav-number">1.0.6.</span> <span class="nav-text">6. matchesSelector()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-getElementsByClassNmae"><span class="nav-number">1.0.7.</span> <span class="nav-text">7. getElementsByClassNmae()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8"><span class="nav-number">1.0.8.</span> <span class="nav-text">8.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9"><span class="nav-number">1.0.9.</span> <span class="nav-text">9.</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#属性"><span class="nav-number">2.</span> <span class="nav-text">属性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-nodeType-每个节点都有一个nodeType属性，表明节点的类型"><span class="nav-number">2.0.1.</span> <span class="nav-text">1. nodeType: 每个节点都有一个nodeType属性，表明节点的类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-nodeName和nodeValue-节点的具体信息"><span class="nav-number">2.0.2.</span> <span class="nav-text">2. nodeName和nodeValue: 节点的具体信息</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#nodeName"><span class="nav-number">2.0.2.0.0.1.</span> <span class="nav-text">nodeName:</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#nodeValue"><span class="nav-number">2.0.2.0.0.2.</span> <span class="nav-text">nodeValue:</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-childNodes"><span class="nav-number">2.0.3.</span> <span class="nav-text">3. childNodes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-parentNode"><span class="nav-number">2.0.4.</span> <span class="nav-text">4. parentNode</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-previousSibling"><span class="nav-number">2.0.5.</span> <span class="nav-text">5. previousSibling</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-nextSibling"><span class="nav-number">2.0.6.</span> <span class="nav-text">6. nextSibling</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-firstChild"><span class="nav-number">2.0.7.</span> <span class="nav-text">7. firstChild</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-lastChild"><span class="nav-number">2.0.8.</span> <span class="nav-text">8. lastChild</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-ownerDocument"><span class="nav-number">2.0.9.</span> <span class="nav-text">9. ownerDocument</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-document-documentElement"><span class="nav-number">2.0.10.</span> <span class="nav-text">10. document.documentElement</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-document-body"><span class="nav-number">2.0.11.</span> <span class="nav-text">11. document.body</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-document-doctype"><span class="nav-number">2.0.12.</span> <span class="nav-text">12. document.doctype</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#13-document-title"><span class="nav-number">2.0.13.</span> <span class="nav-text">13. document.title</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#14-URL-domain-referrer"><span class="nav-number">2.0.14.</span> <span class="nav-text">14. URL,domain,referrer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#15-document对象特殊集合"><span class="nav-number">2.0.15.</span> <span class="nav-text">15. document对象特殊集合</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#16-textNode-data-textNode-nodeValue"><span class="nav-number">2.0.16.</span> <span class="nav-text">16. textNode.data === textNode.nodeValue</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#17-Attr节点属性"><span class="nav-number">2.0.17.</span> <span class="nav-text">17. Attr节点属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#18-DOM扩展的新属性"><span class="nav-number">2.0.18.</span> <span class="nav-text">18. DOM扩展的新属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#19-document-activeElement"><span class="nav-number">2.0.19.</span> <span class="nav-text">19. document.activeElement</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#20-readyState"><span class="nav-number">2.0.20.</span> <span class="nav-text">20. readyState</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#21-document-compatMode"><span class="nav-number">2.0.21.</span> <span class="nav-text">21. document.compatMode</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#22-document-head"><span class="nav-number">2.0.22.</span> <span class="nav-text">22. document.head</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#23-字符集属性"><span class="nav-number">2.0.23.</span> <span class="nav-text">23. 字符集属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#24-element-dataset"><span class="nav-number">2.0.24.</span> <span class="nav-text">24. element.dataset</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#25-innerHTML"><span class="nav-number">2.0.25.</span> <span class="nav-text">25. innerHTML</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#26-outerHTML"><span class="nav-number">2.0.26.</span> <span class="nav-text">26. outerHTML</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#27-element-children-element-childNodes"><span class="nav-number">2.0.27.</span> <span class="nav-text">27. element.children === element.childNodes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#28"><span class="nav-number">2.0.28.</span> <span class="nav-text">28.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#29"><span class="nav-number">2.0.29.</span> <span class="nav-text">29.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#30"><span class="nav-number">2.0.30.</span> <span class="nav-text">30.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#31"><span class="nav-number">2.0.31.</span> <span class="nav-text">31.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#32"><span class="nav-number">2.0.32.</span> <span class="nav-text">32.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#33"><span class="nav-number">2.0.33.</span> <span class="nav-text">33.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#34"><span class="nav-number">2.0.34.</span> <span class="nav-text">34.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#35"><span class="nav-number">2.0.35.</span> <span class="nav-text">35.</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#方法"><span class="nav-number">3.</span> <span class="nav-text">方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-hasChildNodes"><span class="nav-number">3.0.1.</span> <span class="nav-text">1. hasChildNodes()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-appendChild"><span class="nav-number">3.0.2.</span> <span class="nav-text">2. appendChild()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-insertBefore"><span class="nav-number">3.0.3.</span> <span class="nav-text">3. insertBefore()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-replaceChild"><span class="nav-number">3.0.4.</span> <span class="nav-text">4. replaceChild()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-removeChild"><span class="nav-number">3.0.5.</span> <span class="nav-text">5. removeChild()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-cloneNode"><span class="nav-number">3.0.6.</span> <span class="nav-text">6. cloneNode()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-normalize"><span class="nav-number">3.0.7.</span> <span class="nav-text">7. normalize()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-namedItem"><span class="nav-number">3.0.8.</span> <span class="nav-text">8. namedItem()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-document-implementation-hasFeature"><span class="nav-number">3.0.9.</span> <span class="nav-text">9. document.implementation.hasFeature()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-document文档写入"><span class="nav-number">3.0.10.</span> <span class="nav-text">10. document文档写入</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#参数："><span class="nav-number">3.0.10.0.0.1.</span> <span class="nav-text">参数：</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#描述："><span class="nav-number">3.0.10.0.0.2.</span> <span class="nav-text">描述：</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#描述：-1"><span class="nav-number">3.0.10.0.0.3.</span> <span class="nav-text">描述：</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-getAttribute"><span class="nav-number">3.0.11.</span> <span class="nav-text">11. getAttribute()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-setAttribute"><span class="nav-number">3.0.12.</span> <span class="nav-text">12. setAttribute()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#13-removeAttribute"><span class="nav-number">3.0.13.</span> <span class="nav-text">13. removeAttribute()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#14-attributes属性方法（读写）"><span class="nav-number">3.0.14.</span> <span class="nav-text">14. attributes属性方法（读写）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#15-document-createElement"><span class="nav-number">3.0.15.</span> <span class="nav-text">15. document.createElement()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#16-操作文本结点方法"><span class="nav-number">3.0.16.</span> <span class="nav-text">16. 操作文本结点方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#17-document-createTextNode"><span class="nav-number">3.0.17.</span> <span class="nav-text">17. document.createTextNode()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#18-splitText"><span class="nav-number">3.0.18.</span> <span class="nav-text">18. splitText()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#19-document-createComment"><span class="nav-number">3.0.19.</span> <span class="nav-text">19. document.createComment()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#20-document-createCDATASection"><span class="nav-number">3.0.20.</span> <span class="nav-text">20. document.createCDATASection()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#21-document-createDocumentFragment"><span class="nav-number">3.0.21.</span> <span class="nav-text">21. document.createDocumentFragment()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#22-document-createAttribute"><span class="nav-number">3.0.22.</span> <span class="nav-text">22. document.createAttribute()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#23-element-getAttributeNode"><span class="nav-number">3.0.23.</span> <span class="nav-text">23. element.getAttributeNode()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#24-classList属性方法"><span class="nav-number">3.0.24.</span> <span class="nav-text">24. classList属性方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#25-document-hasFoucs"><span class="nav-number">3.0.25.</span> <span class="nav-text">25. document.hasFoucs()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#26-insertAdjacentHTML"><span class="nav-number">3.0.26.</span> <span class="nav-text">26. insertAdjacentHTML()</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#offset-插入位置，只有四种值"><span class="nav-number">3.0.26.0.0.1.</span> <span class="nav-text">offset: 插入位置，只有四种值</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#27-scrollIntoView"><span class="nav-number">3.0.27.</span> <span class="nav-text">27. scrollIntoView()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#28-contains"><span class="nav-number">3.0.28.</span> <span class="nav-text">28. contains()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#29-compareDocumentPosition"><span class="nav-number">3.0.29.</span> <span class="nav-text">29. compareDocumentPosition()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#30-1"><span class="nav-number">3.0.30.</span> <span class="nav-text">30.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#31-1"><span class="nav-number">3.0.31.</span> <span class="nav-text">31.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#32-1"><span class="nav-number">3.0.32.</span> <span class="nav-text">32.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#33-1"><span class="nav-number">3.0.33.</span> <span class="nav-text">33.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#34-1"><span class="nav-number">3.0.34.</span> <span class="nav-text">34.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#35-1"><span class="nav-number">3.0.35.</span> <span class="nav-text">35.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#36"><span class="nav-number">3.0.36.</span> <span class="nav-text">36.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#37"><span class="nav-number">3.0.37.</span> <span class="nav-text">37.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#38"><span class="nav-number">3.0.38.</span> <span class="nav-text">38.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#39"><span class="nav-number">3.0.39.</span> <span class="nav-text">39.</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
