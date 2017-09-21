@@ -96,7 +96,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/09/17/API/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="DOM属性： nodeName nodeValue childNodes 保存nodeList对象 有length属性 访问：childNodes[0],childNodes.item(0)   parentNode：父节点 previousSibling：上一个同胞节点，第一个节点的previousSibling为null nextSibling：下一个同胞节点，最后一个节点的nextSibli">
-<meta property="og:updated_time" content="2017-09-17T15:17:23.191Z">
+<meta property="og:updated_time" content="2017-09-17T15:27:00.772Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Javascript API">
 <meta name="twitter:description" content="DOM属性： nodeName nodeValue childNodes 保存nodeList对象 有length属性 访问：childNodes[0],childNodes.item(0)   parentNode：父节点 previousSibling：上一个同胞节点，第一个节点的previousSibling为null nextSibling：下一个同胞节点，最后一个节点的nextSibli">
@@ -430,7 +430,11 @@
 <li>setProperty(propertyName,value,priority)</li>
 </ul>
 </li>
-<li>document.defaultView.getComputedStyle(attrName, :after) === window.getComputedStyle(attrName, :after)</li>
+<li>document.defaultView.getComputedStyle(attrName, :after)<ul>
+<li>window.getComputedStyle(attrName, :after)同样可用</li>
+<li>IE下，elem.currentStyle</li>
+</ul>
+</li>
 </ul>
 <h3 id="方法："><a href="#方法：" class="headerlink" title="方法："></a>方法：</h3><ul>
 <li>hasChildNodes()：判断有没有子节点</li>
@@ -626,6 +630,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2017/09/21/indexedDB/" rel="prev" title="indexedDB">
+                indexedDB <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -696,7 +704,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-count">14</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

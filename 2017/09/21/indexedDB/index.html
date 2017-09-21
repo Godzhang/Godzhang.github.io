@@ -1,0 +1,820 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="window.indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB;  window.IDBTransaction = window.IDBTransaction || window.webkitIDBTransaction || window.msID">
+<meta property="og:type" content="article">
+<meta property="og:title" content="indexedDB">
+<meta property="og:url" content="http://yoursite.com/2017/09/21/indexedDB/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="window.indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB;  window.IDBTransaction = window.IDBTransaction || window.webkitIDBTransaction || window.msID">
+<meta property="og:updated_time" content="2017-09-21T15:38:00.662Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="indexedDB">
+<meta name="twitter:description" content="window.indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB;  window.IDBTransaction = window.IDBTransaction || window.webkitIDBTransaction || window.msID">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/09/21/indexedDB/"/>
+
+
+
+
+
+  <title>indexedDB | Hexo</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/21/indexedDB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Godzhang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">indexedDB</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-21T22:22:32+08:00">
+                2017-09-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <pre><code>window.indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB;
+
+window.IDBTransaction = window.IDBTransaction || window.webkitIDBTransaction || window.msIDBTransaction;
+
+window.IDBKeyRange = window.IDBKeyRange || window.webkitIDBKeyRange || window.msIDBKeyRange
+
+window.IDBCursor = window.IDBCursor || window.webiktIDBCursor;
+</code></pre><h1 id="第一步：建立与数据库的连接"><a href="#第一步：建立与数据库的连接" class="headerlink" title="第一步：建立与数据库的连接"></a>第一步：建立与数据库的连接</h1><pre><code>var request = window.indexedDB.open(name, versiono);
+var db;
+request.onerror = function(event){
+}
+request.onupgradeneeded = function(event){
+    db = event.target.result;
+}
+request.onsuccess = function(event){
+    db = event.target.result;
+}
+</code></pre><h1 id="第二步：-创建、使用对象存储空间"><a href="#第二步：-创建、使用对象存储空间" class="headerlink" title="第二步： 创建、使用对象存储空间"></a>第二步： 创建、使用对象存储空间</h1><pre><code>const users = [
+  { ssn: &quot;444-44-4444&quot;, name: &quot;Bill&quot;, age: 35, email: &quot;bill@company.com&quot; },
+  { ssn: &quot;555-55-5555&quot;, name: &quot;Donna&quot;, age: 32, email: &quot;donna@home.org&quot; }
+];
+
+var store = db.createObjectStore(&quot;users&quot;, {keyPath: &quot;ssn&quot;});
+var request = store.add(users[i++]); || var request = store.put(users[i++]);
+request.onerror = function(){
+}
+request.onsuccess = function(){
+}
+</code></pre><h1 id="跨过第二步：通过事务对象操作数据库"><a href="#跨过第二步：通过事务对象操作数据库" class="headerlink" title="跨过第二步：通过事务对象操作数据库"></a>跨过第二步：通过事务对象操作数据库</h1><pre><code>var transaction = db.transaction(&quot;users&quot;, IDBTransaction.READ_WRITE);
+//事务对象本身也有事件处理程序
+transaction.onerror = function(){
+}
+transaction.oncomplete = function(){
+}
+var request = transaction.objectStore(&quot;users&quot;).get(&quot;555-55-5555&quot;); 
+
+//下面就可以访问特定空间了
+var method = request.add(...) || request.put(...) || request.get(...) || request.delete(...) || request.clear();
+method.onerror = function(){
+}
+method.onsuccess = function(){
+}
+</code></pre><h1 id="使用游标查询-检索多个对象时"><a href="#使用游标查询-检索多个对象时" class="headerlink" title="使用游标查询(检索多个对象时)"></a>使用游标查询(检索多个对象时)</h1><pre><code>var store = db.transaction(&quot;users&quot;).objectStore(&quot;users&quot;),
+    request = store.openCursor(); //创建游标
+request.onerror = function(){
+}
+request.onsuccess = function(event){
+    var cursor = event.target.result;  
+    //通过event.target.result这个属性取得存储空间的下一个对象,有值时返回IDBCursor实例，无值返回null
+    Cursor实例属性：
+    cursor.direction //数值，表示游标移动的方向
+    cursor.key //对象的键
+    cursor.value //实际的对象，显示前JSON.stringify(cursor.value)
+    cursor.primaryKey //游标使用的键
+}
+</code></pre><p><em>可以更新和删除个别记录</em></p>
+<pre><code>request.onsuccess = function(event){
+    var cursor = event.target.result,
+        value, updateRequest;
+
+    if(cursor){
+        if(cursor.key === &quot;foo&quot;){
+            value = cursor.value;
+            value.password = &quot;magic&quot;;
+
+            updateRequest = cursor.update(value); || deleteRequest = cursor.delete();//如果没有修改对象存储空间权限，这两个方法会抛出错误
+            updateRequest.onerror = function(){
+            }
+            updateRequest.onsuccess = function(){
+            }
+        }
+    }
+}
+</code></pre><p><em>每个游标只能发起一次请求，调用以下方法发起下一次请求</em></p>
+<ul>
+<li>continue(key) //if(key){移动到key的位置}else{移动到结果集中的下一项}</li>
+<li><p>advance(count) //向前移动count指定的项数</p>
+<p>  request.onsuccess = function(event){</p>
+<pre><code>var cursor = event.target.result;  
+if(cursor){
+    cursor.continue();
+}else{
+    console.log(&quot;done&quot;);
+}
+</code></pre><p>  }</p>
+</li>
+</ul>
+<h1 id="键范围-IDBKeyRange实例"><a href="#键范围-IDBKeyRange实例" class="headerlink" title="键范围(IDBKeyRange实例)"></a>键范围(IDBKeyRange实例)</h1><p><em>四种定义键范围的方式</em></p>
+<ul>
+<li>var onlyRange = IDBKeyRange.only(key);  //类似db.transaction(“users”, IDBTransaction.READ_WRITE).createStore(“users”).get(key);</li>
+<li>var lowerRange = IDBKeyRange.lowerBound(key, boolean);</li>
+<li>var upperRange = IDBKeyRange.upperBound(key, boolean);</li>
+<li><p>var boundRange = IDBKeyRange.bound(key1, key2, boolean1, boolean2);</p>
+<p>  var store = db.transaction(“users”).objectStore(“users”),</p>
+<pre><code>range = IDBKeyRange.bound(&apos;ace&apos;, &apos;007&apos;),
+request = store.openCursor(range);
+</code></pre><p>  request.onsuccess = function(event){</p>
+<pre><code>var cursor = event.target.result;  
+if(cursor){
+    cursor.continue();
+}else{
+    console.log(&quot;done&quot;);
+}
+</code></pre><p>  }</p>
+</li>
+</ul>
+<p><em>openCursor()的第二个参数表示设定游标方向</em></p>
+<pre><code>request = store.openCursor(range, IDBCursor.NEXT); //向后
+request = store.openCursor(range, IDBCursor.NEXT_NO_DUPLICATE); //跳过重复的
+request = store.openCursor(range, IDBCursor.PREV); //向前
+request = store.openCursor(range, IDBCursor.PREV_NO_DUPLICATE); //跳过重复的
+</code></pre><h1 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h1><pre><code>var store = db.transaction(&quot;users&quot;).objectStore(&quot;users&quot;),
+    index = store.createIndex(&quot;username&quot;, &quot;username&quot;, {unique: false}); //返回IDBIndex实例，等同于下面的方法
+
+var store = db.transaction(&quot;users&quot;).objectStore(&quot;users&quot;),
+    index = store.index(&quot;username&quot;);
+    //可以在索引上创建游标
+    request = index.openCursor();
+request.onsuccess = function(event){
+    event.result.key //保存索引键
+    event.result.value //保存主键
+}
+
+//也可以使用get方法取得一个对象
+var store = db.transaction(&quot;users&quot;).objectStore(&quot;users&quot;),
+    index = store.index(&quot;username&quot;);
+    request = index.get(&quot;007&quot;);
+request.onsuccess = function(event){
+}
+request.onerror = function(event){
+}
+
+//可以使用getKey方法取得主键
+var store = db.transaction(&quot;users&quot;).objectStore(&quot;users&quot;),
+    index = store.index(&quot;username&quot;);
+    request = index.get(&quot;007&quot;);
+request.onsuccess = function(event){
+    event.result.key //保存索引键
+    event.result.value //保存主键
+}
+</code></pre><p><em>任何时候可以通过IDBIndex对象取得有关索引的相关信息</em></p>
+<ul>
+<li>name:索引名字</li>
+<li>keyPath:传入createIndex()中的属性路径</li>
+<li>objectStore:索引的对象存储空间</li>
+<li>unique:表示索引键是否唯一的布尔值</li>
+</ul>
+<p><em>通过对象存储对象的indexname属性可以访问为该空间建立的所有索引</em></p>
+<pre><code>var store = db.transaction(&quot;users&quot;).objectStore(&quot;users&quot;),
+    indexNames = store.indexNames;
+    index,
+    i = 0,
+    len = indexNames.length;
+
+while(i &lt; len){
+    index = store.index(indexNames[i++]);
+    console.log(index.name);
+    console.log(index.keyPath);
+    console.log(index.objectStore);
+    console.log(index.unique);
+}
+</code></pre><p><em>删除索引</em></p>
+<pre><code>var store = db.transaction(&quot;users&quot;).objectStore(&quot;users&quot;)；
+store.deleteIndex(&quot;username&quot;);
+</code></pre>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/09/17/API/" rel="next" title="Javascript API">
+                <i class="fa fa-chevron-left"></i> Javascript API
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Godzhang" />
+          <p class="site-author-name" itemprop="name">Godzhang</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#第一步：建立与数据库的连接"><span class="nav-number">1.</span> <span class="nav-text">第一步：建立与数据库的连接</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#第二步：-创建、使用对象存储空间"><span class="nav-number">2.</span> <span class="nav-text">第二步： 创建、使用对象存储空间</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#跨过第二步：通过事务对象操作数据库"><span class="nav-number">3.</span> <span class="nav-text">跨过第二步：通过事务对象操作数据库</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用游标查询-检索多个对象时"><span class="nav-number">4.</span> <span class="nav-text">使用游标查询(检索多个对象时)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#键范围-IDBKeyRange实例"><span class="nav-number">5.</span> <span class="nav-text">键范围(IDBKeyRange实例)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#索引"><span class="nav-number">6.</span> <span class="nav-text">索引</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Godzhang</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

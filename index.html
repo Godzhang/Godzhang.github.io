@@ -251,6 +251,281 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/21/indexedDB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Godzhang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/09/21/indexedDB/" itemprop="url">indexedDB</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-21T22:22:32+08:00">
+                2017-09-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <pre><code>window.indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB;
+
+window.IDBTransaction = window.IDBTransaction || window.webkitIDBTransaction || window.msIDBTransaction;
+
+window.IDBKeyRange = window.IDBKeyRange || window.webkitIDBKeyRange || window.msIDBKeyRange
+
+window.IDBCursor = window.IDBCursor || window.webiktIDBCursor;
+</code></pre><h1 id="第一步：建立与数据库的连接"><a href="#第一步：建立与数据库的连接" class="headerlink" title="第一步：建立与数据库的连接"></a>第一步：建立与数据库的连接</h1><pre><code>var request = window.indexedDB.open(name, versiono);
+var db;
+request.onerror = function(event){
+}
+request.onupgradeneeded = function(event){
+    db = event.target.result;
+}
+request.onsuccess = function(event){
+    db = event.target.result;
+}
+</code></pre><h1 id="第二步：-创建、使用对象存储空间"><a href="#第二步：-创建、使用对象存储空间" class="headerlink" title="第二步： 创建、使用对象存储空间"></a>第二步： 创建、使用对象存储空间</h1><pre><code>const users = [
+  { ssn: &quot;444-44-4444&quot;, name: &quot;Bill&quot;, age: 35, email: &quot;bill@company.com&quot; },
+  { ssn: &quot;555-55-5555&quot;, name: &quot;Donna&quot;, age: 32, email: &quot;donna@home.org&quot; }
+];
+
+var store = db.createObjectStore(&quot;users&quot;, {keyPath: &quot;ssn&quot;});
+var request = store.add(users[i++]); || var request = store.put(users[i++]);
+request.onerror = function(){
+}
+request.onsuccess = function(){
+}
+</code></pre><h1 id="跨过第二步：通过事务对象操作数据库"><a href="#跨过第二步：通过事务对象操作数据库" class="headerlink" title="跨过第二步：通过事务对象操作数据库"></a>跨过第二步：通过事务对象操作数据库</h1><pre><code>var transaction = db.transaction(&quot;users&quot;, IDBTransaction.READ_WRITE);
+//事务对象本身也有事件处理程序
+transaction.onerror = function(){
+}
+transaction.oncomplete = function(){
+}
+var request = transaction.objectStore(&quot;users&quot;).get(&quot;555-55-5555&quot;); 
+
+//下面就可以访问特定空间了
+var method = request.add(...) || request.put(...) || request.get(...) || request.delete(...) || request.clear();
+method.onerror = function(){
+}
+method.onsuccess = function(){
+}
+</code></pre><h1 id="使用游标查询-检索多个对象时"><a href="#使用游标查询-检索多个对象时" class="headerlink" title="使用游标查询(检索多个对象时)"></a>使用游标查询(检索多个对象时)</h1><pre><code>var store = db.transaction(&quot;users&quot;).objectStore(&quot;users&quot;),
+    request = store.openCursor(); //创建游标
+request.onerror = function(){
+}
+request.onsuccess = function(event){
+    var cursor = event.target.result;  
+    //通过event.target.result这个属性取得存储空间的下一个对象,有值时返回IDBCursor实例，无值返回null
+    Cursor实例属性：
+    cursor.direction //数值，表示游标移动的方向
+    cursor.key //对象的键
+    cursor.value //实际的对象，显示前JSON.stringify(cursor.value)
+    cursor.primaryKey //游标使用的键
+}
+</code></pre><p><em>可以更新和删除个别记录</em></p>
+<pre><code>request.onsuccess = function(event){
+    var cursor = event.target.result,
+        value, updateRequest;
+
+    if(cursor){
+        if(cursor.key === &quot;foo&quot;){
+            value = cursor.value;
+            value.password = &quot;magic&quot;;
+
+            updateRequest = cursor.update(value); || deleteRequest = cursor.delete();//如果没有修改对象存储空间权限，这两个方法会抛出错误
+            updateRequest.onerror = function(){
+            }
+            updateRequest.onsuccess = function(){
+            }
+        }
+    }
+}
+</code></pre><p><em>每个游标只能发起一次请求，调用以下方法发起下一次请求</em></p>
+<ul>
+<li>continue(key) //if(key){移动到key的位置}else{移动到结果集中的下一项}</li>
+<li><p>advance(count) //向前移动count指定的项数</p>
+<p>  request.onsuccess = function(event){</p>
+<pre><code>var cursor = event.target.result;  
+if(cursor){
+    cursor.continue();
+}else{
+    console.log(&quot;done&quot;);
+}
+</code></pre><p>  }</p>
+</li>
+</ul>
+<h1 id="键范围-IDBKeyRange实例"><a href="#键范围-IDBKeyRange实例" class="headerlink" title="键范围(IDBKeyRange实例)"></a>键范围(IDBKeyRange实例)</h1><p><em>四种定义键范围的方式</em></p>
+<ul>
+<li>var onlyRange = IDBKeyRange.only(key);  //类似db.transaction(“users”, IDBTransaction.READ_WRITE).createStore(“users”).get(key);</li>
+<li>var lowerRange = IDBKeyRange.lowerBound(key, boolean);</li>
+<li>var upperRange = IDBKeyRange.upperBound(key, boolean);</li>
+<li><p>var boundRange = IDBKeyRange.bound(key1, key2, boolean1, boolean2);</p>
+<p>  var store = db.transaction(“users”).objectStore(“users”),</p>
+<pre><code>range = IDBKeyRange.bound(&apos;ace&apos;, &apos;007&apos;),
+request = store.openCursor(range);
+</code></pre><p>  request.onsuccess = function(event){</p>
+<pre><code>var cursor = event.target.result;  
+if(cursor){
+    cursor.continue();
+}else{
+    console.log(&quot;done&quot;);
+}
+</code></pre><p>  }</p>
+</li>
+</ul>
+<p><em>openCursor()的第二个参数表示设定游标方向</em></p>
+<pre><code>request = store.openCursor(range, IDBCursor.NEXT); //向后
+request = store.openCursor(range, IDBCursor.NEXT_NO_DUPLICATE); //跳过重复的
+request = store.openCursor(range, IDBCursor.PREV); //向前
+request = store.openCursor(range, IDBCursor.PREV_NO_DUPLICATE); //跳过重复的
+</code></pre><h1 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h1><pre><code>var store = db.transaction(&quot;users&quot;).objectStore(&quot;users&quot;),
+    index = store.createIndex(&quot;username&quot;, &quot;username&quot;, {unique: false}); //返回IDBIndex实例，等同于下面的方法
+
+var store = db.transaction(&quot;users&quot;).objectStore(&quot;users&quot;),
+    index = store.index(&quot;username&quot;);
+    //可以在索引上创建游标
+    request = index.openCursor();
+request.onsuccess = function(event){
+    event.result.key //保存索引键
+    event.result.value //保存主键
+}
+
+//也可以使用get方法取得一个对象
+var store = db.transaction(&quot;users&quot;).objectStore(&quot;users&quot;),
+    index = store.index(&quot;username&quot;);
+    request = index.get(&quot;007&quot;);
+request.onsuccess = function(event){
+}
+request.onerror = function(event){
+}
+
+//可以使用getKey方法取得主键
+var store = db.transaction(&quot;users&quot;).objectStore(&quot;users&quot;),
+    index = store.index(&quot;username&quot;);
+    request = index.get(&quot;007&quot;);
+request.onsuccess = function(event){
+    event.result.key //保存索引键
+    event.result.value //保存主键
+}
+</code></pre><p><em>任何时候可以通过IDBIndex对象取得有关索引的相关信息</em></p>
+<ul>
+<li>name:索引名字</li>
+<li>keyPath:传入createIndex()中的属性路径</li>
+<li>objectStore:索引的对象存储空间</li>
+<li>unique:表示索引键是否唯一的布尔值</li>
+</ul>
+<p><em>通过对象存储对象的indexname属性可以访问为该空间建立的所有索引</em></p>
+<pre><code>var store = db.transaction(&quot;users&quot;).objectStore(&quot;users&quot;),
+    indexNames = store.indexNames;
+    index,
+    i = 0,
+    len = indexNames.length;
+
+while(i &lt; len){
+    index = store.index(indexNames[i++]);
+    console.log(index.name);
+    console.log(index.keyPath);
+    console.log(index.objectStore);
+    console.log(index.unique);
+}
+</code></pre><p><em>删除索引</em></p>
+<pre><code>var store = db.transaction(&quot;users&quot;).objectStore(&quot;users&quot;)；
+store.deleteIndex(&quot;username&quot;);
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/17/API/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -432,7 +707,11 @@
 <li>setProperty(propertyName,value,priority)</li>
 </ul>
 </li>
-<li>document.defaultView.getComputedStyle(attrName, :after) === window.getComputedStyle(attrName, :after)</li>
+<li>document.defaultView.getComputedStyle(attrName, :after)<ul>
+<li>window.getComputedStyle(attrName, :after)同样可用</li>
+<li>IE下，elem.currentStyle</li>
+</ul>
+</li>
 </ul>
 <h3 id="方法："><a href="#方法：" class="headerlink" title="方法："></a>方法：</h3><ul>
 <li>hasChildNodes()：判断有没有子节点</li>
@@ -2997,874 +3276,6 @@ String.raw({ raw: [&apos;t&apos;,&apos;e&apos;,&apos;s&apos;,&apos;t&apos;] }, 0
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/06/26/Object对象内置方法总结/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Godzhang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/06/26/Object对象内置方法总结/" itemprop="url">Object对象内置方法总结</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-26T20:36:04+08:00">
-                2017-06-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="1-Object-assign"><a href="#1-Object-assign" class="headerlink" title="1. Object.assign()"></a>1. Object.assign()</h1><p>作用：用于将所有可枚举的属性的值从一个或多个源对象复制到目标对象<br>语法：Object.assign(target, …sources)<br>参数：</p>
-<ul>
-<li>target: 目标对象</li>
-<li>sources（多个）源对象</li>
-</ul>
-<p>返回值：目标对象<br>是否改变原对象：若target是已存在对象，则改变，只改变target<br>兼容性：IE-<br>版本：ES6<br>描述：如果目标对象中的属性具有相同的键，则属性将被源中的属性覆盖。后来的源的属性将类似地覆盖早先的属性。<br>Object.assign 方法只会拷贝源对象自身的并且可枚举的属性到目标对象身上。该方法使用源对象的 [ [ Get ] ] 和目标对象的 [ [ Set ] ]，所以它会调用相关 getter 和 setter。因此，它分配属性而不是复制或定义新的属性。<br>注意， Object.assign 会跳过那些值为 null 或 undefined 的源对象。</p>
-<pre><code>//复制一个object
-var obj = { a: 1 };
-var copy = Object.assign({}, obj);
-console.log(copy); // { a: 1 }
-
-//深度拷贝问题
-//针对深度拷贝，需要使用其他方法，因为 Object.assign() 拷贝的是属性值。假如源对象的属性值是一个指向对象的引用，它也只拷贝那个引用值。
-function test() {
-  let a = { b: {c:4} , d: { e: {f:1}} }
-  let g = Object.assign({},a)
-  let h = JSON.parse(JSON.stringify(a));
-  console.log(g.d) // { e: { f: 1 } }
-  g.d.e = 32
-  console.log(&apos;g.d.e set to 32.&apos;) // g.d.e set to 32.
-  console.log(g) // { b: { c: 4 }, d: { e: 32 } }
-  console.log(a) // { b: { c: 4 }, d: { e: 32 } }
-  console.log(h) // { b: { c: 4 }, d: { e: { f: 1 } } }
-  h.d.e = 54
-  console.log(&apos;h.d.e set to 54.&apos;) // h.d.e set to 54.
-  console.log(g) // { b: { c: 4 }, d: { e: 32 } }
-  console.log(a) // { b: { c: 4 }, d: { e: 32 } }
-  console.log(h) // { b: { c: 4 }, d: { e: 54 } }
-}
-test();
-
-//合并objects
-var o1 = { a: 1 };
-var o2 = { b: 2 };
-var o3 = { c: 3 };
-var obj = Object.assign(o1, o2, o3);
-console.log(obj); // { a: 1, b: 2, c: 3 }
-console.log(o1);  // { a: 1, b: 2, c: 3 }, 注意目标对象自身也会改变。
-
-//拷贝 symbol 类型的属性
-var o1 = { a: 1 };
-var o2 = { [Symbol(&quot;foo&quot;)]: 2 };
-var obj = Object.assign({}, o1, o2);
-console.log(obj); // { a: 1, [Symbol(&quot;foo&quot;)]: 2 }
-
-//继承属性和不可枚举属性是不能拷贝的
-var obj = Object.create({foo: 1}, { // foo 是个继承属性。
-    bar: {
-        value: 2  // bar 是个不可枚举属性。
-    },
-    baz: {
-        value: 3,
-        enumerable: true  // baz 是个自身可枚举属性。
-    }
-});
-var copy = Object.assign({}, obj);
-console.log(copy); // { baz: 3 }
-
-//原始类型会被包装为 object
-var v1 = &quot;abc&quot;;
-var v2 = true;
-var v3 = 10;
-var v4 = Symbol(&quot;foo&quot;)
-var obj = Object.assign({}, v1, null, v2, undefined, v3, v4); 
-// 原始类型会被包装，null 和 undefined 会被忽略。
-// 注意，只有字符串的包装对象才可能有自身可枚举属性。
-console.log(obj); // { &quot;0&quot;: &quot;a&quot;, &quot;1&quot;: &quot;b&quot;, &quot;2&quot;: &quot;c&quot; }
-
-//异常会打断接下来的拷贝任务
-var target = Object.defineProperty({}, &quot;foo&quot;, {
-    value: 1,
-    writable: false
-}); // target 的 foo 属性是个只读属性。
-
-Object.assign(target, {bar: 2}, {foo2: 3, foo: 3, foo3: 3}, {baz: 4});
-// TypeError: &quot;foo&quot; is read-only
-// 注意这个异常是在拷贝第二个源对象的第二个属性时发生的。
-
-console.log(target.bar);  // 2，说明第一个源对象拷贝成功了。
-console.log(target.foo2); // 3，说明第二个源对象的第一个属性也拷贝成功了。
-console.log(target.foo);  // 1，只读属性不能被覆盖，所以第二个源对象的第二个属性拷贝失败了。
-console.log(target.foo3); // undefined，异常之后 assign 方法就退出了，第三个属性是不会被拷贝到的。
-console.log(target.baz);  // undefined，第三个源对象更是不会被拷贝到的。
-</code></pre><h1 id="2-Object-create"><a href="#2-Object-create" class="headerlink" title="2. Object.create()"></a>2. Object.create()</h1><p>作用：使用指定的原型对象和其属性创建了一个新的对象<br>语法：Object.create(proto, propertiesObject)<br>参数：</p>
-<ul>
-<li>proto: 一个对象，应该是新创建的对象的原型</li>
-<li>propertiesObject: 可选。该参数对象是一组属性与值，该对象的属性名称将是新创建的对象的属性名称，值是属性描述符（这些属性描述符的结构与Object.defineProperties()的第二个参数一样）。注意：该参数对象不能是 undefined，另外只有该对象中自身拥有的可枚举的属性才有效，也就是说该对象的原型链上属性是无效的。</li>
-</ul>
-<p>返回值：具有指定原型对象属性的新的对象<br>是否改变原对象：false<br>兼容性：IE9+<br>版本：ES5<br>描述：如果 proto 参数不是 null 或一个对象值，则抛出一个 TypeError 异常。</p>
-<pre><code>function Shape() {
-  this.x = 0;
-  this.y = 0;
-}
-
-Shape.prototype.move = function(x, y) {
-    this.x += x;
-    this.y += y;
-    console.info(&quot;Shape moved.&quot;);
-};
-
-function Rectangle() {
-  Shape.call(this); //call super constructor.
-}
-Rectangle.prototype = Object.create(Shape.prototype);
-
-var rect = new Rectangle();
-
-rect instanceof Rectangle; //true
-rect instanceof Shape; //true
-
-function Fn(){
-    this.name = &apos;zhangqi&apos;;
-}
-
-Fn.prototype = {
-    init: function(){
-        console.log(1);
-    }
-}
-
-var a = Object.create(Fn.prototype,{foo:{writable:true, configurable:true, value: &quot;hello&quot;}});
-
-console.log(a.foo); //hello
-</code></pre><h1 id="3-Object-defineProperties"><a href="#3-Object-defineProperties" class="headerlink" title="3. Object.defineProperties()"></a>3. Object.defineProperties()</h1><p>作用：直接在一个对象上定义新的属性或修改现有属性<br>语法：Object.defineProperties(obj, props)<br>参数：</p>
-<ul>
-<li>obj: 将要被添加或修改属性的对象</li>
-<li>props: 该对象的一个或多个键值对定义了将要为对象添加或修改的属性的具体配置</li>
-</ul>
-<p>返回值：被传递给函数的对象<br>是否改变原对象：true<br>兼容性：IE9+<br>版本：ES5<br>描述：—</p>
-<pre><code>var obj = {};
-Object.defineProperties(obj, {
-  &quot;property1&quot;: {
-    value: true,
-    writable: true
-  },
-  &quot;property2&quot;: {
-    value: &quot;Hello&quot;,
-    writable: false
-  }
-  // 等等.
-});
-alert(obj.property2) //弹出&quot;Hello&quot;
-</code></pre><h1 id="4-Object-defineProperty"><a href="#4-Object-defineProperty" class="headerlink" title="4. Object.defineProperty()"></a>4. Object.defineProperty()</h1><p>作用：直接在一个对象上定义一个新属性，或者修改一个对象的现有属性<br>语法：Object.defineProperty(obj, prop, descriptor)<br>参数：</p>
-<ul>
-<li>obj: 要在其上定义属性的对象</li>
-<li>prop: 要定义或修改的属性名称</li>
-<li>descriptor: 将被定义或修改的属性的描述符</li>
-</ul>
-<p>返回值：被传递给函数的对象<br>是否改变原对象：true<br>兼容性：IE9+<br>版本：ES5<br>描述：<br>数据描述符和存取描述符均具有以下可选键值：</p>
-<h3 id="configurable"><a href="#configurable" class="headerlink" title="configurable"></a>configurable</h3><p>当且仅当该属性的 configurable 为 true 时，该属性描述符才能够被改变，也能够被删除。默认为 false。</p>
-<h3 id="enumerable"><a href="#enumerable" class="headerlink" title="enumerable"></a>enumerable</h3><p>当且仅当该属性的 enumerable 为 true 时，该属性才能够出现在对象的枚举属性中。默认为 false。<br>数据描述符同时具有以下可选键值：</p>
-<h3 id="value"><a href="#value" class="headerlink" title="value"></a>value</h3><p>该属性对应的值。可以是任何有效的 JavaScript 值（数值，对象，函数等）。默认为 undefined。</p>
-<h3 id="writable"><a href="#writable" class="headerlink" title="writable"></a>writable</h3><p>当且仅当该属性的 writable 为 true 时，该属性才能被赋值运算符改变。默认为 false。<br>存取描述符同时具有以下可选键值：</p>
-<h3 id="get"><a href="#get" class="headerlink" title="get"></a>get</h3><p>一个给属性提供 getter 的方法，如果没有 getter 则为 undefined。该方法返回值被用作属性值。默认为 undefined。</p>
-<h3 id="set"><a href="#set" class="headerlink" title="set"></a>set</h3><p>一个给属性提供 setter 的方法，如果没有 setter 则为 undefined。该方法将接受唯一参数，并将该参数的新值分配给该属性。默认为 undefined。</p>
-<pre><code>var o = {}; // 创建一个新对象
-property descriptor
-Object.defineProperty(o, &quot;a&quot;, {
-  value : 37,
-  writable : true,
-  enumerable : true,
-  configurable : true
-});
-// 对象o拥有了属性a，值为37
-var bValue;
-Object.defineProperty(o, &quot;b&quot;, {
-  get : function(){
-    return bValue;
-  },
-  set : function(newValue){
-    bValue = newValue;
-  },
-  enumerable : true,
-  configurable : true
-});
-o.b = 38;
-// 对象o拥有了属性b，值为38
-
-// 数据描述符和存取描述符不能混合使用
-Object.defineProperty(o, &quot;conflict&quot;, {
-  value: 0x9f91102, 
-  get: function() { 
-    return 0xdeadbeef; 
-  } 
-});
-// throws a TypeError: value appears only in data descriptors, get appears only in accessor descriptors
-
-//Writable 属性
-var o = {}; // 创建一个新对象
-Object.defineProperty(o, &quot;a&quot;, { value : 37, writable : false });
-console.log(o.a); // 打印 37
-o.a = 25; // 没有错误抛出（在严格模式下会抛出，即使之前已经有相同的值）
-console.log(o.a); // 打印 37， 赋值不起作用。
-
-//Enumerable 特性
-var o = {};
-Object.defineProperty(o, &quot;a&quot;, { value : 1, enumerable:true });
-Object.defineProperty(o, &quot;b&quot;, { value : 2, enumerable:false });
-Object.defineProperty(o, &quot;c&quot;, { value : 3 }); // enumerable defaults to false
-o.d = 4; // 如果使用直接赋值的方式创建对象的属性，则这个属性的enumerable为true
-for (var i in o) {    
-  console.log(i);  
-}
-// 打印 &apos;a&apos; 和 &apos;d&apos; (in undefined order)
-Object.keys(o); // [&quot;a&quot;, &quot;d&quot;]
-o.propertyIsEnumerable(&apos;a&apos;); // true
-o.propertyIsEnumerable(&apos;b&apos;); // false
-o.propertyIsEnumerable(&apos;c&apos;); // false
-
-//Configurable 特性
-//configurable 特性表示对象的属性是否可以被删除，以及除 writable 特性外的其他特性是否可以被修改。
-var o = {};
-Object.defineProperty(o, &quot;a&quot;, { get : function(){return 1;}, configurable : false } );
-// throws a TypeError一旦把属性定义为不可配置的，就不能再变回可配置了
-Object.defineProperty(o, &quot;a&quot;, {configurable : true}); 
-// throws a TypeError
-Object.defineProperty(o, &quot;a&quot;, {enumerable : true}); 
-// throws a TypeError (set was undefined previously) 
-Object.defineProperty(o, &quot;a&quot;, {set : function(){}}); 
-// throws a TypeError (even though the new get does exactly the same thing) 
-Object.defineProperty(o, &quot;a&quot;, {get : function(){return 1;}});
-// throws a TypeError
-Object.defineProperty(o, &quot;a&quot;, {value : 12});
-console.log(o.a); // 1
-delete o.a; // Nothing happens
-console.log(o.a); // 1
-
-//一般的 Setters 和 Getters
-function Archiver() {
-  var temperature = null;
-  var archive = [];
-
-  Object.defineProperty(this, &apos;temperature&apos;, {
-    get: function() {
-      console.log(&apos;get!&apos;);
-      return temperature;
-    },
-    set: function(value) {
-      temperature = value;
-      archive.push({ val: temperature });
-    }
-  });
-
-  this.getArchive = function() { return archive; };
-}
-
-var arc = new Archiver();
-arc.temperature; // &apos;get!&apos;
-arc.temperature = 11;
-arc.temperature = 13;
-arc.getArchive(); // [{ val: 11 }, { val: 13 }]
-</code></pre><h1 id="5-Object-entries"><a href="#5-Object-entries" class="headerlink" title="5. Object.entries()"></a>5. Object.entries()</h1><p>作用：返回一个给定对象自己的可枚举属性[key，value]对的数组，数组中键值对的排列顺序和使用 for…in 循环遍历该对象时返回的顺序一致（区别在于一个for-in循环也枚举原型链中的属性）<br>语法：Object.entries(obj)<br>参数：obj: 返回该对象由可枚举属性名和对应属性值组成的的键值对<br>返回值：一个给定对象自己的枚举属性[key，value]对的数组<br>是否改变原对象：<br>兼容性：—<br>版本：ES7<br>描述：</p>
-<pre><code>var obj = { foo: &quot;bar&quot;, baz: 42 };
-console.log(Object.entries(obj)); 
-// [ [&apos;foo&apos;, &apos;bar&apos;], [&apos;baz&apos;, 42] ]
-
-// 类数组对象
-var obj = { 0: &apos;a&apos;, 1: &apos;b&apos;, 2: &apos;c&apos; };
-console.log(Object.entries(obj)); 
-// [ [&apos;0&apos;, &apos;a&apos;], [&apos;1&apos;, &apos;b&apos;], [&apos;2&apos;, &apos;c&apos;] ]
-
-// 带有随机（非顺序）排列属性名的类数组对象
-var an_obj = { 100: &apos;a&apos;, 2: &apos;b&apos;, 7: &apos;c&apos; };
-console.log(Object.entries(an_obj)); 
-// [ [&apos;2&apos;, &apos;b&apos;], [&apos;7&apos;, &apos;c&apos;], [&apos;100&apos;, &apos;a&apos;] ]
-
-// getFoo是不可枚举属性
-var my_obj = Object.create(
-   {}, 
-   { getFoo: { value: function() { return this.foo; } } }
-);
-my_obj.foo = &quot;bar&quot;;
-console.log(Object.entries(my_obj)); 
-// [ [&apos;foo&apos;, &apos;bar&apos;] ]
-
-// 非对象参数会被强行视为对象
-console.log(Object.entries(&quot;foo&quot;)); 
-// [ [&apos;0&apos;, &apos;f&apos;], [&apos;1&apos;, &apos;o&apos;], [&apos;2&apos;, &apos;o&apos;] ]
-</code></pre><h1 id="6-Object-freeze"><a href="#6-Object-freeze" class="headerlink" title="6. Object.freeze()"></a>6. Object.freeze()</h1><p>作用：冻结一个对象，这个对象永远是不可变的。<br>语法：Object.freeze(obj)<br>参数：obj: 被冻结的对象<br>返回值：被冻结的对象<br>是否改变原对象：true<br>兼容性：IE9+<br>版本：ES5<br>描述：如果一个属性的值是个对象，则这个对象中的属性是可以修改的，除非它也是个冻结对象。</p>
-<pre><code>var obj = {name: &apos;zhangqi&apos;,age: 29};
-var newObj = Object.freeze(obj);
-
-obj.name = &apos;zhaojinge&apos;;
-console.log(obj);     //{name: &apos;zhangqi&apos;,age: 29}
-delete obj.age;
-console.log(obj);     //{name: &apos;zhangqi&apos;,age: 29}
-newObj.name = &apos;xiaogai&apos;;
-console.log(newObj);  //{name: &apos;zhangqi&apos;,age: 29}
-
-//一个冻结对象中的非冻结对象是可以被修改的（浅冻结）
-var obj = {fn: {name: &apos;zhangqi&apos;}};
-Object.freeze(obj);
-obj.fn.name = &apos;zhaojinge&apos;;
-console.log(obj.fn.name);  //zhaojinge
-</code></pre><h1 id="7-Object-getOwnPropertyDescriptor"><a href="#7-Object-getOwnPropertyDescriptor" class="headerlink" title="7. Object.getOwnPropertyDescriptor()"></a>7. Object.getOwnPropertyDescriptor()</h1><p>作用：返回指定对象上一个自有属性对应的属性描述符<br>语法：Object.getOwnPropertyDescriptor(obj, prop)<br>参数：</p>
-<ul>
-<li>obj: 在该对象上查看属性</li>
-<li>prop: 一个属性名称，该属性的属性描述符将被返回</li>
-</ul>
-<p>返回值：如果指定的属性存在于对象上，则返回其属性描述符（property descriptor），否则返回 undefined。<br>是否改变原对象：false<br>兼容性：IE8+<br>版本：ES5<br>描述：<br>一个属性描述符是一个记录，由下面属性当中的某些组成的：<br>value<br>该属性的值(仅针对数据属性描述符有效)<br>writable<br>当且仅当属性的值可以被改变时为true。(仅针对数据属性描述有效)<br>get<br>获取该属性的访问器函数（getter）。如果没有访问器， 该值为undefined。(仅针对包含访问器或设置器的属性描述有效)<br>set<br>获取该属性的设置器函数（setter）。 如果没有设置器， 该值为undefined。(仅针对包含访问器或设置器的属性描述有效)<br>configurable<br>当且仅当指定对象的属性描述可以被改变或者属性可被删除时，为true。<br>enumerable<br>当且仅当指定对象的属性可以被枚举出时，为 true。</p>
-<pre><code>var o, d;
-
-o = { get foo() { return 17; } };
-d = Object.getOwnPropertyDescriptor(o, &quot;foo&quot;);
-// d is { configurable: true, enumerable: true, get: /*访问器函数*/, set: undefined }
-
-o = { bar: 42 };
-d = Object.getOwnPropertyDescriptor(o, &quot;bar&quot;);
-// d is { configurable: true, enumerable: true, value: 42, writable: true }
-
-o = {};
-Object.defineProperty(o, &quot;baz&quot;, { value: 8675309, writable: false, enumerable: false });
-d = Object.getOwnPropertyDescriptor(o, &quot;baz&quot;);
-// d is { value: 8675309, writable: false, enumerable: false, configurable: false }
-</code></pre><h1 id="8-Object-getOwnPropertyDescriptors"><a href="#8-Object-getOwnPropertyDescriptors" class="headerlink" title="8. Object.getOwnPropertyDescriptors()"></a>8. Object.getOwnPropertyDescriptors()</h1><p>作用：用来获取一个对象的所有自身属性的描述符<br>语法：Object.getOwnPropertyDescriptors(obj);<br>参数：obj: 任意对象<br>返回值：所指定对象的所有自身属性的描述符，如果没有任何自身属性，则返回空对象<br>是否改变原对象：false<br>兼容性：只有火狐支持<br>版本：ES8<br>描述：—</p>
-<p>浅拷贝一个对象<br>Object.assign() 方法只能拷贝源对象的可枚举的自身属性，同时拷贝时无法拷贝属性的特性们，而且访问器属性会被转换成数据属性，也无法拷贝源对象的原型，该方法配合 Object.create() 方法可以实现上面说的这些。</p>
-<pre><code>Object.create(
-  Object.getPrototypeOf(obj), 
-  Object.getOwnPropertyDescriptors(obj) 
-);
-</code></pre><p>创建子类</p>
-<p>创建子类的典型方法是定义子类，将其原型设置为超类的实例，然后在该实例上定义属性。这可能会让尴尬，特别是对于 getters 和 setter 而言。 相反，您可以使用此代码设置原型：</p>
-<pre><code>function superclass() {}
-superclass.prototype = {
-  // 在这里定义方法和属性
-};
-function subclass() {}
-subclass.prototype = Object.create(superclass.prototype, Object.getOwnPropertyDescriptors({
-  // 在这里定义方法和属性
-}));
-</code></pre><h1 id="9-Object-getOwnPropertyNames"><a href="#9-Object-getOwnPropertyNames" class="headerlink" title="9. Object.getOwnPropertyNames()"></a>9. Object.getOwnPropertyNames()</h1><p>作用：返回一个由指定对象的所有自身属性的属性名（包括不可枚举属性）组成的数组<br>语法：Object.getOwnPropertyNames(obj)<br>参数：obj: 一个对象，其自身的可枚举和不可枚举属性的名称被返回<br>返回值：数组<br>是否改变原对象：false<br>兼容性：IE9+<br>版本：ES5<br>描述：数组中枚举属性的顺序与通过 for…in 循环（或 Object.keys）迭代该对象属性时一致。 数组中不可枚举属性的顺序未定义</p>
-<pre><code>var arr = [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;];
-console.log(Object.getOwnPropertyNames(arr).sort()); // [&quot;0&quot;, &quot;1&quot;, &quot;2&quot;, &quot;length&quot;]
-
-// 类数组对象
-var obj = { 0: &quot;a&quot;, 1: &quot;b&quot;, 2: &quot;c&quot;};
-console.log(Object.getOwnPropertyNames(obj).sort()); // [&quot;0&quot;, &quot;1&quot;, &quot;2&quot;]
-
-// 使用Array.forEach输出属性名和属性值
-Object.getOwnPropertyNames(obj).forEach(function(val, idx, array) {
-  console.log(val + &quot; -&gt; &quot; + obj[val]);
-});
-// 输出
-// 0 -&gt; a
-// 1 -&gt; b
-// 2 -&gt; c
-
-//不可枚举属性
-var my_obj = Object.create({}, {
-  getFoo: {
-    value: function() { return this.foo; },
-    enumerable: false
-  }
-});
-my_obj.foo = 1;
-
-console.log(Object.getOwnPropertyNames(my_obj).sort()); // [&quot;foo&quot;, &quot;getFoo&quot;]
-
-//该方法不会获取到原型链上的属性
-function ParentClass() {}
-ParentClass.prototype.inheritedMethod = function() {};
-
-function ChildClass() {
-  this.prop = 5;
-  this.method = function() {};
-}
-
-ChildClass.prototype = new ParentClass;
-ChildClass.prototype.prototypeMethod = function() {};
-
-console.log(
-  Object.getOwnPropertyNames(
-    new ChildClass()  // [&quot;prop&quot;, &quot;method&quot;]
-  )
-);
-</code></pre><h1 id="10-Object-getOwnPropertySymbols"><a href="#10-Object-getOwnPropertySymbols" class="headerlink" title="10. Object.getOwnPropertySymbols()"></a>10. Object.getOwnPropertySymbols()</h1><p>作用：返回一个数组，该数组包含了指定对象自身的（非继承的）所有 symbol 属性键<br>语法：Object.getOwnPropertySymbols(obj)<br>参数：obj<br>返回值：数组<br>是否改变原对象：false<br>兼容性：IE-<br>版本：ES6<br>描述：</p>
-<pre><code>var obj = {};
-var a = Symbol(&quot;a&quot;);
-var b = Symbol.for(&quot;b&quot;);
-
-obj[a] = &quot;localSymbol&quot;;
-obj[b] = &quot;globalSymbol&quot;;
-
-var objectSymbols = Object.getOwnPropertySymbols(obj);
-
-console.log(objectSymbols.length); // 2
-console.log(objectSymbols)         // [Symbol(a), Symbol(b)]
-console.log(objectSymbols[0])      // Symbol(a)
-</code></pre><h1 id="11-Object-getPrototypeOf"><a href="#11-Object-getPrototypeOf" class="headerlink" title="11. Object.getPrototypeOf()"></a>11. Object.getPrototypeOf()</h1><p>作用：返回指定对象的原型（即, 内部[[Prototype]]属性的值）<br>语法：Object.getPrototypeOf(obj)<br>参数：obj: 要返回其原型的对象<br>返回值：给定对象的原型。如果没有继承属性，则返回 null<br>是否改变原对象：false<br>兼容性：IE9+<br>版本：ES5<br>描述：</p>
-<pre><code>let proto = {};
-let obj = Object.create(proto);
-
-Object.getPrototypeOf(obj) === proto;
- // true
-</code></pre><p>在 ES5 中，如果参数不是一个对象类型，将抛出一个  TypeError 异常。在 ES6 /ES2015中，参数被强制转换为一个 Object。</p>
-<pre><code>&gt; Object.getPrototypeOf(&quot;foo&quot;);
-TypeError: &quot;foo&quot; is not an object  
-// ES5 code
-
-&gt; Object.getPrototypeOf(&quot;foo&quot;);
-String.prototype                   
-// ES6 code
-</code></pre><h1 id="12-Object-is"><a href="#12-Object-is" class="headerlink" title="12. Object.is()"></a>12. Object.is()</h1><p>作用：确定两个值是否是 相同的值<br>语法：Object.is(value1, value2);<br>参数：value1, value2: 需要比较的值<br>返回值：true || false<br>是否改变原对象：false<br>兼容性：IE- Safari-<br>版本：ES6<br>描述：<br>Object.is() 会在下面这些情况下认为两个值是相同的：</p>
-<p>两个值都是 undefined<br>两个值都是 null<br>两个值都是 true 或者都是 false<br>两个值是由相同个数的字符按照相同的顺序组成的字符串<br>两个值指向同一个对象<br>两个值都是数字并且<br>都是正零 +0<br>都是负零 -0<br>都是 NaN<br>都是除零和 NaN 外的其它同一个数字</p>
-<pre><code>Object.is(&apos;foo&apos;, &apos;foo&apos;);     // true
-Object.is(window, window);   // true
-
-Object.is(&apos;foo&apos;, &apos;bar&apos;);     // false
-Object.is([], []);           // false
-
-var test = { a: 1 };
-Object.is(test, test);       // true
-
-Object.is(null, null);       // true
-
-// 特例
-Object.is(0, -0);            // false
-Object.is(-0, -0);           // true
-Object.is(NaN, 0/0);         // true
-</code></pre><h1 id="13-Object-isExtensible"><a href="#13-Object-isExtensible" class="headerlink" title="13. Object.isExtensible()"></a>13. Object.isExtensible()</h1><p>作用：判断一个对象是否是可扩展的<br>语法：Object.isExtensible(obj)<br>参数：obj: 要检测的对象<br>返回值：true || false<br>是否改变原对象：false<br>兼容性：IE9+<br>版本：ES5<br>描述：</p>
-<pre><code>// 新对象默认是可扩展的.
-var empty = {};
-Object.isExtensible(empty); // === true
-
-// ...可以变的不可扩展.
-Object.preventExtensions(empty);
-Object.isExtensible(empty); // === false
-
-// 密封对象是不可扩展的.
-var sealed = Object.seal({});
-Object.isExtensible(sealed); // === false
-
-// 冻结对象也是不可扩展.
-var frozen = Object.freeze({});
-Object.isExtensible(frozen); // === false
-
-//在 ES5 中，如果参数不是一个对象类型，将抛出一个 TypeError 异常。在 ES6 中， non-object 参数将被视为一个不可扩展的普通对象，因此会返回 false 。
-Object.isExtensible(1);
-// TypeError: 1 is not an object (ES5 code)
-Object.isExtensible(1);
-// false                         (ES6 code)
-</code></pre><h1 id="14-Object-isFrozen"><a href="#14-Object-isFrozen" class="headerlink" title="14. Object.isFrozen()"></a>14. Object.isFrozen()</h1><p>作用：判断一个对象是否被冻结 frozen<br>语法：Object.isFrozen(obj)<br>参数：obj: 被检测的对象<br>返回值：true || false<br>是否改变原对象：false<br>兼容性：IE9+, opera-<br>版本：ES5<br>描述：</p>
-<pre><code>// 一个对象默认是可扩展的,所以它也是非冻结的.
-assert(Object.isFrozen({}) === false);
-
-// 一个不可扩展的空对象同时也是一个冻结对象.
-var vacuouslyFrozen = Object.preventExtensions({});
-assert(Object.isFrozen(vacuouslyFrozen) === true);
-
-// 一个非空对象默认也是非冻结的.
-var oneProp = { p: 42 };
-assert(Object.isFrozen(oneProp) === false);
-
-// 让这个对象变的不可扩展,并不意味着这个对象变成了冻结对象,
-// 因为p属性仍然是可以配置的(而且可写的).
-Object.preventExtensions(oneProp);
-assert(Object.isFrozen(oneProp) === false);
-// ...如果删除了这个属性,则它会成为一个冻结对象.
-delete oneProp.p;
-assert(Object.isFrozen(oneProp) === true);
-
-// 一个不可扩展的对象,拥有一个不可写但可配置的属性,则它仍然是非冻结的.
-var nonWritable = { e: &quot;plep&quot; };
-Object.preventExtensions(nonWritable);
-Object.defineProperty(nonWritable, &quot;e&quot;, { writable: false }); // 变得不可写
-assert(Object.isFrozen(nonWritable) === false);
-
-// 把这个属性改为不可配置,会让这个对象成为冻结对象.
-Object.defineProperty(nonWritable, &quot;e&quot;, { configurable: false }); // 变得不可配置
-assert(Object.isFrozen(nonWritable) === true);
-
-// 一个不可扩展的对象,拥有一个不可配置但可写的属性,则它仍然是非冻结的.
-var nonConfigurable = { release: &quot;the kraken!&quot; };
-Object.preventExtensions(nonConfigurable);
-Object.defineProperty(nonConfigurable, &quot;release&quot;, { configurable: false });
-assert(Object.isFrozen(nonConfigurable) === false);
-
-// 把这个属性改为不可写,会让这个对象成为冻结对象.
-Object.defineProperty(nonConfigurable, &quot;release&quot;, { writable: false });
-assert(Object.isFrozen(nonConfigurable) === true);
-
-// 一个不可扩展的对象,值拥有一个访问器属性,则它仍然是非冻结的.
-var accessor = { get food() { return &quot;yum&quot;; } };
-Object.preventExtensions(accessor);
-assert(Object.isFrozen(accessor) === false);
-
-// ...但把这个属性改为不可配置,会让这个对象成为冻结对象.
-Object.defineProperty(accessor, &quot;food&quot;, { configurable: false });
-assert(Object.isFrozen(accessor) === true);
-
-// 使用Object.freeze是冻结一个对象最方便的方法.
-var frozen = { 1: 81 };
-assert(Object.isFrozen(frozen) === false);
-Object.freeze(frozen);
-assert(Object.isFrozen(frozen) === true);
-
-// 一个冻结对象也是一个密封对象.
-assert(Object.isSealed(frozen) === true);
-
-// 当然,更是一个不可扩展的对象.
-assert(Object.isExtensible(frozen) === false);
-</code></pre><h1 id="15-Object-isSealed"><a href="#15-Object-isSealed" class="headerlink" title="15. Object.isSealed()"></a>15. Object.isSealed()</h1><p>作用：判断一个对象是否被密封(sealed)<br>语法：Object.isSealed(obj)<br>参数：obj<br>返回值：true || false<br>是否改变原对象：false<br>兼容性：IE9+, opera-<br>版本：ES5<br>描述：</p>
-<pre><code>// 新建的对象默认不是密封的.
-var empty = {};
-Object.isSealed(empty); // === false
-
-// 如果你把一个空对象变的不可扩展,则它同时也会变成个密封对象.
-Object.preventExtensions(empty);
-Object.isSealed(empty); // === true
-
-// 但如果这个对象不是空对象,则它不会变成密封对象,因为密封对象的所有自身属性必须是不可配置的.
-var hasProp = { fee: &quot;fie foe fum&quot; };
-Object.preventExtensions(hasProp);
-Object.isSealed(hasProp); // === false
-
-// 如果把这个属性变的不可配置,则这个对象也就成了密封对象.
-Object.defineProperty(hasProp, &quot;fee&quot;, { configurable: false });
-Object.isSealed(hasProp); // === true
-
-// 最简单的方法来生成一个密封对象,当然是使用Object.seal.
-var sealed = {};
-Object.seal(sealed);
-Object.isSealed(sealed); // === true
-
-// 一个密封对象同时也是不可扩展的.
-Object.isExtensible(sealed); // === false
-
-// 一个密封对象也可以是一个冻结对象,但不是必须的.
-Object.isFrozen(sealed); // === true ，所有的属性都是不可写的
-var s2 = Object.seal({ p: 3 });
-Object.isFrozen(s2); // === false， 属性&quot;p&quot;可写
-
-var s3 = Object.seal({ get p() { return 0; } });
-Object.isFrozen(s3); // === true ，访问器属性不考虑可写不可写,只考虑是否可配置
-
-//在 ES5 中，如果参数不是一个对象类型（原始类型），将抛出一个 TypeError  异常。在 ES6 中， non-object 参数将被视为一个密封的普通对象，因此会返回 true。
-Object.isSealed(1);
-// TypeError: 1 is not an object (ES5 code)
-Object.isSealed(1);
-// true                          (ES6 code)
-</code></pre><h1 id="16-Object-keys"><a href="#16-Object-keys" class="headerlink" title="16. Object.keys()"></a>16. Object.keys()</h1><p>作用：返回一个由一个给定对象的自身可枚举属性组成的数组，数组中属性名的排列顺序和使用 for…in 循环遍历该对象时返回的顺序一致<br>语法：Object.keys(obj)<br>参数：obj<br>返回值：一个表示给定对象的所有可枚举属性的字符串数组<br>是否改变原对象：false<br>兼容性：IE9+<br>版本：ES5<br>描述：Object.keys 返回一个所有元素为字符串的数组，其元素来自于从给定的对象上面<em>可直接枚举的属性</em></p>
-<pre><code>var arr = [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;];
-alert(Object.keys(arr)); // &quot;0,1,2&quot;
-
-/* 类数组对象 */ 
-var obj = { 0 : &quot;a&quot;, 1 : &quot;b&quot;, 2 : &quot;c&quot;};
-alert(Object.keys(obj)); // &quot;0,1,2&quot;
-
-/* 具有随机键排序的数组类对象 */
-var an_obj = { 100: &apos;a&apos;, 2: &apos;b&apos;, 7: &apos;c&apos; };
-console.log(Object.keys(an_obj)); 
-// console: [&apos;2&apos;, &apos;7&apos;, &apos;100&apos;]
-</code></pre><p>在ES5，如果此方法的参数不是一个对象（原始的），那么它会造成 TypeError。在ES2015，非对象的参数将被强制转换为一个对象。<br>    Object.keys(“foo”);<br>    // TypeError: “foo” is not an object (ES5 code)</p>
-<pre><code>Object.keys(&quot;foo&quot;);
-// [&quot;0&quot;, &quot;1&quot;, &quot;2&quot;]                   (ES2015 code)
-</code></pre><h1 id="17-Object-preventExtensions"><a href="#17-Object-preventExtensions" class="headerlink" title="17. Object.preventExtensions()"></a>17. Object.preventExtensions()</h1><p>作用：让一个对象变的不可扩展，也就是永远不能再添加新的属性<br>语法：Object.preventExtensions(obj)<br>参数：obj: 将要变得不可扩展的对象<br>返回值：obj<br>是否改变原对象：true<br>兼容性：IE9+, opera-<br>版本：ES5<br>描述：</p>
-<pre><code>var obj = {name: &apos;zhangqi&apos;};
-var a = Object.preventExtensions(obj);
-obj.age = 29;
-console.log(obj); //Object {name: &quot;zhangqi&quot;}
-console.log(a);   //Object {name: &quot;zhangqi&quot;}
-console.log(a === obj);  //true
-
-// 字面量方式定义的对象默认是可扩展的.
-var empty = {};
-assert(Object.isExtensible(empty) === true);
-
-// ...但可以改变.
-Object.preventExtensions(empty);
-assert(Object.isExtensible(empty) === false);
-
-// 使用Object.defineProperty方法为一个不可扩展的对象添加新属性会抛出异常.
-var nonExtensible = { removable: true };
-Object.preventExtensions(nonExtensible);
-Object.defineProperty(nonExtensible, &quot;new&quot;, { value: 8675309 }); // 抛出TypeError异常
-
-// 在严格模式中,为一个不可扩展对象的新属性赋值会抛出TypeError异常.
-function fail()
-{
-  &quot;use strict&quot;;
-  nonExtensible.newProperty = &quot;FAIL&quot;; // throws a TypeError
-}
-fail();
-
-// 一个不可扩展对象的原型是不可更改的,__proto__是个非标准魔法属性,可以更改一个对象的原型.
-var fixed = Object.preventExtensions({});
-fixed.__proto__ = { oh: &quot;hai&quot; }; // 抛出TypeError异常
-</code></pre><h1 id="18-Object-prototype-defineGetter-————已被废除"><a href="#18-Object-prototype-defineGetter-————已被废除" class="headerlink" title="18. Object.prototype.defineGetter()————已被废除"></a>18. Object.prototype.<strong>defineGetter</strong>()————已被废除</h1><h1 id="19-Object-prototype-defineSetter-————已被废除"><a href="#19-Object-prototype-defineSetter-————已被废除" class="headerlink" title="19. Object.prototype.defineSetter()————已被废除"></a>19. Object.prototype.<strong>defineSetter</strong>()————已被废除</h1><h1 id="20-Object-prototype-lookupGetter-————已被废除"><a href="#20-Object-prototype-lookupGetter-————已被废除" class="headerlink" title="20. Object.prototype.lookupGetter()————已被废除"></a>20. Object.prototype.<strong>lookupGetter</strong>()————已被废除</h1><h1 id="21-Object-prototype-lookupSetter-————已被废除"><a href="#21-Object-prototype-lookupSetter-————已被废除" class="headerlink" title="21. Object.prototype.lookupSetter()————已被废除"></a>21. Object.prototype.<strong>lookupSetter</strong>()————已被废除</h1><h1 id="22-Object-prototype-hasOwnProperty"><a href="#22-Object-prototype-hasOwnProperty" class="headerlink" title="22. Object.prototype.hasOwnProperty()"></a>22. Object.prototype.hasOwnProperty()</h1><p>作用：指示对象是否具有指定的属性作为自身（不继承）属性<br>语法：obj.hasOwnProperty(obj)<br>参数：obj: 要检测的属性字符串名称或者symbol<br>返回值：true || false<br>是否改变原对象：false<br>兼容性：all<br>版本：ES3<br>描述：所有继承了 Object 的对象都会继承到 hasOwnProperty 方法。这个方法可以用来检测一个对象是否含有特定的自身属性；和 in 运算符不同，该方法会忽略掉那些从原型链上继承到的属性</p>
-<pre><code>o = new Object();
-o.prop = &apos;exists&apos;;
-
-function changeO() {
-  o.newprop = o.prop;
-  delete o.prop;
-}
-
-o.hasOwnProperty(&apos;prop&apos;);   // 返回 true
-changeO();
-o.hasOwnProperty(&apos;prop&apos;);   // 返回 false
-
-o = new Object();
-o.prop = &apos;exists&apos;;
-o.hasOwnProperty(&apos;prop&apos;);             // 返回 true
-o.hasOwnProperty(&apos;toString&apos;);         // 返回 false
-o.hasOwnProperty(&apos;hasOwnProperty&apos;);   // 返回 false
-</code></pre><p>使用 hasOwnProperty 作为属性名</p>
-<p>JavaScript 并没有保护 hasOwnProperty 属性名，因此某个对象是有可能存在使用这个属性名的属性，使用外部的 hasOwnProperty 获得正确的结果是需要的：</p>
-<pre><code>var foo = {
-    hasOwnProperty: function() {
-        return false;
-    },
-    bar: &apos;Here be dragons&apos;
-};
-
-foo.hasOwnProperty(&apos;bar&apos;); // 始终返回 false
-
-// 如果担心这种情况，可以直接使用原型链上真正的 hasOwnProperty 方法
-({}).hasOwnProperty.call(foo, &apos;bar&apos;); // true
-
-// 也可以使用 Object 原型上的 hasOwnProperty 属性
-Object.prototype.hasOwnProperty.call(foo, &apos;bar&apos;); // true
-</code></pre><h1 id="23-Object-prototype-isPrototypeOf"><a href="#23-Object-prototype-isPrototypeOf" class="headerlink" title="23. Object.prototype.isPrototypeOf()"></a>23. Object.prototype.isPrototypeOf()</h1><p>作用：用于测试一个对象是否存在于另一个对象的原型链上<br>语法：prototypeObj.isPrototypeOf(object)<br>参数：object: 在该对象的原型链上搜寻<br>返回值：true || false<br>是否改变原对象：false<br>兼容性：all<br>版本：ES3<br>描述：</p>
-<pre><code>function Fn(){}
-Fn.prototype = {}
-function newFn(){}
-newFn.prototype = new Fn();
-var fn = new newFn();
-console.log(Fn.prototype.isPrototypeOf(fn));
-</code></pre><h1 id="24-Object-prototype-propertyIsEnumerable"><a href="#24-Object-prototype-propertyIsEnumerable" class="headerlink" title="24. Object.prototype.propertyIsEnumerable()"></a>24. Object.prototype.propertyIsEnumerable()</h1><p>作用：返回一个布尔值，表明指定的属性名是否是当前对象可枚举的自身属性<br>语法：obj.propertyIsEnumerable(prop)<br>参数：prop: 需要测试的属性名<br>返回值：true || false<br>是否改变原对象：false<br>兼容性：all<br>版本：ES3<br>描述：</p>
-<pre><code>var obj = {name: &apos;zhangqi&apos;}
-var a = obj.propertyIsEnumerable(&apos;name&apos;);
-console.log(a);  //true
-
-//用户自定义对象(true)和引擎内置对象(false)
-var a = [&apos;is enumerable&apos;];
-a.propertyIsEnumerable(0);          // 返回 true
-a.propertyIsEnumerable(&apos;length&apos;);   // 返回 false
-Math.propertyIsEnumerable(&apos;random&apos;);   // 返回 false
-this.propertyIsEnumerable(&apos;Math&apos;);     // 返回 false
-
-继承属性不可枚举
-function fn(){}
-fn.prototype.name = &apos;zhangqi&apos;;
-
-function newfn(){}
-newfn.prototype = new fn();
-var a = new newfn(); 
-console.log(a.propertyIsEnumerable(&apos;name&apos;));
-</code></pre><h1 id="25-Object-prototype-toLocalString"><a href="#25-Object-prototype-toLocalString" class="headerlink" title="25. Object.prototype.toLocalString()"></a>25. Object.prototype.toLocalString()</h1><p>作用：回一个该对象的字符串表示。该方法主要用于被本地化相关对象覆盖<br>语法：obj.toLocaleString()<br>参数：无<br>返回值：该对象的字符串表示<br>是否改变原对象：false<br>兼容性：all<br>版本：ES3<br>描述：Object’s toLocaleString 返回调用 toString() 方法的结果</p>
-<pre><code>var obj = {
-    fn: function(){
-        return 1;
-    }
-}
-
-var a = obj.toLocaleString();
-
-console.log(a); //[object Object]
-console.log(typeof a);//string
-</code></pre><h1 id="26-Object-prototype-toSource-————unstandard"><a href="#26-Object-prototype-toSource-————unstandard" class="headerlink" title="26. Object.prototype.toSource()————unstandard"></a>26. Object.prototype.toSource()————unstandard</h1><p>作用：返回一个表示对象源代码的字符串<br>语法：obj.toSource()<br>参数：无<br>返回值：一个表示对象的源代码的字符串<br>是否改变原对象：false<br>兼容性：—<br>版本：—<br>描述：</p>
-<p>重写toSource()方法<br>允许对象重写toSource()方法。例如：</p>
-<pre><code>function Person(name) {
-    this.name = name;
-}
-Person.prototype.toSource = function Person_toSource() {
-    return &quot;new Person(&quot; + uneval(this.name) + &quot;)&quot;;
-};
-alert(new Person(&quot;Joe&quot;).toSource()); // ---&gt; new Person(&quot;Joe&quot;)
-</code></pre><h1 id="27-Object-prototype-unwatch-————unstandard"><a href="#27-Object-prototype-unwatch-————unstandard" class="headerlink" title="27. Object.prototype.unwatch()————unstandard"></a>27. Object.prototype.unwatch()————unstandard</h1><p>作用：删除一个 watch() 设置的 watchpoint.<br>语法：obj.unwatch(prop)<br>参数：prop: 想要停止监视的对象的属性名<br>返回值：—<br>是否改变原对象：false<br>兼容性：firefox<br>版本：—<br>描述：见watch()方法</p>
-<h1 id="28-Object-prototype-valueOf"><a href="#28-Object-prototype-valueOf" class="headerlink" title="28. Object.prototype.valueOf()"></a>28. Object.prototype.valueOf()</h1><p>作用：返回指定对象的原始值<br>语法：object.valueOf()<br>参数：无<br>返回值：该对象的原始值<br>是否改变原对象：false<br>兼容性：all<br>版本：ES1<br>描述：</p>
-<pre><code>var obj = {
-    fn: function(){
-        console.log(1);
-    }
-}
-
-var a = obj.valueOf();
-
-console.log(obj); //Object {}
-console.log(a);   //Object {}
-
-console.log(obj === a);  //true
-
-//覆盖自定义对象的 valueOf 方法
-function myNumberType(n) {
-this.number = n;
-}
-myNumberType.prototype.valueOf = function() {
-    return this.number;
-};
-myObj = new myNumberType(4);
-myObj + 3; // 7
-</code></pre><h1 id="29-Object-prototype-watch-————unstandard"><a href="#29-Object-prototype-watch-————unstandard" class="headerlink" title="29. Object.prototype.watch()————unstandard"></a>29. Object.prototype.watch()————unstandard</h1><p>作用：监视一个对象的某个属性是否被赋值，在该属性赋值时出发指定的回调函数<br>语法：object.watch(prop, handler)<br>参数：</p>
-<ul>
-<li>prop: 想要监视值是否发生变化的指定对象的某个属性的属性名称</li>
-<li>handler: 当指定的属性发生变化时执行的回调函数</li>
-</ul>
-<p>返回值：—<br>是否改变原对象：true<br>兼容性：所有支持ES5的浏览器<br>版本：—<br>描述： 通常来讲,你应该尽量避免使用 watch()和 unwatch() 方法 . 这两个方法仅在Gecko中实现,并且它们主要是为了在调试的时候使用</p>
-<pre><code>var o = {p:1};
-o.watch(&quot;p&quot;,
-  function (id, oldval, newval) {
-    console.log(&quot;o.&quot; + id + &quot;由&quot; + oldval + &quot; 变为 &quot; + newval);
-    return newval;
-  });
-
-o.p = 2; //o.p 由 1 变为 2
-o.p = 3; //o.p 由 2 变为 3
-delete o.p;
-o.p = 4; //o.p 由 undefined 变为 4
-
-o.unwatch(&apos;p&apos;);
-o.p = 5;
-</code></pre><h1 id="30-Object-seal"><a href="#30-Object-seal" class="headerlink" title="30. Object.seal()"></a>30. Object.seal()</h1><p>作用：让一个对象密封，并返回被密封后的对象。密封对象将会阻止向对象添加新的属性，并且会将所有已有属性的可配置性（configurable）置为不可配置（false），即不可修改属性的描述或删除属性。但是可写性描述（writable）为可写（true）的属性的值仍然被修改。<br>语法：Object.seal(obj)<br>参数：obj: 将要被密封的对象<br>返回值：被密封后的对象<br>是否改变原对象：true<br>兼容性：IE9+ ,opere-<br>版本：ES5<br>描述：通常情况下，一个对象是可扩展的（可以添加新的属性）。密封一个对象会让这个对象变的不能添加新属性，且所有已有属性会变的不可配置。属性不可配置的效果就是属性变的不可删除，以及一个数据属性不能被重新定义成为访问器属性，或者反之。但属性的值仍然可以修改。尝试删除一个密封对象的属性或者将某个密封对象的属性从数据属性转换成访问器属性，结果会静默失败或抛出TypeError 异常（严格模式）。</p>
-<p>不会影响从原型链上继承的属性。但 <strong>proto</strong> (  ) 属性的值也会不能修改。</p>
-<pre><code>var obj = {
-    name: &apos;zhangqi&apos;,
-    age: 29
-};
-
-var a = Object.seal(obj);
-obj.name = &quot;zhaojinge&quot;;
-obj.job = &quot;web&quot;;
-console.log(obj); //Object {name: &quot;zhaojinge&quot;, age: 29}
-</code></pre><h1 id="31-Object-setPrototypeOf"><a href="#31-Object-setPrototypeOf" class="headerlink" title="31. Object.setPrototypeOf()"></a>31. Object.setPrototypeOf()</h1><p>作用：设置一个指定的对象的原型 ( 即, 内部[[Prototype]]属性）到另一个对象或  null。<br>语法：Object.setPrototypeOf(obj, prototype)<br>参数：</p>
-<ul>
-<li>obj: 要设置其原型的对象</li>
-<li>prototype: 该对象的新原型(obj || null)</li>
-</ul>
-<p>返回值：obj<br>是否改变原对象：true<br>兼容性：IE11+ ,safari-<br>版本：ES6<br>描述：如果对象的[[Prototype]]被修改成不可扩展(通过 Object.isExtensible()查看)，就会抛出 TypeError异常。如果prototype参数不是一个对象或者null(例如，数字，字符串，boolean，或者 undefined)，则什么都不做。否则，该方法将obj的[[Prototype]]修改为新的值。</p>
-<pre><code>function fn(){}
-fn.prototype = {
-    getName: function(){
-        console.log(&apos;zhangqi&apos;);
-    }
-}
-function newfn(){}
-var a = new newfn();
-
-var b = Object.setPrototypeOf(a, fn.prototype);
-console.log(b); //newfn {}
-a.getName(); //zhangqi
-console.log(b === a);//true
-</code></pre><h1 id="32-Object-values"><a href="#32-Object-values" class="headerlink" title="32. Object.values()"></a>32. Object.values()</h1><p>作用：返回一个给定对象自己的所有可枚举属性值的数组，值的顺序与使用for…in循环的顺序相同 ( 区别在于for-in循环枚举原型链中的属性 )<br>语法：Object.values(obj)<br>参数：obj: 被返回可枚举属性值的对象<br>返回值：数组<br>是否改变原对象：false<br>兼容性：firefox<br>版本：ES7<br>描述：</p>
-<pre><code>var obj = { foo: &quot;bar&quot;, baz: 42 };
-console.log(Object.values(obj)); // [&apos;bar&apos;, 42]
-
-var obj = { 0: &apos;a&apos;, 1: &apos;b&apos;, 2: &apos;c&apos; };
-console.log(Object.values(obj)); // [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;]
-
-var an_obj = { 100: &apos;a&apos;, 2: &apos;b&apos;, 7: &apos;c&apos; };
-console.log(Object.values(an_obj)); // [&apos;b&apos;, &apos;c&apos;, &apos;a&apos;]
-
-var my_obj = Object.create({}, { getFoo: { value: function() { return this.foo; } } });
-my_obj.foo = &quot;bar&quot;;
-console.log(Object.values(my_obj)); // [&apos;bar&apos;]
-
-console.log(Object.values(&quot;foo&quot;)); // [&apos;f&apos;, &apos;o&apos;, &apos;o&apos;]
-</code></pre>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -3914,7 +3325,7 @@ console.log(Object.values(&quot;foo&quot;)); // [&apos;f&apos;, &apos;o&apos;, &
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-count">14</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
